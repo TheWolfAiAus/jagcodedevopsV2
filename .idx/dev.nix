@@ -4,7 +4,56 @@
   # Which nixpkgs channel to use.
   channel = "stable-23.11"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
-  packages = [ pkgs.nodejs_20 pkgs.nodejs_20 pkgs.jdk21_headless pkgs.gradle ];
+  packages = [ pkgs.nodejs_20 pkgs.nodejs_20 pkgs.jdk21_headless pkgs.gradlepkgs.cryptor
+pkgs.cryptop
+pkgs.cryptoverif
+pkgs.cryptomator
+pkgs.haskellPackages.Crypto
+pkgs.cryptominisat
+crypto-tracker
+pkgs.haskellPackages.crypton
+pkgs.haskellPackages.crypton
+pkgs.texlivePackages.cryptocode
+pkgs.haskellPackages.cryptonite
+pkgs.haskellPackages.crypto-rng
+pkgs.haskellPackages.crypto-api
+ppkgs.haskellPackages.crypton-boxkgs.haskellPackages.cryptostore
+pkgs.haskellPackages.crypto-totp
+pkgs.haskellPackages.cryptocipher
+pkgs.haskellPackages.crypton-x509
+pkgs.haskellPackages.crypto-token
+pkgs.haskellPackages.crypto-sodium
+pkgs.haskellPackages.crypto-random
+pkgs.haskellPackages.crypto-pubkey
+pkgs.haskellPackages.crypto-numbers
+pkgs.haskellPackages.crypto-conduit
+pkgs.haskellPackages.cryptoids-class
+pkgs.haskellPackages.cryptohash-sha1
+pkgs.haskellPackages.crypto-keys-ssh
+pkgs.haskellPackages.crypto-multihash
+pkgs.haskellPackages.cryptohash-sha512
+pkgs.haskellPackages.cryptohash-sha256
+pkgs.haskellPackages.cryptonite-openssl
+pkgs.haskellPackages.cryptonite-conduit
+pkgs.haskellPackages.crypton-x509-store
+pkgs.haskellPackages.crypton-x509-store
+pkgs.haskellPackages.crypto-cipher-types
+pkgs.haskellPackages.cryptohash-cryptoapi
+pkgs.haskellPackages.crypton-x509-validation
+pkgs.python313Packages.m2crypto
+pkgs.aws-c-cal
+pkgs.python313Packages.tgcrypto
+pkgs.python313Packages.pysnmpcrypto
+pkgs.python312Packages.tgcrypto
+pkgs.gnomeExtensions.crypto-price-tracker
+pkgs.libsForQt5.kleopatra
+pkgs.gcr
+pkgs.quictls
+pkgs.python313Packages.bitvavo-aio
+pkgs.perl540Packages.UUIDURandom
+pkgs.haskellPackages.Dust-crypto
+kgs.haskellPackages.NTRU
+pkgs.ocamlPackages.mirage-crypto-rng-lwt];
   # Sets environment variables in the workspace
   env = { EXPO_USE_FAST_RESOLVER = 1; };
   idx = {
