@@ -12,6 +12,21 @@
     extensions = [
       "msjsdiag.vscode-react-native"
       "fwcd.kotlin"
+      "bradlc.vscode-tailwindcss"
+      "dsznajder.es7-react-js-snippets"
+      "enbonnet.routes-react-router"
+      "geonhwiii.react-native-svg-preview"
+      "gunwww.react-native-svg-preview"
+      "imgildev.vscode-tailwindcss-snippets"
+      "jamespan.react-transformer"
+      "mmdctjj.react-syntax-plus"
+      "ms-vscode.js-debug"
+      "Noor.live-tailwind-previewer"
+      "Pinegrow.piny"
+      "react-native-directory.vscode-react-native-directory"
+      "ShishirSingh.easy-react-snippet"
+      "Tomi.xajssnippets"
+      "Tomi.xasnippets"
     ];
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
