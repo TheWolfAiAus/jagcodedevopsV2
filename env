@@ -6,6 +6,8 @@ EXPO_PUBLIC_SUPABASE_KEY="<prefer publishable key instead of anon key for mobile
 DATABASE_URL="postgresql://postgres.tsohmpodqepefakwrqqd:[Jaggerjames072496!$]@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres?pgbouncer=true"
 DIRECT_URL="postgresql://postgres.tsohmpodqepefakwrqqd:[Jaggerjames072496!$]@aws-1-ap-southeast-2.pooler.supabase.com:5432/postgres"
 postgresql="//postgres.tsohmpodqepefakwrqqd:[Jaggerjames072496!$]@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres"
+PROJECT_URL="https://tsohmpodqepefakwrqqd.supabase.co"
+SUPABASE_PROJECT_API="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRzb2htcG9kcWVwZWZha3dycXFkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUyNjM0NDQsImV4cCI6MjA3MDgzOTQ0NH0.0dcZCboaqE4Q5f1NRmUb5pC_ZsdcbBP8BxDd7bmidFA"
 JageCodeDevOps_API= "63721d2c0658ec7692b6e8361ce118d7e88d1af5fe363f67787b8c0de503fa7a"
 URL="https://JageCodeDevOps.xyz"
 URL="www.jagcodedevops.xyz"
