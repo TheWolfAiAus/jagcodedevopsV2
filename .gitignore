@@ -37,3 +37,20 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+
+# Local env file used by developer (do NOT commit)
+env
+env.*
+
+# Local IDE metadata
+.idea/
+.junie/
+
+# Large or sensitive data
+data/_extracted_wallet_data/
+"Supabase DB"/
+vendor/
+
+# LevelDB / wallet DB files
+*.ldb
+*.log
