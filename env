@@ -1,0 +1,25 @@
+postgresql://postgres:[Jaggerjames072496!$]@db.tsohmpodqepefakwrqqd.supabase.co:5432/postgres
+REACT_APP_SUPABASE_URL=https://tsohmpodqepefakwrqqd.supabase.co
+REACT_APP_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRzb2htcG9kcWVwZWZha3dycXFkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUyNjM0NDQsImV4cCI6MjA3MDgzOTQ0NH0.0dcZCboaqE4Q5f1NRmUb5pC_ZsdcbBP8BxDd7bmidFA
+EXPO_PUBLIC_SUPABASE_URL=https://tsohmpodqepefakwrqqd.supabase.co
+EXPO_PUBLIC_SUPABASE_KEY=<prefer publishable key instead of anon key for mobile and desktop apps>
+DATABASE_URL="postgresql://postgres.tsohmpodqepefakwrqqd:[Jaggerjames072496!$]@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres?pgbouncer=true"
+DIRECT_URL="postgresql://postgres.tsohmpodqepefakwrqqd:[Jaggerjames072496!$]@aws-1-ap-southeast-2.pooler.supabase.com:5432/postgres"
+JageCodeDevOps_API= "63721d2c0658ec7692b6e8361ce118d7e88d1af5fe363f67787b8c0de503fa7a"
+URL="https://JageCodeDevOps.xyz"
+URL="www.jagcodedevops.xyz"
+WEBFLOW_FORWARD_URL="https://JageCodeDevOps.xyz/webhook/webflow-form"
+WEBFLOW_CLIENT_ID="63c1f8b2d4f3e7a5b6c8e9a0"
+WEBFLOW_CLIENT_SECRET="d4f3e7a5b6c8e9a063c1f8b2d4f3e7a5b6c8e9a0"
+WEBFLOW_REDIRECT_URI="https://JageCodeDevOps.xyz/webhook/webflow-form"
+WEBFLOW_AUTH_URL="https://webflow.com/oauth/authorize?client_id=63c1f8b2d4f3e7a5b6c8e9a0&response_type=code&scope=write%20read&redirect_uri=https://JageCodeDevOps.xyz/webhook/webflow-form"
+WEBFLOW_TOKEN_URL="https://api.webflow.com/oauth/access_token"
+ngrok config add-authtoken= "31KgkfZyOHRdRKA7gN0UBT3e0uv_4eWQzMvSwWkiKXLg7EAs3"
+ETHERSCAN: "VZFDUWB3YGQ1YCDKTCU1D6DDSS"
+BSC="VZFDUWB3YGQ1YCDKTCU1D6DDSS"
+POLYGONSCAN="VZFDUWB3YGQ1YCDKTCU1D6DDSS"
+BSCSCAN="ZM8ACMJB67C2IXKKBF8URFUNSY" 
+SNOWSCAN="ATJQERBKV1CI3GVKNSE3Q7RGEJ" 
+ARBISCAN="B6SVGA7K3YBJEQ69AFKJF4YHVX" 
+OPTIMISM="66N5FRNV1ZD4I87S7MAHCJVXFJ"
+JAGCODEDEVOPS_ETHERSCAN_API="KVS2M9YMEVR4XKATXJRT1W4NXJPBT5RJCZ"
