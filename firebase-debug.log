@@ -1,18 +1,18 @@
-[debug] [2025-08-15T20:15:32.381Z] ----------------------------------------------------------------------
-[debug] [2025-08-15T20:15:32.383Z] Command:       /nix/store/ws50yvm6vzlzf7jzz6n7xh4szddrack1-nodejs-20.19.1/bin/node /nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/bin/firebase.js init hosting
-[debug] [2025-08-15T20:15:32.383Z] CLI Version:   14.12.0
-[debug] [2025-08-15T20:15:32.384Z] Platform:      linux
-[debug] [2025-08-15T20:15:32.384Z] Node Version:  v20.19.1
-[debug] [2025-08-15T20:15:32.384Z] Time:          Fri Aug 15 2025 20:15:32 GMT+0000 (Coordinated Universal Time)
-[debug] [2025-08-15T20:15:32.384Z] ----------------------------------------------------------------------
+[debug] [2025-08-15T20:20:00.375Z] ----------------------------------------------------------------------
+[debug] [2025-08-15T20:20:00.377Z] Command:       /nix/store/ws50yvm6vzlzf7jzz6n7xh4szddrack1-nodejs-20.19.1/bin/node /nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/bin/firebase.js init hosting
+[debug] [2025-08-15T20:20:00.378Z] CLI Version:   14.12.0
+[debug] [2025-08-15T20:20:00.378Z] Platform:      linux
+[debug] [2025-08-15T20:20:00.378Z] Node Version:  v20.19.1
+[debug] [2025-08-15T20:20:00.378Z] Time:          Fri Aug 15 2025 20:20:00 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-08-15T20:20:00.378Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2025-08-15T20:15:32.389Z] Checked if tokens are valid: true, expires at: 1755292416854
-[debug] [2025-08-15T20:15:32.389Z] Checked if tokens are valid: true, expires at: 1755292416854
-[debug] [2025-08-15T20:15:32.392Z] >>> [apiv2][query] GET https://monospace-pa.googleapis.com/v1/workspaces/jagcodedevops-91031836 [none]
-[debug] [2025-08-15T20:15:33.408Z] <<< [apiv2][status] GET https://monospace-pa.googleapis.com/v1/workspaces/jagcodedevops-91031836 200
-[debug] [2025-08-15T20:15:33.408Z] <<< [apiv2][body] GET https://monospace-pa.googleapis.com/v1/workspaces/jagcodedevops-91031836 {"workspaceId":"jagcodedevops-91031836","name":"JagCodeDevOps","workspaceRedirectUrl":"firebase-jagcodedevops-1755288294145.cluster-iktsryn7xnhpexlu6255bftka4.cloudworkstations.dev","status":"WORKSPACE_STATUS_RUNNING","lastAccessDatetime":"2025-08-15T20:05:05.097368Z","workspaceTemplate":"WORKSPACE_TEMPLATE_FLUTTER","owner":"SELF","serviceAccountEmail":"msp-7711951115973165826@monospace-per-ws-sa-6.iam.gserviceaccount.com","enableNix":true,"ownerEmail":"geddes@thewolfai.com.au","workspaceImageUrl":"https://www.gstatic.com/monospace/231115/logo_react.svg","templateArgs":"{\"openIn\":\"go\"}","templateRepoUrl":"github:monogramdesign/idx-react-native","workstationAccessToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Nsb3VkLmdvb2dsZS5jb20vd29ya3N0YXRpb25zIiwiYXVkIjoiZmlyZWJhc2UtamFnY29kZWRldm9wcy0xNzU1Mjg4Mjk0MTQ1LmNsdXN0ZXItaWt0c3J5bjd4bmhwZXhsdTYyNTViZnRrYTQuY2xvdWR3b3Jrc3RhdGlvbnMuZGV2IiwiaWF0IjoxNzU1Mjg4OTMzLCJleHAiOjE3NTUzNzUzMzN9.cf2SXw7b6TauHw1O_xblFK8nK8uZmbt0McBhNyTaBWaL9Q5fLLxV6ThvBWZYIbW4l3xdhD6s-gnzxH6YFpCUyHvXFd7JX3Yytca52EolGZeCKpzP1ztmHqgavdyqpy2oolf8FA8ce82ZDWcHFAEa_E_pi8jQuGfMP-9IOnvx7O4_k96mXXupmebdiQ6mqo98XrwHtATZOk0fW6o1S3bPcd1-aCjYNZbxe_9Gf_zL-jqyRaV_AyLGy0ZCYo9qNWGYvPhd3sOiDAc7tCmT2qMfRXNPR8Vtj9k4SWGNtGRLOxRsNhJHfMR4liOLUzMVwZKDwGCnzoHEvH2mgNR2Z1na5w"}
-[debug] [2025-08-15T20:15:33.409Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
-[debug] [2025-08-15T20:15:33.409Z] > authorizing via signed-in user (geddes@thewolfai.com.au)
+[debug] [2025-08-15T20:20:00.383Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:20:00.384Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:20:00.387Z] >>> [apiv2][query] GET https://monospace-pa.googleapis.com/v1/workspaces/jagcodedevops-91031836 [none]
+[debug] [2025-08-15T20:20:01.452Z] <<< [apiv2][status] GET https://monospace-pa.googleapis.com/v1/workspaces/jagcodedevops-91031836 200
+[debug] [2025-08-15T20:20:01.453Z] <<< [apiv2][body] GET https://monospace-pa.googleapis.com/v1/workspaces/jagcodedevops-91031836 {"workspaceId":"jagcodedevops-91031836","name":"JagCodeDevOps","workspaceRedirectUrl":"firebase-jagcodedevops-1755288294145.cluster-iktsryn7xnhpexlu6255bftka4.cloudworkstations.dev","status":"WORKSPACE_STATUS_RUNNING","lastAccessDatetime":"2025-08-15T20:05:05.097368Z","workspaceTemplate":"WORKSPACE_TEMPLATE_FLUTTER","owner":"SELF","serviceAccountEmail":"msp-7711951115973165826@monospace-per-ws-sa-6.iam.gserviceaccount.com","enableNix":true,"ownerEmail":"geddes@thewolfai.com.au","workspaceImageUrl":"https://www.gstatic.com/monospace/231115/logo_react.svg","templateArgs":"{\"openIn\":\"go\"}","templateRepoUrl":"github:monogramdesign/idx-react-native","workstationAccessToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Nsb3VkLmdvb2dsZS5jb20vd29ya3N0YXRpb25zIiwiYXVkIjoiZmlyZWJhc2UtamFnY29kZWRldm9wcy0xNzU1Mjg4Mjk0MTQ1LmNsdXN0ZXItaWt0c3J5bjd4bmhwZXhsdTYyNTViZnRrYTQuY2xvdWR3b3Jrc3RhdGlvbnMuZGV2IiwiaWF0IjoxNzU1Mjg5MjAxLCJleHAiOjE3NTUzNzU2MDF9.ALGS1xdiyZGsHncvO8lWBq4QP820qFqTbFkpgoI-PBAm0xlVJhSH10nIeDvoGsQo9W1HPBwlfvVRSag70LkHTua27ebKe0hvGeD0EabF3ms311a2oueB2MvU5sAtnoirjwHoa383qTBUV0koyoiTBCO5sqCK4oBDpzPwls0ZAl7jImaar64rGoxHcijMfdU19RdGdcRvuRUkdjPmZCQhLIdt-qCgzvSX9TiMuBKXOOX0Sn5zmBevLQNcFDKR9bhyn6Yq-lIkGRhqW3QrL-EJ9uQYY2zKqnhCu100gqN_FPoBndg8-KZ0XaupvWoNL3DvWB28tiYAIsum40i-gtkV9g"}
+[debug] [2025-08-15T20:20:01.453Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-08-15T20:20:01.454Z] > authorizing via signed-in user (geddes@thewolfai.com.au)
 [info] 
      ######## #### ########  ######## ########     ###     ######  ########
      ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
@@ -31,27 +31,41 @@ You're about to initialize a Firebase project in this directory:
 [info] You can create multiple project aliases by running firebase use --add, 
 [info] but for now we'll just set up a default project.
 [info] 
-[debug] [2025-08-15T20:15:43.081Z] Checked if tokens are valid: true, expires at: 1755292416854
-[debug] [2025-08-15T20:15:43.081Z] Checked if tokens are valid: true, expires at: 1755292416854
-[debug] [2025-08-15T20:15:43.082Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
-[debug] [2025-08-15T20:15:43.560Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
-[debug] [2025-08-15T20:15:43.560Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
-[info] i  Using project jagcodedevops-469110 (JagCodeDevOps) 
-[info] 
-=== Hosting Setup
-[debug] [2025-08-15T20:15:45.647Z] Checked if tokens are valid: true, expires at: 1755292416854
-[debug] [2025-08-15T20:15:45.647Z] Checked if tokens are valid: true, expires at: 1755292416854
-[debug] [2025-08-15T20:15:45.648Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/jagcodedevops-469110 [none]
-[debug] [2025-08-15T20:15:45.893Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/jagcodedevops-469110 200
-[debug] [2025-08-15T20:15:45.894Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/jagcodedevops-469110 {"projectId":"jagcodedevops-469110","projectNumber":"932512528363","displayName":"JagCodeDevOps","name":"projects/jagcodedevops-469110","resources":{"hostingSite":"jagcodedevops-469110"},"state":"ACTIVE","etag":"1_a3a02827-4870-4bb8-bb4e-407d11fdaeaa"}
-[debug] [2025-08-15T20:16:07.703Z] Error: Command failed: npx --yes create-next-app@"12 - 15.0" -e hello-world ./ --use-npm --ts
-    at genericNodeError (node:internal/errors:984:15)
-    at wrappedFn (node:internal/errors:538:14)
-    at checkExecSyncError (node:child_process:891:11)
-    at execSync (node:child_process:963:15)
-    at Object.init (/nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:216:34)
-    at async Object.doSetup (/nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/init/features/hosting/index.js:109:13)
-    at async init (/nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/init/index.js:65:13)
-    at async Command.initAction [as actionFn] (/nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/commands/init.js:209:5)
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2025-08-15T20:20:15.600Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:20:15.600Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:20:15.602Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-08-15T20:20:15.602Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"JagCode"}
+[debug] [2025-08-15T20:20:16.086Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-08-15T20:20:16.086Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_NOT_VALID","suggestedProjectId":"jagcode-9b9e3"}
+[debug] [2025-08-15T20:20:31.013Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:20:31.013Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:20:31.015Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-08-15T20:20:31.015Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"JagCodeDevOps Final"}
+[debug] [2025-08-15T20:20:31.279Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-08-15T20:20:31.279Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_NOT_VALID","suggestedProjectId":"jagcodedevops-final"}
+[debug] [2025-08-15T20:20:40.531Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:20:40.531Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:20:40.533Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-08-15T20:20:40.533Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"JagCodeDevOps-V1"}
+[debug] [2025-08-15T20:20:40.778Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-08-15T20:20:40.778Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_NOT_VALID","suggestedProjectId":"jagcodedevops-v1"}
+[debug] [2025-08-15T20:20:59.652Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:20:59.652Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:20:59.653Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-08-15T20:20:59.654Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"Jagcode.xyz"}
+[debug] [2025-08-15T20:20:59.674Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 400
+[debug] [2025-08-15T20:20:59.675Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"error":{"code":400,"message":"Request contains an invalid argument.","status":"INVALID_ARGUMENT"}}
+[debug] [2025-08-15T20:20:59.676Z] Couldn't check if project ID Jagcode.xyz is available. Original error: FirebaseError: Failed to check if project ID is available. See firebase-debug.log for more info.
+[debug] [2025-08-15T20:21:14.434Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:21:14.435Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:21:14.435Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2025-08-15T20:21:14.435Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"Jagcode.xyz","name":"JagCodeDevOps.xyz"}
+[debug] [2025-08-15T20:21:15.220Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2025-08-15T20:21:15.221Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"Request contains an invalid argument.","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id contains invalid characters"},{"field":"display_name","description":"project display name contains invalid characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2025-08-15T20:21:15.236Z] FirebaseError: Request to https://cloudresourcemanager.googleapis.com/v1/projects had HTTP Error: 400, Request contains an invalid argument.
+    at responseToError (/nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/responseToError.js:52:12)
+    at RetryOperation._fn (/nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 [error] 
-[error] Error: An unexpected error has occurred.
+[error] Error: Failed to create project. See firebase-debug.log for more info.
