@@ -1,0 +1,6 @@
+# Content of requirements.txt from attachment
+# This is a placeholder URL, actual content was in the prompt.
+# Web Framework
+fastapi>=0.95.0
+uvicorn[standard]>=0.21.0
+# ... (full content of requirements.txt)
