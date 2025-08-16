@@ -7,9 +7,9 @@ const router = express.Router();
  * @access Public (or authenticated, depending on design)
  */
 router.get('/list', async (req, res) => {
-  // TODO: Implement logic to fetch a real list of mini-apps from a database or configuration
-  // For now, return an empty array or a simple structure.
-  res.json([]); 
+    // TODO: Implement logic to fetch a real list of mini-apps from a database or configuration
+    // For now, return an empty array or a simple structure.
+    res.json([]);
 });
 
 /**
@@ -18,9 +18,9 @@ router.get('/list', async (req, res) => {
  * @access Public (or authenticated, depending on design)
  */
 router.get('/:appId/data', async (req, res) => {
-  const appId = req.params.appId;
-  // TODO: Implement logic to fetch data relevant to the specific mini-app
-  res.json({ appId: appId, data: null });
+    const appId = req.params.appId;
+    // TODO: Implement logic to fetch data relevant to the specific mini-app
+    res.json({appId: appId, data: null});
 });
 
 // Add more routes as mini-apps are developed
