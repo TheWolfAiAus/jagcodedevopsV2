@@ -185,10 +185,53 @@
 
 <!-- Dashboard JavaScript -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  if (!window.jagcode) {
-    console.error('JagCode SDK not available');
-    return;
+// Load required dependencies
+const loadDependencies = async () => {
+  // Load SDK files
+  await loadScript('/web/sdk/jagcode-dashboard-config.js');
+  await loadScript('/web/sdk/jagcode-wallet-manager.js');
+  await loadScript('/web/sdk/jagcode-crypto-data.js');
+  await loadScript('/web/sdk/jagcode-sdk.js');
+};
+
+const loadScript = (src) => {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+};
+
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    // Load dependencies first
+    await loadDependencies();
+    
+    if (!window.jagcode) {
+      console.error('JagCode SDK not available');
+      return;
+    }
+
+    // Initialize enhanced systems
+    window.dashboardConfig = new JagCodeDashboardConfig();
+    window.walletManager = new JagCodeWalletManager(window.dashboardConfig);
+    window.cryptoData = new JagCodeCryptoData(window.dashboardConfig);
+    
+    // Initialize with your configuration
+    await window.dashboardConfig.init({
+      appwrite: {
+        projectId: 'YOUR_APPWRITE_PROJECT_ID',
+        databaseId: 'YOUR_DATABASE_ID'
+      }
+    });
+    
+    await window.walletManager.init();
+    await window.cryptoData.init();
+    
+  } catch (error) {
+    console.error('Failed to initialize dashboard:', error);
   }
 
   let realtimeUnsubscribe = null;
