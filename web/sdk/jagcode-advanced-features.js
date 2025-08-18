@@ -6,9 +6,17 @@
 class JagCodeAdvancedFeatures {
   constructor(config) {
     this.config = config;
-    this.apiBaseUrl = config.get('backend.apiUrl', 'http://localhost:8000');
+    // Use Appwrite Functions endpoints instead of localhost backend
+    this.apiBaseUrl = config.get('appwrite.functionsEndpoint', '');
+    this.projectId = config.get('appwrite.projectId', '');
     this.listeners = {};
     this.updateIntervals = new Map();
+    
+    // Appwrite Functions headers
+    this.headers = {
+      'X-Appwrite-Project': this.projectId,
+      'Content-Type': 'application/json'
+    };
     
     // Feature states
     this.features = {
@@ -18,6 +26,22 @@ class JagCodeAdvancedFeatures {
       assetTracker: { active: false, stats: null },
       wolfAI: { active: false, stats: null }
     };
+  }
+
+  /**
+   * Helper method to make API calls with Appwrite headers
+   */
+  async apiCall(endpoint, options = {}) {
+    const defaultOptions = {
+      headers: this.headers,
+      ...options
+    };
+    
+    if (options.headers) {
+      defaultOptions.headers = { ...this.headers, ...options.headers };
+    }
+    
+    return fetch(`${this.apiBaseUrl}${endpoint}`, defaultOptions);
   }
 
   /**
@@ -44,7 +68,9 @@ class JagCodeAdvancedFeatures {
    */
   async checkBackendConnection() {
     try {
-      const response = await fetch(`${this.apiBaseUrl}/automation/health`);
+      const response = await fetch(`${this.apiBaseUrl}/automation/health`, {
+        headers: this.headers
+      });
       const data = await response.json();
       
       this.emit('backendStatus', { 
@@ -81,7 +107,9 @@ class JagCodeAdvancedFeatures {
    */
   async loadNFTHunterStatus() {
     try {
-      const response = await fetch(`${this.apiBaseUrl}/nft-hunter/status`);
+      const response = await fetch(`${this.apiBaseUrl}/nft-hunter/status`, {
+        headers: this.headers
+      });
       const data = await response.json();
       
       this.features.nftHunter = {
@@ -100,7 +128,8 @@ class JagCodeAdvancedFeatures {
   async startNFTHunter() {
     try {
       const response = await fetch(`${this.apiBaseUrl}/nft-hunter/start`, {
-        method: 'POST'
+        method: 'POST',
+        headers: this.headers
       });
       const data = await response.json();
       
@@ -120,7 +149,8 @@ class JagCodeAdvancedFeatures {
   async stopNFTHunter() {
     try {
       const response = await fetch(`${this.apiBaseUrl}/nft-hunter/stop`, {
-        method: 'POST'
+        method: 'POST',
+        headers: this.headers
       });
       const data = await response.json();
       

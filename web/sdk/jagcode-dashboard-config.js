@@ -11,6 +11,7 @@ class JagCodeDashboardConfig {
         endpoint: 'https://cloud.appwrite.io/v1',
         projectId: '',
         databaseId: '',
+        functionsEndpoint: '', // Your Appwrite Functions URL
         collections: {
           users: 'users',
           portfolios: 'portfolios',
