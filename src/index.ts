@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import express from 'express';
 import dotenv from 'dotenv';
 
@@ -15,3 +16,12 @@ app.get ('/', (req, res) => {
 app.listen (port, () => {
     console.log (`Server is running on http://localhost:${port}`);
 });
+=======
+// Root barrel for src - re-export grouped modules
+export * from './components';
+export * from './hooks';
+export * from './middleware';
+export * from './models';
+export * from './routes';
+
+>>>>>>> 4c1bae1a92ab915d3d9790805b2885428143b1c8

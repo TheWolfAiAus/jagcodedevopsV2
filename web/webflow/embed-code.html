@@ -1,0 +1,111 @@
+<!-- JagCode Webflow Integration -->
+<!-- Copy this code into Webflow Site Settings > Custom Code > Head Code -->
+
+<!-- STAGING ENVIRONMENT (jagecodedevops.webflow.io) -->
+<!-- Use this code for your Webflow staging site -->
+<!--
+<script>
+  window.JAGCODE_CONFIG = {
+    endpoint: 'https://cloud.appwrite.io/v1',
+    projectId: 'YOUR_APPWRITE_PROJECT_ID_STAGING',
+    databaseId: 'YOUR_DATABASE_ID',
+    environment: 'staging',
+    apiBaseUrl: 'https://YOUR_FIREBASE_FUNCTIONS_URL',
+    domains: {
+      webflow: 'jagecodedevops.webflow.io',
+      production: 'jagcodedevops.xyz'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/gh/TheWolfAiAus/jagcodedeveopsV2@main/web/sdk/jagcode-sdk.js"></script>
+-->
+
+<!-- PRODUCTION ENVIRONMENT (jagcodedevops.xyz) -->
+<!-- Use this code for your production domain -->
+<script>
+  window.JAGCODE_CONFIG = {
+    endpoint: 'https://cloud.appwrite.io/v1',
+    projectId: 'YOUR_APPWRITE_PROJECT_ID_PROD',
+    databaseId: 'YOUR_DATABASE_ID',
+    environment: 'production',
+    apiBaseUrl: 'https://YOUR_FIREBASE_FUNCTIONS_URL',
+    domains: {
+      webflow: 'jagecodedevops.webflow.io',
+      production: 'jagcodedevops.xyz'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/gh/TheWolfAiAus/jagcodedeveopsV2@main/web/sdk/jagcode-sdk.js"></script>
+
+<!-- Initialize SDK when page loads -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize JagCode SDK
+    window.jagcode = new JagCodeSDK();
+    window.jagcode.init(window.JAGCODE_CONFIG).then(() => {
+      console.log('JagCode SDK initialized successfully');
+      
+      // Check if user is already authenticated
+      const user = window.jagcode.auth.getCurrentUser();
+      if (user) {
+        console.log('User authenticated:', user.name);
+        // Show authenticated user content
+        showAuthenticatedContent(user);
+      } else {
+        // Show login/signup forms
+        showPublicContent();
+      }
+    }).catch(error => {
+      console.error('JagCode SDK initialization failed:', error);
+    });
+  });
+
+  // Helper functions for UI updates
+  function showAuthenticatedContent(user) {
+    // Hide login/signup forms
+    const loginForms = document.querySelectorAll('[data-auth="login-form"]');
+    loginForms.forEach(form => form.style.display = 'none');
+    
+    // Show authenticated content
+    const authContent = document.querySelectorAll('[data-auth="authenticated"]');
+    authContent.forEach(content => content.style.display = 'block');
+    
+    // Update user name displays
+    const userNames = document.querySelectorAll('[data-user="name"]');
+    userNames.forEach(element => element.textContent = user.name);
+  }
+
+  function showPublicContent() {
+    // Show login/signup forms
+    const loginForms = document.querySelectorAll('[data-auth="login-form"]');
+    loginForms.forEach(form => form.style.display = 'block');
+    
+    // Hide authenticated content
+    const authContent = document.querySelectorAll('[data-auth="authenticated"]');
+    authContent.forEach(content => content.style.display = 'none');
+  }
+</script>
+
+<!-- Custom CSS for dynamic content -->
+<style>
+  [data-auth="authenticated"] {
+    display: none;
+  }
+  
+  .jagcode-loading {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  .jagcode-error {
+    color: #ef4444;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  
+  .jagcode-success {
+    color: #10b981;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+</style>

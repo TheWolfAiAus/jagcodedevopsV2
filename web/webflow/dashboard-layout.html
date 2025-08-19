@@ -1,0 +1,1074 @@
+<!-- JagCode Web Dashboard Layout -->
+<!-- This is a complete dashboard that mirrors the mobile app functionality -->
+<!-- Copy this into your Webflow pages and customize styling as needed -->
+
+<!-- Dashboard Container -->
+<div id="jagcode-dashboard" class="dashboard-container">
+  <!-- Header Section -->
+  <div class="dashboard-header">
+    <div class="header-content">
+      <h1 id="welcome-text" class="welcome-title">Welcome back!</h1>
+      <div class="header-actions">
+        <div id="realtime-status" class="status-indicator">
+          <span class="status-dot"></span>
+          <span class="status-text">Connecting...</span>
+        </div>
+        <button id="refresh-btn" class="refresh-button" title="Refresh Data">
+          ⟳
+        </button>
+        <button id="signout-btn" class="signout-button">
+          Sign Out
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Dashboard Grid -->
+  <div class="dashboard-grid">
+    
+    <!-- Portfolio Overview Card -->
+    <div class="dashboard-card portfolio-card">
+      <div class="card-header">
+        <h2 class="card-title">📊 Portfolio Overview</h2>
+        <span id="portfolio-updated" class="card-subtitle">Last updated: Never</span>
+      </div>
+      <div class="card-content">
+        <div id="portfolio-loading" class="loading-state">Loading portfolio...</div>
+        <div id="portfolio-content" class="portfolio-content" style="display: none;">
+          <div class="portfolio-value">
+            <span id="portfolio-total" class="total-value">$0.00</span>
+            <span id="portfolio-change" class="value-change">0.00%</span>
+          </div>
+          <div class="portfolio-stats">
+            <div class="stat-item">
+              <span class="stat-label">Assets</span>
+              <span id="portfolio-assets-count" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Networks</span>
+              <span id="portfolio-networks-count" class="stat-value">0</span>
+            </div>
+          </div>
+          <div id="portfolio-assets" class="assets-list"></div>
+        </div>
+        <div id="portfolio-empty" class="empty-state" style="display: none;">
+          <p>No portfolio data available</p>
+          <button class="connect-wallet-btn">Connect Wallet</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Transactions Card -->
+    <div class="dashboard-card transactions-card">
+      <div class="card-header">
+        <h2 class="card-title">💳 Recent Transactions</h2>
+        <button id="view-all-transactions" class="view-all-btn">View All</button>
+      </div>
+      <div class="card-content">
+        <div id="transactions-loading" class="loading-state">Loading transactions...</div>
+        <div id="transactions-content" class="transactions-content" style="display: none;">
+          <div id="transactions-list" class="transactions-list"></div>
+        </div>
+        <div id="transactions-empty" class="empty-state" style="display: none;">
+          <p>No transactions found</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity Feed Card -->
+    <div class="dashboard-card activity-card">
+      <div class="card-header">
+        <h2 class="card-title">📝 Activity Feed</h2>
+        <div class="activity-filter">
+          <select id="activity-filter" class="filter-select">
+            <option value="all">All Activity</option>
+            <option value="transactions">Transactions</option>
+            <option value="portfolio">Portfolio</option>
+            <option value="login">Login</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-content">
+        <div id="activity-loading" class="loading-state">Loading activity...</div>
+        <div id="activity-content" class="activity-content" style="display: none;">
+          <div id="activity-list" class="activity-list"></div>
+        </div>
+        <div id="activity-empty" class="empty-state" style="display: none;">
+          <p>No recent activity</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wallet Status Card -->
+    <div class="dashboard-card wallet-card">
+      <div class="card-header">
+        <h2 class="card-title">🔗 Wallet Connection</h2>
+      </div>
+      <div class="card-content">
+        <div id="wallet-connected" class="wallet-status connected" style="display: none;">
+          <div class="status-icon">✅</div>
+          <div class="status-info">
+            <h3>Wallet Connected</h3>
+            <p id="wallet-address" class="wallet-address">0x...</p>
+            <button id="disconnect-wallet" class="disconnect-btn">Disconnect</button>
+          </div>
+        </div>
+        <div id="wallet-disconnected" class="wallet-status disconnected">
+          <div class="status-icon">❌</div>
+          <div class="status-info">
+            <h3>No Wallet Connected</h3>
+            <p>Connect your wallet to start trading</p>
+            <input type="text" id="wallet-input" placeholder="Enter wallet address (0x...)" class="wallet-input">
+            <button id="connect-wallet" class="connect-btn">Connect Wallet</button>
+          </div>
+        </div>
+        <div id="wallet-message" class="wallet-message"></div>
+      </div>
+    </div>
+
+    <!-- Real-time Updates Card -->
+    <div class="dashboard-card realtime-card">
+      <div class="card-header">
+        <h2 class="card-title">⚡ Live Updates</h2>
+        <div class="realtime-toggle">
+          <label class="toggle-switch">
+            <input type="checkbox" id="realtime-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="realtime-stats">
+          <div class="stat-item">
+            <span class="stat-label">Connection</span>
+            <span id="connection-status" class="connection-status">Connecting...</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Last Update</span>
+            <span id="last-update" class="last-update">Never</span>
+          </div>
+        </div>
+        <div id="realtime-log" class="realtime-log">
+          <div class="log-item">🔄 Initializing real-time connection...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions Card -->
+    <div class="dashboard-card actions-card">
+      <div class="card-header">
+        <h2 class="card-title">⚡ Quick Actions</h2>
+      </div>
+      <div class="card-content">
+        <div class="actions-grid">
+          <button class="action-btn" data-action="add-transaction">
+            <span class="action-icon">💳</span>
+            <span class="action-label">Add Transaction</span>
+          </button>
+          <button class="action-btn" data-action="update-portfolio">
+            <span class="action-icon">📊</span>
+            <span class="action-label">Update Portfolio</span>
+          </button>
+          <button class="action-btn" data-action="view-settings">
+            <span class="action-icon">⚙️</span>
+            <span class="action-label">Settings</span>
+          </button>
+          <button class="action-btn" data-action="export-data">
+            <span class="action-icon">📄</span>
+            <span class="action-label">Export Data</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dashboard JavaScript -->
+<script>
+// Load required dependencies
+const loadDependencies = async () => {
+  // Load SDK files
+  await loadScript('/web/sdk/jagcode-dashboard-config.js');
+  await loadScript('/web/sdk/jagcode-wallet-manager.js');
+  await loadScript('/web/sdk/jagcode-crypto-data.js');
+  await loadScript('/web/sdk/jagcode-sdk.js');
+};
+
+const loadScript = (src) => {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+};
+
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    // Load dependencies first
+    await loadDependencies();
+    
+    if (!window.jagcode) {
+      console.error('JagCode SDK not available');
+      return;
+    }
+
+    // Initialize enhanced systems
+    window.dashboardConfig = new JagCodeDashboardConfig();
+    window.walletManager = new JagCodeWalletManager(window.dashboardConfig);
+    window.cryptoData = new JagCodeCryptoData(window.dashboardConfig);
+    
+    // Initialize with your configuration
+    await window.dashboardConfig.init({
+      appwrite: {
+        projectId: 'YOUR_APPWRITE_PROJECT_ID',
+        databaseId: 'YOUR_DATABASE_ID'
+      }
+    });
+    
+    await window.walletManager.init();
+    await window.cryptoData.init();
+    
+  } catch (error) {
+    console.error('Failed to initialize dashboard:', error);
+  }
+
+  let realtimeUnsubscribe = null;
+  let isRealtimeEnabled = true;
+
+  // Dashboard state
+  const dashboard = {
+    user: null,
+    portfolio: null,
+    transactions: [],
+    activities: [],
+    isLoading: false
+  };
+
+  // Initialize dashboard
+  async function initializeDashboard() {
+    try {
+      // Get current user
+      dashboard.user = window.jagcode.auth.getCurrentUser();
+      
+      if (!dashboard.user) {
+        // Redirect to login if not authenticated
+        showMessage('Please sign in to access the dashboard', 'error');
+        return;
+      }
+
+      // Update welcome message
+      document.getElementById('welcome-text').textContent = 
+        `Welcome back, ${dashboard.user.name || 'User'}!`;
+
+      // Load initial data
+      await loadDashboardData();
+
+      // Set up real-time subscriptions
+      if (isRealtimeEnabled) {
+        setupRealtimeSubscriptions();
+      }
+
+    } catch (error) {
+      console.error('Failed to initialize dashboard:', error);
+      showMessage('Failed to initialize dashboard', 'error');
+    }
+  }
+
+  // Load all dashboard data
+  async function loadDashboardData() {
+    dashboard.isLoading = true;
+    updateLoadingStates(true);
+
+    try {
+      // Load portfolio
+      await loadPortfolio();
+      
+      // Load transactions
+      await loadTransactions();
+      
+      // Load activities
+      await loadActivities();
+
+      // Check wallet status
+      updateWalletStatus();
+
+    } catch (error) {
+      console.error('Failed to load dashboard data:', error);
+      showMessage('Failed to load data', 'error');
+    } finally {
+      dashboard.isLoading = false;
+      updateLoadingStates(false);
+    }
+  }
+
+  // Load portfolio data
+  async function loadPortfolio() {
+    try {
+      const portfolio = await window.jagcode.portfolio.get();
+      dashboard.portfolio = portfolio;
+
+      if (portfolio) {
+        document.getElementById('portfolio-total').textContent = 
+          window.jagcode.utils.formatCurrency(portfolio.totalValue || 0);
+        
+        document.getElementById('portfolio-assets-count').textContent = 
+          portfolio.assets?.length || 0;
+
+        document.getElementById('portfolio-networks-count').textContent = 
+          [...new Set(portfolio.assets?.map(a => a.network) || [])].length;
+
+        document.getElementById('portfolio-updated').textContent = 
+          `Last updated: ${window.jagcode.utils.formatDate(portfolio.lastUpdated)}`;
+
+        // Render assets list
+        renderAssetsList(portfolio.assets || []);
+
+        document.getElementById('portfolio-loading').style.display = 'none';
+        document.getElementById('portfolio-content').style.display = 'block';
+      } else {
+        document.getElementById('portfolio-loading').style.display = 'none';
+        document.getElementById('portfolio-empty').style.display = 'block';
+      }
+    } catch (error) {
+      console.error('Failed to load portfolio:', error);
+      document.getElementById('portfolio-loading').style.display = 'none';
+      document.getElementById('portfolio-empty').style.display = 'block';
+    }
+  }
+
+  // Load transactions
+  async function loadTransactions() {
+    try {
+      const transactions = await window.jagcode.transactions.list(null, 10);
+      dashboard.transactions = transactions;
+
+      if (transactions.length > 0) {
+        renderTransactionsList(transactions);
+        document.getElementById('transactions-loading').style.display = 'none';
+        document.getElementById('transactions-content').style.display = 'block';
+      } else {
+        document.getElementById('transactions-loading').style.display = 'none';
+        document.getElementById('transactions-empty').style.display = 'block';
+      }
+    } catch (error) {
+      console.error('Failed to load transactions:', error);
+      document.getElementById('transactions-loading').style.display = 'none';
+      document.getElementById('transactions-empty').style.display = 'block';
+    }
+  }
+
+  // Load activities
+  async function loadActivities() {
+    try {
+      const activities = await window.jagcode.activity.list(null, 10);
+      dashboard.activities = activities;
+
+      if (activities.length > 0) {
+        renderActivitiesList(activities);
+        document.getElementById('activity-loading').style.display = 'none';
+        document.getElementById('activity-content').style.display = 'block';
+      } else {
+        document.getElementById('activity-loading').style.display = 'none';
+        document.getElementById('activity-empty').style.display = 'block';
+      }
+    } catch (error) {
+      console.error('Failed to load activities:', error);
+      document.getElementById('activity-loading').style.display = 'none';
+      document.getElementById('activity-empty').style.display = 'block';
+    }
+  }
+
+  // Set up real-time subscriptions
+  function setupRealtimeSubscriptions() {
+    if (!dashboard.user || realtimeUnsubscribe) return;
+
+    updateRealtimeStatus('connecting');
+    addRealtimeLog('🔄 Connecting to real-time updates...');
+
+    realtimeUnsubscribe = window.jagcode.realtime.subscribeToUser(dashboard.user.$id, {
+      onPortfolioUpdate: (portfolio) => {
+        console.log('📊 Portfolio updated in real-time');
+        dashboard.portfolio = portfolio;
+        addRealtimeLog('📊 Portfolio updated');
+        loadPortfolio(); // Refresh portfolio display
+      },
+      
+      onTransactionUpdate: (transaction) => {
+        console.log('💳 Transaction updated in real-time');
+        addRealtimeLog(`💳 Transaction ${transaction.status}: ${transaction.amount} ${transaction.symbol}`);
+        loadTransactions(); // Refresh transactions
+      },
+      
+      onActivityUpdate: (activity) => {
+        console.log('📝 New activity in real-time');
+        addRealtimeLog(`📝 ${activity.description}`);
+        loadActivities(); // Refresh activities
+      }
+    });
+
+    updateRealtimeStatus('connected');
+    addRealtimeLog('✅ Real-time connection established');
+  }
+
+  // Update real-time status
+  function updateRealtimeStatus(status) {
+    const statusEl = document.getElementById('connection-status');
+    const realtimeStatusEl = document.getElementById('realtime-status');
+    const statusDot = realtimeStatusEl.querySelector('.status-dot');
+    const statusText = realtimeStatusEl.querySelector('.status-text');
+
+    statusEl.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+    statusText.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+
+    statusDot.className = `status-dot ${status}`;
+    realtimeStatusEl.className = `status-indicator ${status}`;
+
+    if (status === 'connected') {
+      document.getElementById('last-update').textContent = 
+        new Date().toLocaleTimeString();
+    }
+  }
+
+  // Add real-time log entry
+  function addRealtimeLog(message) {
+    const logContainer = document.getElementById('realtime-log');
+    const timestamp = new Date().toLocaleTimeString();
+    
+    const logItem = document.createElement('div');
+    logItem.className = 'log-item';
+    logItem.innerHTML = `<span class="log-time">[${timestamp}]</span> ${message}`;
+    
+    logContainer.insertBefore(logItem, logContainer.firstChild);
+    
+    // Keep only last 5 log entries
+    while (logContainer.children.length > 5) {
+      logContainer.removeChild(logContainer.lastChild);
+    }
+  }
+
+  // Render assets list
+  function renderAssetsList(assets) {
+    const container = document.getElementById('portfolio-assets');
+    
+    if (assets.length === 0) {
+      container.innerHTML = '<p class="no-assets">No assets found</p>';
+      return;
+    }
+
+    const assetsHtml = assets.slice(0, 5).map(asset => `
+      <div class="asset-item">
+        <div class="asset-info">
+          <span class="asset-symbol">${asset.symbol}</span>
+          <span class="asset-network">${asset.network}</span>
+        </div>
+        <div class="asset-value">
+          <span class="asset-amount">${asset.amount}</span>
+          <span class="asset-usd">${window.jagcode.utils.formatCurrency(asset.valueUsd)}</span>
+        </div>
+      </div>
+    `).join('');
+
+    if (assets.length > 5) {
+      assetsHtml += `<div class="more-assets">+${assets.length - 5} more assets</div>`;
+    }
+
+    container.innerHTML = assetsHtml;
+  }
+
+  // Render transactions list
+  function renderTransactionsList(transactions) {
+    const container = document.getElementById('transactions-list');
+    
+    const transactionsHtml = transactions.map(tx => {
+      const statusIcon = tx.status === 'confirmed' ? '✅' : 
+                        tx.status === 'failed' ? '❌' : '⏳';
+      
+      return `
+        <div class="transaction-item">
+          <div class="transaction-left">
+            <span class="transaction-status">${statusIcon}</span>
+            <div class="transaction-info">
+              <span class="transaction-type">${tx.type.toUpperCase()}</span>
+              <span class="transaction-network">${tx.network}</span>
+            </div>
+          </div>
+          <div class="transaction-right">
+            <span class="transaction-amount">${tx.amount} ${tx.symbol}</span>
+            <span class="transaction-time">${window.jagcode.utils.formatDate(tx.timestamp)}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    container.innerHTML = transactionsHtml;
+  }
+
+  // Render activities list
+  function renderActivitiesList(activities) {
+    const container = document.getElementById('activity-list');
+    
+    const activitiesHtml = activities.map(activity => {
+      const icon = getActivityIcon(activity.type);
+      
+      return `
+        <div class="activity-item">
+          <span class="activity-icon">${icon}</span>
+          <div class="activity-content">
+            <span class="activity-description">${activity.description}</span>
+            <span class="activity-time">${window.jagcode.utils.formatDate(activity.timestamp)} • ${activity.platform}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    container.innerHTML = activitiesHtml;
+  }
+
+  // Get activity icon
+  function getActivityIcon(type) {
+    switch (type) {
+      case 'login': return '🔐';
+      case 'transaction': return '💳';
+      case 'portfolio_update': return '📊';
+      case 'wallet_connect': return '🔗';
+      case 'setting_change': return '⚙️';
+      default: return '📝';
+    }
+  }
+
+  // Update wallet status
+  function updateWalletStatus() {
+    const connectedEl = document.getElementById('wallet-connected');
+    const disconnectedEl = document.getElementById('wallet-disconnected');
+    const addressEl = document.getElementById('wallet-address');
+
+    if (dashboard.user?.walletAddress) {
+      addressEl.textContent = `${dashboard.user.walletAddress.slice(0, 6)}...${dashboard.user.walletAddress.slice(-4)}`;
+      connectedEl.style.display = 'block';
+      disconnectedEl.style.display = 'none';
+    } else {
+      connectedEl.style.display = 'none';
+      disconnectedEl.style.display = 'block';
+    }
+  }
+
+  // Update loading states
+  function updateLoadingStates(isLoading) {
+    const loadingElements = document.querySelectorAll('.loading-state');
+    loadingElements.forEach(el => {
+      el.style.display = isLoading ? 'block' : 'none';
+    });
+  }
+
+  // Show message
+  function showMessage(message, type = 'info') {
+    const messageEl = document.getElementById('wallet-message');
+    messageEl.textContent = message;
+    messageEl.className = `wallet-message ${type}`;
+    
+    setTimeout(() => {
+      messageEl.textContent = '';
+      messageEl.className = 'wallet-message';
+    }, 5000);
+  }
+
+  // Event listeners
+  document.getElementById('refresh-btn').addEventListener('click', loadDashboardData);
+  
+  document.getElementById('signout-btn').addEventListener('click', async () => {
+    try {
+      await window.jagcode.auth.signOut();
+      location.reload();
+    } catch (error) {
+      console.error('Sign out failed:', error);
+    }
+  });
+
+  document.getElementById('realtime-toggle').addEventListener('change', (e) => {
+    isRealtimeEnabled = e.target.checked;
+    
+    if (isRealtimeEnabled) {
+      setupRealtimeSubscriptions();
+    } else if (realtimeUnsubscribe) {
+      realtimeUnsubscribe();
+      realtimeUnsubscribe = null;
+      updateRealtimeStatus('disconnected');
+      addRealtimeLog('❌ Real-time updates disabled');
+    }
+  });
+
+  document.getElementById('connect-wallet').addEventListener('click', async () => {
+    const walletAddress = document.getElementById('wallet-input').value.trim();
+    
+    if (!walletAddress) {
+      showMessage('Please enter a wallet address', 'error');
+      return;
+    }
+
+    if (!walletAddress.match(/^0x[a-fA-F0-9]{40}$/)) {
+      showMessage('Invalid wallet address format', 'error');
+      return;
+    }
+
+    try {
+      await window.jagcode.db.update('users', dashboard.user.$id, {
+        walletAddress,
+        updatedAt: new Date().toISOString()
+      });
+
+      dashboard.user.walletAddress = walletAddress;
+      updateWalletStatus();
+      showMessage('Wallet connected successfully!', 'success');
+      
+      // Log activity
+      await window.jagcode.activity.add({
+        type: 'wallet_connect',
+        description: `Wallet connected: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`,
+        metadata: { walletAddress }
+      });
+      
+    } catch (error) {
+      console.error('Failed to connect wallet:', error);
+      showMessage('Failed to connect wallet', 'error');
+    }
+  });
+
+  // Quick actions
+  document.querySelectorAll('.action-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const action = e.currentTarget.dataset.action;
+      console.log(`Quick action: ${action}`);
+      
+      // Add your quick action implementations here
+      switch (action) {
+        case 'add-transaction':
+          showMessage('Add transaction feature coming soon!', 'info');
+          break;
+        case 'update-portfolio':
+          loadPortfolio();
+          break;
+        case 'view-settings':
+          showMessage('Settings feature coming soon!', 'info');
+          break;
+        case 'export-data':
+          showMessage('Export feature coming soon!', 'info');
+          break;
+      }
+    });
+  });
+
+  // Initialize when SDK is ready
+  if (window.jagcode.initialized) {
+    initializeDashboard();
+  } else {
+    window.jagcode.on('ready', initializeDashboard);
+  }
+});
+</script>
+
+<!-- Dashboard Styles -->
+<style>
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.dashboard-header {
+  margin-bottom: 30px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.welcome-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #f5f5f5;
+  font-size: 14px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fbbf24;
+}
+
+.status-dot.connected { background: #10b981; }
+.status-dot.connecting { background: #fbbf24; }
+.status-dot.disconnected { background: #ef4444; }
+
+.refresh-button, .signout-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.refresh-button {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.signout-button {
+  background: #ef4444;
+  color: white;
+}
+
+.refresh-button:hover { background: #e5e7eb; }
+.signout-button:hover { background: #dc2626; }
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.card-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.portfolio-value {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.total-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #10b981;
+}
+
+.value-change {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.portfolio-stats {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.assets-list, .transactions-list, .activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.asset-item, .transaction-item, .activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.transaction-left, .activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.transaction-status, .activity-icon {
+  font-size: 16px;
+}
+
+.asset-info, .transaction-info, .activity-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.asset-symbol, .transaction-type, .activity-description {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.asset-network, .transaction-network, .activity-time {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.wallet-status {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.wallet-status.connected {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.wallet-status.disconnected {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.status-icon {
+  font-size: 24px;
+}
+
+.wallet-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  margin: 8px 0;
+  font-family: monospace;
+}
+
+.connect-btn, .disconnect-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.connect-btn {
+  background: #10b981;
+  color: white;
+}
+
+.disconnect-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  background: #f9fafb;
+  transform: translateY(-2px);
+}
+
+.action-icon {
+  font-size: 24px;
+}
+
+.action-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.loading-state, .empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b7280;
+}
+
+.empty-state button {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.realtime-log {
+  max-height: 120px;
+  overflow-y: auto;
+  background: #1f2937;
+  color: #f3f4f6;
+  padding: 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.log-item {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.log-time {
+  color: #9ca3af;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #10b981;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(20px);
+}
+
+.wallet-message {
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.wallet-message.success {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.wallet-message.error {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.wallet-message.info {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
