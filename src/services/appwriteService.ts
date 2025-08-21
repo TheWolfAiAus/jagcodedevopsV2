@@ -4,6 +4,7 @@ import {
   databases, 
   functions, 
   appwriteConfig, 
+  isAppwriteReady,
   AppwriteUser, 
   AppwritePortfolio, 
   AppwriteTransaction,
@@ -12,9 +13,18 @@ import {
 } from '@/lib/appwrite';
 
 export class AppwriteService {
+  // Check if service is available
+  static isReady(): boolean {
+    return isAppwriteReady();
+  }
+
   // Authentication methods
   static async createUser(email: string, password: string, name: string) {
     try {
+      if (!this.isReady()) {
+        throw new Error('Appwrite service not configured');
+      }
+
       const newAccount = await account.create(ID.unique(), email, password, name);
       
       // Create user profile in database
@@ -39,6 +49,10 @@ export class AppwriteService {
 
   static async signIn(email: string, password: string) {
     try {
+      if (!this.isReady()) {
+        throw new Error('Appwrite service not configured');
+      }
+
       return await account.createEmailPasswordSession(email, password);
     } catch (error) {
       console.error('Error signing in:', error);
@@ -48,6 +62,12 @@ export class AppwriteService {
 
   static async getCurrentUser(): Promise<AppwriteUser | null> {
     try {
+      // If Appwrite is not configured, return null silently
+      if (!this.isReady()) {
+        console.warn('Appwrite not configured, skipping user authentication');
+        return null;
+      }
+
       const currentAccount = await account.get();
       if (!currentAccount) return null;
 
@@ -67,13 +87,23 @@ export class AppwriteService {
         updatedAt: userDocument.updatedAt,
       };
     } catch (error) {
-      console.error('Error getting current user:', error);
+      // Don't log this as an error if it's just no session
+      if (error instanceof Error && error.message.includes('session')) {
+        console.log('No active user session found');
+      } else {
+        console.warn('Error getting current user:', error);
+      }
       return null;
     }
   }
 
   static async signOut() {
     try {
+      if (!this.isReady()) {
+        console.warn('Appwrite not configured, skipping sign out');
+        return;
+      }
+
       return await account.deleteSession('current');
     } catch (error) {
       console.error('Error signing out:', error);
@@ -84,6 +114,11 @@ export class AppwriteService {
   // Portfolio management
   static async getPortfolio(userId: string): Promise<AppwritePortfolio | null> {
     try {
+      if (!this.isReady()) {
+        console.warn('Appwrite not configured, returning null portfolio');
+        return null;
+      }
+
       const portfolios = await databases.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.portfolioCollectionId,
@@ -102,12 +137,16 @@ export class AppwriteService {
       };
     } catch (error) {
       console.error('Error getting portfolio:', error);
-      throw error;
+      return null; // Return null instead of throwing to prevent app crashes
     }
   }
 
   static async updatePortfolio(userId: string, portfolioData: Partial<AppwritePortfolio>) {
     try {
+      if (!this.isReady()) {
+        throw new Error('Appwrite service not configured');
+      }
+
       const existingPortfolios = await databases.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.portfolioCollectionId,
@@ -148,6 +187,11 @@ export class AppwriteService {
   // Transaction management
   static async getTransactions(userId: string, limit = 50): Promise<AppwriteTransaction[]> {
     try {
+      if (!this.isReady()) {
+        console.warn('Appwrite not configured, returning empty transactions');
+        return [];
+      }
+
       const transactions = await databases.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.transactionCollectionId,
@@ -171,12 +215,16 @@ export class AppwriteService {
       }));
     } catch (error) {
       console.error('Error getting transactions:', error);
-      throw error;
+      return []; // Return empty array instead of throwing
     }
   }
 
   static async addTransaction(userId: string, transactionData: Omit<AppwriteTransaction, '$id' | 'userId'>) {
     try {
+      if (!this.isReady()) {
+        throw new Error('Appwrite service not configured');
+      }
+
       return await databases.createDocument(
         appwriteConfig.databaseId,
         appwriteConfig.transactionCollectionId,
@@ -195,9 +243,14 @@ export class AppwriteService {
   // Sync with existing backend
   static async syncWithSupabase(userId: string) {
     try {
+      if (!this.isReady()) {
+        console.warn('Appwrite not configured, skipping sync');
+        return null;
+      }
+
       if (!appwriteConfig.syncFunctionId) {
         console.warn('Sync function ID not configured');
-        return;
+        return null;
       }
 
       const execution = await functions.createExecution(
@@ -209,13 +262,18 @@ export class AppwriteService {
       return execution;
     } catch (error) {
       console.error('Error syncing with Supabase:', error);
-      throw error;
+      return null; // Don't throw, just return null
     }
   }
 
   // Activity management
   static async getActivities(userId: string, limit = 20): Promise<AppwriteActivity[]> {
     try {
+      if (!this.isReady()) {
+        console.warn('Appwrite not configured, returning empty activities');
+        return [];
+      }
+
       const activities = await databases.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.activityCollectionId,
@@ -237,12 +295,17 @@ export class AppwriteService {
       }));
     } catch (error) {
       console.error('Error getting activities:', error);
-      throw error;
+      return []; // Return empty array instead of throwing
     }
   }
 
   static async addActivity(userId: string, activityData: Omit<AppwriteActivity, '$id' | 'userId'>) {
     try {
+      if (!this.isReady()) {
+        console.warn('Appwrite not configured, skipping activity log');
+        return null;
+      }
+
       return await databases.createDocument(
         appwriteConfig.databaseId,
         appwriteConfig.activityCollectionId,
@@ -254,13 +317,18 @@ export class AppwriteService {
       );
     } catch (error) {
       console.error('Error adding activity:', error);
-      throw error;
+      return null; // Don't throw, just return null
     }
   }
 
   // Settings management
   static async getUserSettings(userId: string): Promise<AppwriteSettings | null> {
     try {
+      if (!this.isReady()) {
+        console.warn('Appwrite not configured, returning null settings');
+        return null;
+      }
+
       const settings = await databases.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.settingsCollectionId,
@@ -282,12 +350,16 @@ export class AppwriteService {
       };
     } catch (error) {
       console.error('Error getting user settings:', error);
-      throw error;
+      return null; // Return null instead of throwing
     }
   }
 
   static async updateUserSettings(userId: string, settingsData: Partial<AppwriteSettings>) {
     try {
+      if (!this.isReady()) {
+        throw new Error('Appwrite service not configured');
+      }
+
       const existingSettings = await databases.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.settingsCollectionId,
@@ -341,6 +413,10 @@ export class AppwriteService {
   // Wallet integration
   static async linkWallet(userId: string, walletAddress: string) {
     try {
+      if (!this.isReady()) {
+        throw new Error('Appwrite service not configured');
+      }
+
       await databases.updateDocument(
         appwriteConfig.databaseId,
         appwriteConfig.userCollectionId,
