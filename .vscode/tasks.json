@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0", // Specifies the version of the tasks configuration format
+    "tasks": [ // Defines an array of tasks
+        {
+            "label": "build", // The name of the task, used to identify it in the command palette
+            "type": "shell", // Indicates that the task is a shell script task
+            "command": "yarn", // The command to execute, in this case, yarn
+            "args": [ // Arguments to pass to the command
+                "build" // Subcommand to build the project
+            ],
+            "problemMatcher": [] // Specifies the problem matcher to apply to the task's output, empty array if no specific matcher is needed
+        },
+        {
+            "label": "publish", // The name of the task, used to identify it in the command palette
+            "type": "shell", // Indicates that the task is a shell script task
+            "command": "yarn", // The command to execute, in this case, yarn
+            "args": [ // Arguments to pass to the command
+                "publish" // Subcommand to publish the project
+            ],
+            "problemMatcher": [] // Specifies the problem matcher to apply to the task's output, empty array if no specific matcher is needed
+        },
+        {
+            "label": "watch", // The name of the task, used to identify it in the command palette
+            "type": "shell", // Indicates that the task is a shell script task
+            "command": "yarn", // The command to execute, in this case, yarn
+            "args": [ // Arguments to pass to the command
+                "watch" // Subcommand to watch for changes and run the project
+            ],
+            "problemMatcher": [] // Specifies the problem matcher to apply to the task's output, empty array if no specific matcher is needed
+        }
+    ]
+}

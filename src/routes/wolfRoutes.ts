@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+import {Router} from 'express';
+import {runResearch} from '../controllers/wolfController';
+import {authenticateToken} from '../middleware/authMiddleware';
+
+const router = Router ();
+
+// Apply authentication middleware to all wolf routes
+router.use (authenticateToken);
+
+// Define a route for initiating research
+router.post ('/research', runResearch);
+
+export default router;
+=======
 import express, { Request, Response } from 'express';
 
 const router = express.Router();
@@ -36,3 +51,4 @@ router.post('/research', (req: Request, res: Response) => {
 });
 
 export default router;
+>>>>>>> 4c1bae1a92ab915d3d9790805b2885428143b1c8

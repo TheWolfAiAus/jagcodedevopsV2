@@ -1,0 +1,57 @@
+[debug] [2025-08-15T20:39:47.452Z] ----------------------------------------------------------------------
+[debug] [2025-08-15T20:39:47.453Z] Command:       /nix/store/ws50yvm6vzlzf7jzz6n7xh4szddrack1-nodejs-20.19.1/bin/node /nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/bin/firebase.js init hosting
+[debug] [2025-08-15T20:39:47.454Z] CLI Version:   14.12.0
+[debug] [2025-08-15T20:39:47.454Z] Platform:      linux
+[debug] [2025-08-15T20:39:47.454Z] Node Version:  v20.19.1
+[debug] [2025-08-15T20:39:47.454Z] Time:          Fri Aug 15 2025 20:39:47 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-08-15T20:39:47.455Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-08-15T20:39:47.459Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:39:47.459Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:39:47.462Z] >>> [apiv2][query] GET https://monospace-pa.googleapis.com/v1/workspaces/jagcodedevops-91031836 [none]
+[debug] [2025-08-15T20:39:48.346Z] <<< [apiv2][status] GET https://monospace-pa.googleapis.com/v1/workspaces/jagcodedevops-91031836 200
+[debug] [2025-08-15T20:39:48.347Z] <<< [apiv2][body] GET https://monospace-pa.googleapis.com/v1/workspaces/jagcodedevops-91031836 {"workspaceId":"jagcodedevops-91031836","name":"JagCodeDevOps","workspaceRedirectUrl":"firebase-jagcodedevops-1755288294145.cluster-iktsryn7xnhpexlu6255bftka4.cloudworkstations.dev","status":"WORKSPACE_STATUS_RUNNING","lastAccessDatetime":"2025-08-15T20:05:05.097368Z","workspaceTemplate":"WORKSPACE_TEMPLATE_FLUTTER","owner":"SELF","serviceAccountEmail":"msp-7711951115973165826@monospace-per-ws-sa-6.iam.gserviceaccount.com","enableNix":true,"ownerEmail":"geddes@thewolfai.com.au","workspaceImageUrl":"https://www.gstatic.com/monospace/231115/logo_react.svg","templateArgs":"{\"openIn\":\"go\"}","templateRepoUrl":"github:monogramdesign/idx-react-native","workstationAccessToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Nsb3VkLmdvb2dsZS5jb20vd29ya3N0YXRpb25zIiwiYXVkIjoiZmlyZWJhc2UtamFnY29kZWRldm9wcy0xNzU1Mjg4Mjk0MTQ1LmNsdXN0ZXItaWt0c3J5bjd4bmhwZXhsdTYyNTViZnRrYTQuY2xvdWR3b3Jrc3RhdGlvbnMuZGV2IiwiaWF0IjoxNzU1MjkwMzg4LCJleHAiOjE3NTUzNzY3ODh9.vMTX-TS8h3RI1oRoOrdJcvHKphcNi73Svj8BwwFrhQW3yUKdlR1UQIo4fifKcP7_hg1fCWzvGN7EduY8Q8rZg7837N2Y2Q10p8CXLm8aLZNoCpJ67L0uDX0LwrBRWqtLrJ91t5YDiP5ey9lCJOSLmUh07y5UOyvHw7293kRH3uFkjpuERRvf7E__zJaF9hKb5nnN1Kckzrj_3yZlO1C7R6baS-vlWyg8eaYtN2Y7_yBXpLIcQUtIWWj6XlHRk3EGHxn4YwYbkqHkRJXLLZ_TI8oWW7X_dAVJbD3SBxU7jGxMCPdwAYylRcI6Tpd7LfvzWetgSoD6vB2zau7YBOZ3xw"}
+[debug] [2025-08-15T20:39:48.347Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-08-15T20:39:48.348Z] > authorizing via signed-in user (geddes@thewolfai.com.au)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/user/jagcodedevops/jagcodedeveopsV2
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-08-15T20:39:51.906Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:39:51.907Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:39:51.907Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-08-15T20:39:52.394Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-08-15T20:39:52.394Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project jagcodedevops-469110 (JagCodeDevOps) 
+[info] 
+=== Hosting Setup
+[debug] [2025-08-15T20:39:54.237Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:39:54.237Z] Checked if tokens are valid: true, expires at: 1755292416854
+[debug] [2025-08-15T20:39:54.237Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/jagcodedevops-469110 [none]
+[debug] [2025-08-15T20:39:54.483Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/jagcodedevops-469110 200
+[debug] [2025-08-15T20:39:54.483Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/jagcodedevops-469110 {"projectId":"jagcodedevops-469110","projectNumber":"932512528363","displayName":"JagCodeDevOps","name":"projects/jagcodedevops-469110","resources":{"hostingSite":"jagcodedevops-469110"},"state":"ACTIVE","etag":"1_a3a02827-4870-4bb8-bb4e-407d11fdaeaa"}
+[debug] [2025-08-15T20:40:28.870Z] Error: Command failed: npx --yes create-next-app@"12 - 15.0" -e hello-world / --use-npm --ts
+    at genericNodeError (node:internal/errors:984:15)
+    at wrappedFn (node:internal/errors:538:14)
+    at checkExecSyncError (node:child_process:891:11)
+    at execSync (node:child_process:963:15)
+    at Object.init (/nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/frameworks/next/index.js:216:34)
+    at async Object.doSetup (/nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/init/features/hosting/index.js:109:13)
+    at async init (/nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/init/index.js:65:13)
+    at async Command.initAction [as actionFn] (/nix/store/4ba3nh7p56fsnidgr9jcqnpv4k7nwwrv-firebase-tools-14.12.0/lib/node_modules/firebase-tools/lib/commands/init.js:209:5)
+[error] 
+[error] Error: An unexpected error has occurred.
