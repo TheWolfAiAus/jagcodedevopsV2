@@ -1,0 +1,185 @@
+<!-- JagCode Crypto Dashboard - Updated for Appwrite Functions -->
+<!-- Copy this ENTIRE code into Webflow Site Settings > Custom Code > Head Code -->
+
+<script>
+  // Updated configuration for Appwrite Functions
+  window.JAGCODE_DASHBOARD_CONFIG = {
+    appwrite: {
+      endpoint: 'https://cloud.appwrite.io/v1',
+      projectId: 'YOUR_APPWRITE_PROJECT_ID', // Replace with your actual Project ID
+      databaseId: 'YOUR_DATABASE_ID', // Replace with your actual Database ID
+      functionsEndpoint: 'https://cloud.appwrite.io/v1/projects/YOUR_APPWRITE_PROJECT_ID/functions' // Replace PROJECT_ID
+    },
+    
+    // Optional: Add API keys for enhanced features (you can add these later)
+    apis: {
+      // Free APIs (work without keys)
+      coingecko: { baseUrl: 'https://api.coingecko.com/api/v3', key: null },
+      coincap: { baseUrl: 'https://api.coincap.io/v2', key: null },
+      coinlore: { baseUrl: 'https://api.coinlore.net/api', key: null },
+      feargreed: { baseUrl: 'https://api.alternative.me', key: null },
+      
+      // Premium APIs (add keys when ready)
+      coinmarketcap: { 
+        baseUrl: 'https://pro-api.coinmarketcap.com/v1', 
+        key: '' // Add your CoinMarketCap API key here later
+      },
+      cryptocompare: { 
+        baseUrl: 'https://min-api.cryptocompare.com/data', 
+        key: '' // Add your CryptoCompare API key here later
+      }
+    },
+    
+    // Wallet configuration
+    wallets: {
+      metamask: { enabled: true },
+      walletconnect: { enabled: true, projectId: '' }, // Add WalletConnect Project ID later
+      phantom: { enabled: true }
+    },
+    
+    // Environment settings
+    environment: window.location.hostname.includes('webflow') ? 'staging' : 'production'
+  };
+</script>
+
+<!-- Load the main SDK files from GitHub -->
+<script src="https://cdn.jsdelivr.net/gh/TheWolfAiAus/jagcodedeveopsV2@main/web/sdk/jagcode-dashboard-config.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TheWolfAiAus/jagcodedeveopsV2@main/web/sdk/jagcode-advanced-features.js"></script>
+
+<!-- Initialize the dashboard when page loads -->
+<script>
+  document.addEventListener('DOMContentLoaded', async function() {
+    try {
+      // Initialize dashboard configuration
+      window.dashboardConfig = new JagCodeDashboardConfig();
+      await window.dashboardConfig.init(window.JAGCODE_DASHBOARD_CONFIG);
+      
+      // Initialize advanced features (NFT Hunter, Crypto Miner, etc.)
+      window.advancedFeatures = new JagCodeAdvancedFeatures(window.dashboardConfig);
+      await window.advancedFeatures.init();
+      
+      console.log('🚀 JagCode Dashboard initialized successfully!');
+      
+      // Show success message
+      showInitMessage('Dashboard Ready!', 'success');
+      
+      // Initialize demo data if in demo mode
+      if (!window.dashboardConfig.get('appwrite.projectId')) {
+        initializeDemoMode();
+      }
+      
+    } catch (error) {
+      console.error('❌ Dashboard initialization failed:', error);
+      showInitMessage('Dashboard initialization failed. Check console for details.', 'error');
+    }
+  });
+  
+  // Helper function to show initialization messages
+  function showInitMessage(message, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `jagcode-init-message jagcode-${type}`;
+    messageDiv.textContent = message;
+    messageDiv.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      z-index: 10000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      ${type === 'success' ? 'background: #10b981; color: white;' : 'background: #ef4444; color: white;'}
+    `;
+    
+    document.body.appendChild(messageDiv);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+      if (messageDiv.parentNode) {
+        messageDiv.parentNode.removeChild(messageDiv);
+      }
+    }, 5000);
+  }
+  
+  // Demo mode initialization
+  function initializeDemoMode() {
+    console.log('🎮 Running in demo mode - some features will use mock data');
+    
+    // Add demo data indicators
+    const demoIndicators = document.querySelectorAll('[data-crypto-price], [data-portfolio-value], [data-nft-opportunity]');
+    demoIndicators.forEach(element => {
+      if (!element.dataset.demoAdded) {
+        element.style.opacity = '0.8';
+        element.title = 'Demo data - Connect Appwrite for live data';
+        element.dataset.demoAdded = 'true';
+      }
+    });
+  }
+</script>
+
+<!-- Custom CSS for dashboard components -->
+<style>
+  /* Dashboard initialization styles */
+  .jagcode-init-message {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    animation: slideInRight 0.3s ease;
+  }
+  
+  @keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  /* Loading states */
+  .jagcode-loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+  }
+  
+  .jagcode-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #3b82f6;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+  }
+  
+  @keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  /* Error and success states */
+  .jagcode-error {
+    color: #ef4444;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  
+  .jagcode-success {
+    color: #10b981;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  
+  /* Dashboard component styles */
+  .crypto-dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .crypto-dashboard-container {
+      padding: 10px;
+    }
+  }
+</style>
