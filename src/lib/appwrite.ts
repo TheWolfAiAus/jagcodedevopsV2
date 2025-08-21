@@ -1,39 +1,95 @@
 import { Client, Account, Databases, Storage, Functions } from 'appwrite';
 
-// Appwrite configuration
-export const appwriteConfig = {
-  url: process.env.EXPO_PUBLIC_APPWRITE_URL || 'https://cloud.appwrite.io/v1',
-  projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID || '',
-  databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID || '',
-  // Collection IDs
-  userCollectionId: process.env.EXPO_PUBLIC_APPWRITE_USER_COLLECTION_ID || 'users',
-  portfolioCollectionId: process.env.EXPO_PUBLIC_APPWRITE_PORTFOLIO_COLLECTION_ID || 'portfolios',
-  transactionCollectionId: process.env.EXPO_PUBLIC_APPWRITE_TRANSACTION_COLLECTION_ID || 'transactions',
-  activityCollectionId: process.env.EXPO_PUBLIC_APPWRITE_ACTIVITY_COLLECTION_ID || 'activity',
-  settingsCollectionId: process.env.EXPO_PUBLIC_APPWRITE_SETTINGS_COLLECTION_ID || 'settings',
-  // Storage
-  storageId: process.env.EXPO_PUBLIC_APPWRITE_STORAGE_ID || 'main-storage',
-  // Functions
-  backupFunctionId: process.env.EXPO_PUBLIC_APPWRITE_BACKUP_FUNCTION_ID || 'backup-data',
-  notifyFunctionId: process.env.EXPO_PUBLIC_APPWRITE_NOTIFY_FUNCTION_ID || 'send-notifications',
-  // Real-time settings
-  enableRealtime: process.env.EXPO_PUBLIC_ENABLE_REALTIME === 'true',
-  realtimeHeartbeat: parseInt(process.env.EXPO_PUBLIC_REALTIME_HEARTBEAT || '30000'),
+// Appwrite configuration with fallbacks and validation
+const getEnvVar = (key: string, fallback: string = ''): string => {
+  // Check both EXPO_PUBLIC_ and regular env vars
+  const expoKey = `EXPO_PUBLIC_${key}`;
+  const regularKey = key;
+  
+  const value = process.env[expoKey] || 
+                process.env[regularKey] || 
+                process.env[`APPWRITE_${key}`] || 
+                fallback;
+  
+  return value;
 };
 
-// Initialize Appwrite client
-const client = new Client()
-  .setEndpoint(appwriteConfig.url)
-  .setProject(appwriteConfig.projectId);
+export const appwriteConfig = {
+  url: getEnvVar('APPWRITE_URL', 'https://cloud.appwrite.io/v1'),
+  projectId: getEnvVar('PROJECT_ID', '68a36f6c002bfc1e6057'), // Use the ID from .env
+  databaseId: getEnvVar('DATABASE_ID', 'main-database'),
+  // Collection IDs - use the ones from .env
+  userCollectionId: getEnvVar('USER_COLLECTION_ID', '68a3b34a00375e270b15'),
+  portfolioCollectionId: getEnvVar('PORTFOLIO_COLLECTION_ID', '68a3b3e2000dcc682c12'),
+  transactionCollectionId: getEnvVar('TRANSACTION_COLLECTION_ID', '68a3b41400346ff40705'),
+  activityCollectionId: getEnvVar('ACTIVITY_COLLECTION_ID', '68a3b43e001c44090ac6'),
+  settingsCollectionId: getEnvVar('SETTINGS_COLLECTION_ID', '68a3b463003bb9695087'),
+  // Storage
+  storageId: getEnvVar('STORAGE_ID', 'main-storage'),
+  storageBucket: getEnvVar('STORAGE_BUCKET', '68a3b5b80038da178baf'),
+  // Functions
+  backupFunctionId: getEnvVar('BACKUP_FUNCTION_ID', 'backup-data'),
+  notifyFunctionId: getEnvVar('NOTIFY_FUNCTION_ID', 'send-notifications'),
+  syncFunctionId: getEnvVar('SYNC_FUNCTION_ID', 'sync-data'),
+  // Real-time settings
+  enableRealtime: getEnvVar('ENABLE_REALTIME', 'true') === 'true',
+  realtimeHeartbeat: parseInt(getEnvVar('REALTIME_HEARTBEAT', '30000')),
+};
 
-// Initialize services
+// Validate configuration
+const validateConfig = () => {
+  const required = ['url', 'projectId'];
+  const missing = required.filter(key => !appwriteConfig[key as keyof typeof appwriteConfig]);
+  
+  if (missing.length > 0) {
+    console.warn('Appwrite config missing required fields:', missing);
+    console.warn('Current config:', {
+      url: appwriteConfig.url,
+      projectId: appwriteConfig.projectId,
+      hasProjectId: !!appwriteConfig.projectId
+    });
+  }
+  
+  return missing.length === 0;
+};
+
+// Initialize Appwrite client with error handling
+let client: Client;
+let isConfigValid = false;
+
+try {
+  isConfigValid = validateConfig();
+  
+  if (isConfigValid) {
+    client = new Client()
+      .setEndpoint(appwriteConfig.url)
+      .setProject(appwriteConfig.projectId);
+    
+    console.log('✅ Appwrite client initialized successfully');
+  } else {
+    // Create a dummy client to prevent import errors
+    client = new Client();
+    console.warn('⚠️ Appwrite client initialized with invalid config');
+  }
+} catch (error) {
+  console.error('❌ Failed to initialize Appwrite client:', error);
+  client = new Client(); // Fallback to prevent import errors
+}
+
+// Initialize services with safe fallbacks
 export const account = new Account(client);
 export const databases = new Databases(client);
 export const storage = new Storage(client);
 export const functions = new Functions(client);
 
-// Export client for direct use if needed
+// Export client and config validation status
+export { isConfigValid };
 export default client;
+
+// Helper function to check if Appwrite is properly configured
+export const isAppwriteReady = (): boolean => {
+  return isConfigValid && !!appwriteConfig.projectId && !!appwriteConfig.url;
+};
 
 // Types for Appwrite integration
 export interface AppwriteUser {
