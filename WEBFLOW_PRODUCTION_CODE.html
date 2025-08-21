@@ -1,6 +1,10 @@
 <!-- 🚀 PRODUCTION WEBFLOW CODE FOR JAGCODEDEVOPS.XYZ 🚀 -->
 <!-- Copy this ENTIRE code into Webflow Site Settings > Custom Code > Head Code -->
 
+<!-- Load Appwrite SDK -->
+<script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2/dist/iife/sdk.js"></script>
+
+<!-- JagCode Configuration -->
 <script>
   window.JAGCODE_CONFIG = {
     endpoint: 'https://syd.cloud.appwrite.io/v1',
@@ -8,7 +12,7 @@
     databaseId: 'main',
     environment: 'production',
     
-    // Collection IDs from your .env
+    // Collection IDs
     collections: {
       users: '68a3b34a00375e270b15',
       portfolios: '68a3b3e2000dcc682c12', 
@@ -17,18 +21,9 @@
       settings: '68a3b463003bb9695087'
     },
     
-    // Storage and Functions
     storageId: 'main-storage',
     storageBucket: '68a3b5b80038da178baf',
     
-    // Domain configuration
-    domains: {
-      webflow: 'jagecodedevops.webflow.io',
-      production: 'jagcodedevops.xyz',
-      productionWww: 'www.jagcodedevops.xyz'
-    },
-    
-    // Real-time features
     realtime: {
       enabled: true,
       heartbeat: 30000
@@ -36,192 +31,267 @@
   };
 </script>
 
-<!-- Load JagCode SDK -->
-<script src="https://cdn.jsdelivr.net/gh/TheWolfAiAus/jagcodedeveopsV2@main/web/sdk/jagcode-sdk.js"></script>
-
-<!-- Initialize SDK when page loads -->
+<!-- JagCode SDK -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Initializing JagCode SDK for production...');
+  class JagCodeSDK {
+    constructor() {
+      this.client = null;
+      this.account = null;
+      this.databases = null;
+      this.config = {};
+      this.user = null;
+      this.initialized = false;
+    }
+
+    async init(config) {
+      try {
+        this.config = config;
+        this.client = new Appwrite.Client()
+          .setEndpoint(config.endpoint)
+          .setProject(config.projectId);
+        
+        this.account = new Appwrite.Account(this.client);
+        this.databases = new Appwrite.Databases(this.client);
+
+        try {
+          this.user = await this.account.get();
+        } catch (error) {
+          this.user = null;
+        }
+
+        this.initialized = true;
+        return this;
+      } catch (error) {
+        console.error('SDK initialization failed:', error);
+        throw error;
+      }
+    }
+
+    auth = {
+      signUp: async (email, password, name) => {
+        try {
+          const user = await this.account.create(Appwrite.ID.unique(), email, password, name);
+          
+          await this.databases.createDocument(
+            this.config.databaseId,
+            this.config.collections.users,
+            user.$id,
+            {
+              name,
+              email,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString()
+            }
+          );
+
+          this.user = user;
+          return user;
+        } catch (error) {
+          throw error;
+        }
+      },
+
+      signIn: async (email, password) => {
+        try {
+          const session = await this.account.createEmailPasswordSession(email, password);
+          this.user = await this.account.get();
+          return { user: this.user, session };
+        } catch (error) {
+          throw error;
+        }
+      },
+
+      signOut: async () => {
+        try {
+          await this.account.deleteSession('current');
+          this.user = null;
+          return true;
+        } catch (error) {
+          throw error;
+        }
+      },
+
+      getCurrentUser: () => {
+        return this.user;
+      },
+
+      isAuthenticated: () => {
+        return !!this.user;
+      }
+    };
+
+    portfolio = {
+      get: async (userId) => {
+        const targetUserId = userId || this.user?.$id;
+        if (!targetUserId) throw new Error('User not authenticated');
+
+        try {
+          const portfolios = await this.databases.listDocuments(
+            this.config.databaseId,
+            this.config.collections.portfolios,
+            [Appwrite.Query.equal('userId', targetUserId)]
+          );
+
+          return portfolios.documents.length > 0 ? portfolios.documents[0] : null;
+        } catch (error) {
+          throw error;
+        }
+      }
+    };
+
+    transactions = {
+      list: async (userId, limit = 10) => {
+        const targetUserId = userId || this.user?.$id;
+        if (!targetUserId) throw new Error('User not authenticated');
+
+        try {
+          const transactions = await this.databases.listDocuments(
+            this.config.databaseId,
+            this.config.collections.transactions,
+            [
+              Appwrite.Query.equal('userId', targetUserId),
+              Appwrite.Query.orderDesc('timestamp'),
+              Appwrite.Query.limit(limit)
+            ]
+          );
+
+          return transactions.documents;
+        } catch (error) {
+          throw error;
+        }
+      }
+    };
+
+    activity = {
+      list: async (userId, limit = 10) => {
+        const targetUserId = userId || this.user?.$id;
+        if (!targetUserId) throw new Error('User not authenticated');
+
+        try {
+          const activities = await this.databases.listDocuments(
+            this.config.databaseId,
+            this.config.collections.activity,
+            [
+              Appwrite.Query.equal('userId', targetUserId),
+              Appwrite.Query.orderDesc('timestamp'),
+              Appwrite.Query.limit(limit)
+            ]
+          );
+
+          return activities.documents;
+        } catch (error) {
+          throw error;
+        }
+      }
+    };
+
+    utils = {
+      formatCurrency: (amount, currency = 'USD') => {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency
+        }).format(amount);
+      },
+
+      formatDate: (date) => {
+        return new Intl.DateTimeFormat('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(new Date(date));
+      }
+    };
+  }
+
+  window.JagCodeSDK = JagCodeSDK;
+</script>
+
+<!-- Main Application -->
+<script>
+  let jagcode;
+
+  document.addEventListener('DOMContentLoaded', async function() {
+    console.log('🚀 Initializing JagCode SDK...');
     
-    // Initialize JagCode SDK
-    window.jagcode = new JagCodeSDK();
-    
-    window.jagcode.init(window.JAGCODE_CONFIG).then(() => {
-      console.log('✅ JagCode SDK initialized successfully');
-      console.log('🔗 Connected to Appwrite:', window.JAGCODE_CONFIG.endpoint);
-      console.log('📊 Project ID:', window.JAGCODE_CONFIG.projectId);
+    try {
+      jagcode = new JagCodeSDK();
+      await jagcode.init(window.JAGCODE_CONFIG);
       
-      // Check if user is already authenticated
-      const user = window.jagcode.auth.getCurrentUser();
+      console.log('✅ JagCode SDK initialized successfully');
+      
+      const user = jagcode.auth.getCurrentUser();
       if (user) {
         console.log('👤 User authenticated:', user.name);
         showAuthenticatedContent(user);
-        initializeDashboard(user);
+        await loadDashboard(user);
       } else {
-        console.log('🔐 No authenticated user, showing public content');
+        console.log('🔐 No authenticated user');
         showPublicContent();
       }
       
-      // Initialize real-time if enabled
-      if (window.JAGCODE_CONFIG.realtime.enabled) {
-        initializeRealtime();
-      }
-      
-    }).catch(error => {
-      console.error('❌ JagCode SDK initialization failed:', error);
-      showError('Connection failed. Please check your internet connection.');
-    });
+    } catch (error) {
+      console.error('❌ SDK initialization failed:', error);
+      showError('Failed to connect. Please refresh the page.');
+    }
   });
 
-  // Authentication UI Management
   function showAuthenticatedContent(user) {
-    // Hide login/signup forms
     hideElements('[data-auth="login-form"]');
     hideElements('[data-auth="signup-form"]');
     hideElements('[data-auth="public"]');
     
-    // Show authenticated content
     showElements('[data-auth="authenticated"]');
     showElements('[data-dashboard]');
     
-    // Update user name displays
     updateTextContent('[data-user="name"]', user.name);
     updateTextContent('[data-user="email"]', user.email);
-    
-    // Load user data
-    loadUserDashboard(user);
   }
 
   function showPublicContent() {
-    // Show login/signup forms
     showElements('[data-auth="login-form"]');
     showElements('[data-auth="signup-form"]');
     showElements('[data-auth="public"]');
     
-    // Hide authenticated content
     hideElements('[data-auth="authenticated"]');
     hideElements('[data-dashboard]');
   }
 
-  // Dashboard Initialization
-  function initializeDashboard(user) {
-    console.log('📊 Initializing dashboard for user:', user.name);
+  async function loadDashboard(user) {
+    console.log('📊 Loading dashboard...');
     
-    // Load portfolio data
-    loadPortfolio(user.$id);
-    
-    // Load recent transactions
-    loadTransactions(user.$id);
-    
-    // Load recent activity
-    loadActivity(user.$id);
-    
-    // Start real-time updates
-    startRealTimeUpdates(user.$id);
-  }
-
-  async function loadPortfolio(userId) {
     try {
-      const portfolio = await window.jagcode.portfolio.get(userId);
-      
+      const portfolio = await jagcode.portfolio.get(user.$id);
       if (portfolio) {
         updateTextContent('[data-portfolio="total-value"]', 
-          window.jagcode.utils.formatCurrency(portfolio.totalValue || 0));
-        
-        // Parse and display assets
-        if (portfolio.assets) {
-          const assets = typeof portfolio.assets === 'string' 
-            ? JSON.parse(portfolio.assets) 
-            : portfolio.assets;
-          displayAssets(assets);
-        }
-        
+          jagcode.utils.formatCurrency(portfolio.totalValue || 0));
         updateTextContent('[data-portfolio="last-updated"]', 
-          window.jagcode.utils.formatDate(portfolio.lastUpdated));
+          jagcode.utils.formatDate(portfolio.lastUpdated));
       } else {
         updateTextContent('[data-portfolio="total-value"]', '$0.00');
         updateTextContent('[data-portfolio="last-updated"]', 'Never');
       }
     } catch (error) {
       console.error('Error loading portfolio:', error);
-      showError('Failed to load portfolio data');
     }
-  }
 
-  async function loadTransactions(userId) {
     try {
-      const transactions = await window.jagcode.transactions.list(userId, 10);
-      displayTransactions(transactions);
+      const transactions = await jagcode.transactions.list(user.$id, 5);
+      console.log('💳 Loaded transactions:', transactions.length);
     } catch (error) {
       console.error('Error loading transactions:', error);
-      showError('Failed to load transaction data');
     }
-  }
 
-  async function loadActivity(userId) {
     try {
-      const activities = await window.jagcode.activity.list(userId, 10);
-      displayActivities(activities);
+      const activities = await jagcode.activity.list(user.$id, 5);
+      console.log('📝 Loaded activities:', activities.length);
     } catch (error) {
       console.error('Error loading activities:', error);
-      showError('Failed to load activity data');
     }
   }
 
-  // Real-time Updates
-  function initializeRealtime() {
-    console.log('🔄 Initializing real-time connection...');
-    
-    window.jagcode.realtime.connect().then(() => {
-      updateConnectionStatus('Connected');
-      console.log('✅ Real-time connection established');
-    }).catch(error => {
-      updateConnectionStatus('Disconnected');
-      console.error('❌ Real-time connection failed:', error);
-    });
-  }
-
-  function startRealTimeUpdates(userId) {
-    console.log('📡 Starting real-time updates for user:', userId);
-    
-    window.jagcode.realtime.subscribeToUser(userId, {
-      onPortfolioUpdate: (portfolio) => {
-        console.log('📊 Portfolio updated:', portfolio);
-        updateTextContent('[data-portfolio="total-value"]', 
-          window.jagcode.utils.formatCurrency(portfolio.totalValue || 0));
-        updateTextContent('[data-portfolio="last-updated"]', 
-          window.jagcode.utils.formatDate(portfolio.lastUpdated));
-      },
-      
-      onTransactionUpdate: (transaction) => {
-        console.log('💳 New transaction:', transaction);
-        loadTransactions(userId); // Refresh transactions
-      },
-      
-      onActivityUpdate: (activity) => {
-        console.log('📝 New activity:', activity);
-        loadActivity(userId); // Refresh activities
-      },
-      
-      onConnect: () => {
-        updateConnectionStatus('Connected');
-        console.log('🔗 Real-time connected');
-      },
-      
-      onDisconnect: () => {
-        updateConnectionStatus('Disconnected');
-        console.log('🔌 Real-time disconnected');
-      },
-      
-      onError: (error) => {
-        updateConnectionStatus('Error');
-        console.error('⚠️ Real-time error:', error);
-      }
-    });
-  }
-
-  // Form Handlers - Add these to your Webflow forms
+  // Form Handlers
   window.handleSignup = async function(event) {
     event.preventDefault();
     const form = event.target;
@@ -231,10 +301,10 @@
     
     try {
       showLoading(form);
-      const user = await window.jagcode.auth.signUp(email, password, name);
-      console.log('✅ User signed up:', user);
+      const user = await jagcode.auth.signUp(email, password, name);
+      console.log('✅ User signed up:', user.name);
       showAuthenticatedContent(user);
-      initializeDashboard(user);
+      await loadDashboard(user);
       showSuccess('Account created successfully!');
     } catch (error) {
       console.error('❌ Signup failed:', error);
@@ -252,10 +322,10 @@
     
     try {
       showLoading(form);
-      const result = await window.jagcode.auth.signIn(email, password);
-      console.log('✅ User signed in:', result.user);
+      const result = await jagcode.auth.signIn(email, password);
+      console.log('✅ User signed in:', result.user.name);
       showAuthenticatedContent(result.user);
-      initializeDashboard(result.user);
+      await loadDashboard(result.user);
       showSuccess('Welcome back!');
     } catch (error) {
       console.error('❌ Signin failed:', error);
@@ -267,10 +337,10 @@
 
   window.handleSignout = async function() {
     try {
-      await window.jagcode.auth.signOut();
+      await jagcode.auth.signOut();
       console.log('✅ User signed out');
       showPublicContent();
-      showSuccess('You have been signed out successfully');
+      showSuccess('Signed out successfully');
     } catch (error) {
       console.error('❌ Signout failed:', error);
       showError('Failed to sign out. Please try again.');
@@ -290,25 +360,20 @@
     document.querySelectorAll(selector).forEach(el => el.textContent = text);
   }
 
-  function updateConnectionStatus(status) {
-    updateTextContent('[data-status="realtime"]', status);
-    const elements = document.querySelectorAll('[data-status="realtime"]');
-    elements.forEach(el => {
-      el.className = `connection-status ${status.toLowerCase()}`;
-    });
-  }
-
   function showLoading(form) {
     form.classList.add('jagcode-loading');
+    const button = form.querySelector('input[type="submit"], button[type="submit"]');
+    if (button) button.disabled = true;
   }
 
   function hideLoading(form) {
     form.classList.remove('jagcode-loading');
+    const button = form.querySelector('input[type="submit"], button[type="submit"]');
+    if (button) button.disabled = false;
   }
 
   function showError(message) {
     console.error('🔴', message);
-    // You can customize this to show errors in your UI
     const errorElements = document.querySelectorAll('[data-message="error"]');
     errorElements.forEach(el => {
       el.textContent = message;
@@ -322,7 +387,6 @@
 
   function showSuccess(message) {
     console.log('🟢', message);
-    // You can customize this to show success messages in your UI
     const successElements = document.querySelectorAll('[data-message="success"]');
     successElements.forEach(el => {
       el.textContent = message;
@@ -333,24 +397,9 @@
       successElements.forEach(el => el.style.display = 'none');
     }, 3000);
   }
-
-  function displayAssets(assets) {
-    // Customize this based on your Webflow structure
-    console.log('💎 Assets:', assets);
-  }
-
-  function displayTransactions(transactions) {
-    // Customize this based on your Webflow structure
-    console.log('💳 Transactions:', transactions);
-  }
-
-  function displayActivities(activities) {
-    // Customize this based on your Webflow structure  
-    console.log('📝 Activities:', activities);
-  }
 </script>
 
-<!-- Custom CSS for JagCode Integration -->
+<!-- Styles -->
 <style>
   [data-auth="authenticated"] {
     display: none;
@@ -361,30 +410,6 @@
     pointer-events: none;
   }
   
-  .jagcode-error {
-    color: #ef4444;
-    font-size: 14px;
-    margin-top: 8px;
-  }
-  
-  .jagcode-success {
-    color: #10b981;
-    font-size: 14px;
-    margin-top: 8px;
-  }
-  
-  .connection-status.connected {
-    color: #10b981;
-  }
-  
-  .connection-status.disconnected {
-    color: #ef4444;
-  }
-  
-  .connection-status.error {
-    color: #f59e0b;
-  }
-  
   [data-message="error"] {
     display: none;
     color: #ef4444;
@@ -392,6 +417,7 @@
     padding: 12px;
     border-radius: 6px;
     margin: 8px 0;
+    border: 1px solid #fecaca;
   }
   
   [data-message="success"] {
@@ -401,6 +427,7 @@
     padding: 12px;
     border-radius: 6px;
     margin: 8px 0;
+    border: 1px solid #a7f3d0;
   }
 </style>
 
