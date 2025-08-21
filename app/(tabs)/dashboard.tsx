@@ -1,532 +1,345 @@
-import { useState, useEffect, useCallback } from 'react';
-import { View, ScrollView, RefreshControl, Alert, StyleSheet } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, Alert, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { AppwriteService } from '@/services/appwriteService';
-import { getRealTimeService, RealtimeCallbacks } from '@/services/realTimeService';
 import { AppwriteUser, AppwritePortfolio, AppwriteTransaction, AppwriteActivity } from '@/lib/appwrite';
 
-export default function DashboardScreen() {
+export default function Dashboard() {
   const [user, setUser] = useState<AppwriteUser | null>(null);
   const [portfolio, setPortfolio] = useState<AppwritePortfolio | null>(null);
   const [transactions, setTransactions] = useState<AppwriteTransaction[]>([]);
   const [activities, setActivities] = useState<AppwriteActivity[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [refreshing, setRefreshing] = useState(false);
-  const [realtimeStatus, setRealtimeStatus] = useState<string>('Disconnected');
+  const [loading, setLoading] = useState(true);
+  const [authError, setAuthError] = useState<string | null>(null);
 
   const loadUserData = async () => {
     try {
-      setIsLoading(true);
-      
-      // Get current user
-      const currentUser = await AppwriteService.getCurrentUser();
-      if (!currentUser) {
-        Alert.alert('Error', 'Please sign in to continue');
+      setLoading(true);
+      setAuthError(null);
+
+      // Check if Appwrite is ready
+      if (!AppwriteService.isReady()) {
+        setAuthError('Backend service not configured. Using demo mode.');
+        setLoading(false);
         return;
       }
+
+      // Try to get current user
+      const currentUser = await AppwriteService.getCurrentUser();
       
+      if (!currentUser) {
+        setAuthError('Please sign in to view your dashboard');
+        setLoading(false);
+        return;
+      }
+
       setUser(currentUser);
 
-      // Load portfolio
-      const userPortfolio = await AppwriteService.getPortfolio(currentUser.$id);
+      // Load user data in parallel
+      const [userPortfolio, userTransactions, userActivities] = await Promise.all([
+        AppwriteService.getPortfolio(currentUser.$id),
+        AppwriteService.getTransactions(currentUser.$id, 10),
+        AppwriteService.getActivities(currentUser.$id, 5)
+      ]);
+
       setPortfolio(userPortfolio);
-
-      // Load recent transactions
-      const userTransactions = await AppwriteService.getTransactions(currentUser.$id, 10);
       setTransactions(userTransactions);
-
-      // Load recent activities
-      const userActivities = await AppwriteService.getActivities(currentUser.$id, 5);
       setActivities(userActivities);
-
+      
     } catch (error) {
-      console.error('Failed to load user data:', error);
-      Alert.alert('Error', 'Failed to load data. Please try again.');
+      console.error('Error loading dashboard data:', error);
+      setAuthError('Failed to load dashboard data. Please try again.');
     } finally {
-      setIsLoading(false);
-      setRefreshing(false);
+      setLoading(false);
     }
   };
-
-  const initializeRealtime = useCallback((userId: string) => {
-    const realtimeCallbacks: RealtimeCallbacks = {
-      onPortfolioUpdate: (updatedPortfolio) => {
-        console.log('📊 Portfolio updated in real-time');
-        setPortfolio(updatedPortfolio);
-      },
-      
-      onTransactionUpdate: (updatedTransaction) => {
-        console.log('💳 Transaction updated in real-time');
-        setTransactions(prev => {
-          const existingIndex = prev.findIndex(t => t.$id === updatedTransaction.$id);
-          if (existingIndex !== -1) {
-            // Update existing transaction
-            const updated = [...prev];
-            updated[existingIndex] = updatedTransaction;
-            return updated;
-          } else {
-            // Add new transaction at the beginning
-            return [updatedTransaction, ...prev].slice(0, 10);
-          }
-        });
-      },
-      
-      onActivityUpdate: (newActivity) => {
-        console.log('📝 New activity in real-time');
-        setActivities(prev => [newActivity, ...prev].slice(0, 5));
-      },
-      
-      onUserUpdate: (updatedUser) => {
-        console.log('👤 User profile updated in real-time');
-        setUser(updatedUser);
-      },
-      
-      onConnect: () => {
-        setRealtimeStatus('Connected');
-        console.log('✅ Real-time connection established');
-      },
-      
-      onDisconnect: () => {
-        setRealtimeStatus('Disconnected');
-        console.log('❌ Real-time connection lost');
-      },
-      
-      onError: (error) => {
-        setRealtimeStatus('Error');
-        console.error('❌ Real-time error:', error);
-      }
-    };
-
-    const realtimeService = getRealTimeService(realtimeCallbacks);
-    realtimeService.initialize(userId);
-
-    return realtimeService;
-  }, []);
-
-  useFocusEffect(
-    useCallback(() => {
-      loadUserData();
-      
-      return () => {
-        // Cleanup is handled by the service singleton
-      };
-    }, [])
-  );
 
   useEffect(() => {
-    if (user) {
-      const realtimeService = initializeRealtime(user.$id);
-      
-      return () => {
-        // Service cleanup is handled by singleton pattern
-      };
-    }
-  }, [user, initializeRealtime]);
-
-  const onRefresh = () => {
-    setRefreshing(true);
     loadUserData();
+  }, []);
+
+  const handleSignIn = () => {
+    Alert.alert(
+      'Sign In Required',
+      'You need to sign in to access your dashboard. This feature will be available once authentication is configured.',
+      [
+        { text: 'OK', style: 'default' },
+        { text: 'Retry', onPress: loadUserData }
+      ]
+    );
   };
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(amount);
-  };
+  const renderDemoData = () => (
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Dashboard</Text>
+        <Text style={styles.subtitle}>Demo Mode - No Backend Connected</Text>
+      </View>
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  };
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Portfolio Overview</Text>
+        <Text style={styles.valueText}>$12,345.67</Text>
+        <Text style={styles.changeText}>+5.67% (24h)</Text>
+      </View>
 
-  const getActivityIcon = (type: AppwriteActivity['type']) => {
-    switch (type) {
-      case 'login': return '🔐';
-      case 'transaction': return '💳';
-      case 'portfolio_update': return '📊';
-      case 'wallet_connect': return '🔗';
-      case 'setting_change': return '⚙️';
-      default: return '📝';
-    }
-  };
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Recent Transactions</Text>
+        <View style={styles.transactionItem}>
+          <Text style={styles.transactionText}>ETH Purchase</Text>
+          <Text style={styles.transactionAmount}>+2.5 ETH</Text>
+        </View>
+        <View style={styles.transactionItem}>
+          <Text style={styles.transactionText}>BTC Sale</Text>
+          <Text style={styles.transactionAmount}>-0.1 BTC</Text>
+        </View>
+      </View>
 
-  const getTransactionStatusIcon = (status: AppwriteTransaction['status']) => {
-    switch (status) {
-      case 'confirmed': return '✅';
-      case 'failed': return '❌';
-      case 'pending': return '⏳';
-      default: return '📋';
-    }
-  };
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Quick Actions</Text>
+        <TouchableOpacity style={styles.actionButton} onPress={handleSignIn}>
+          <Text style={styles.actionButtonText}>Configure Authentication</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
+  );
 
-  if (isLoading) {
+  if (loading) {
     return (
-      <ThemedView style={styles.container}>
-        <ThemedView style={styles.loadingContainer}>
-          <ThemedText style={styles.loadingText}>Loading your dashboard...</ThemedText>
-        </ThemedView>
-      </ThemedView>
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#3b82f6" />
+        <Text style={styles.loadingText}>Loading dashboard...</Text>
+      </View>
+    );
+  }
+
+  if (authError) {
+    if (authError.includes('not configured')) {
+      return renderDemoData();
+    }
+    
+    return (
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorTitle}>Authentication Required</Text>
+        <Text style={styles.errorMessage}>{authError}</Text>
+        <TouchableOpacity style={styles.signInButton} onPress={handleSignIn}>
+          <Text style={styles.signInButtonText}>Sign In</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.retryButton} onPress={loadUserData}>
+          <Text style={styles.retryButtonText}>Retry</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 
   return (
-    <ThemedView style={styles.container}>
-      <ScrollView
-        style={styles.scrollView}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Header */}
-        <ThemedView style={styles.header}>
-          <ThemedText style={styles.welcomeText}>
-            Welcome back, {user?.name || 'User'}!
-          </ThemedText>
-          <ThemedView style={styles.statusIndicator}>
-            <ThemedText style={[
-              styles.statusText,
-              realtimeStatus === 'Connected' ? styles.statusConnected : 
-              realtimeStatus === 'Error' ? styles.statusError : styles.statusDisconnected
-            ]}>
-              🔴 {realtimeStatus}
-            </ThemedText>
-          </ThemedView>
-        </ThemedView>
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Welcome back, {user?.name}!</Text>
+        <Text style={styles.subtitle}>Here's your portfolio overview</Text>
+      </View>
 
-        {/* Portfolio Overview */}
-        <ThemedView style={styles.card}>
-          <ThemedView style={styles.cardHeader}>
-            <ThemedText style={styles.cardTitle}>📊 Portfolio Overview</ThemedText>
-            <ThemedText style={styles.cardSubtitle}>
-              Last updated: {portfolio?.lastUpdated ? formatDate(portfolio.lastUpdated) : 'Never'}
-            </ThemedText>
-          </ThemedView>
-          
-          {portfolio ? (
-            <>
-              <ThemedText style={styles.portfolioValue}>
-                {formatCurrency(portfolio.totalValue)}
-              </ThemedText>
-              <ThemedText style={styles.portfolioAssets}>
-                {portfolio.assets?.length || 0} Assets
-              </ThemedText>
-              
-              {portfolio.assets && portfolio.assets.length > 0 && (
-                <ThemedView style={styles.assetsList}>
-                  {portfolio.assets.slice(0, 3).map((asset, index) => (
-                    <ThemedView key={index} style={styles.assetItem}>
-                      <ThemedText style={styles.assetSymbol}>{asset.symbol}</ThemedText>
-                      <ThemedText style={styles.assetValue}>
-                        {formatCurrency(asset.valueUsd)}
-                      </ThemedText>
-                    </ThemedView>
-                  ))}
-                  {portfolio.assets.length > 3 && (
-                    <ThemedText style={styles.moreAssets}>
-                      +{portfolio.assets.length - 3} more assets
-                    </ThemedText>
-                  )}
-                </ThemedView>
-              )}
-            </>
-          ) : (
-            <ThemedText style={styles.noDataText}>
-              No portfolio data available
-            </ThemedText>
-          )}
-        </ThemedView>
+      {portfolio ? (
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Portfolio Value</Text>
+          <Text style={styles.valueText}>${portfolio.totalValue.toLocaleString()}</Text>
+          <Text style={styles.updateTime}>Last updated: {new Date(portfolio.lastUpdated).toLocaleString()}</Text>
+        </View>
+      ) : (
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Portfolio</Text>
+          <Text style={styles.emptyText}>No portfolio data available</Text>
+        </View>
+      )}
 
-        {/* Recent Transactions */}
-        <ThemedView style={styles.card}>
-          <ThemedView style={styles.cardHeader}>
-            <ThemedText style={styles.cardTitle}>💳 Recent Transactions</ThemedText>
-          </ThemedView>
-          
-          {transactions.length > 0 ? (
-            <ThemedView style={styles.transactionsList}>
-              {transactions.map((transaction) => (
-                <ThemedView key={transaction.$id} style={styles.transactionItem}>
-                  <ThemedView style={styles.transactionLeft}>
-                    <ThemedText style={styles.transactionStatus}>
-                      {getTransactionStatusIcon(transaction.status)}
-                    </ThemedText>
-                    <ThemedView>
-                      <ThemedText style={styles.transactionType}>
-                        {transaction.type.toUpperCase()}
-                      </ThemedText>
-                      <ThemedText style={styles.transactionNetwork}>
-                        {transaction.network}
-                      </ThemedText>
-                    </ThemedView>
-                  </ThemedView>
-                  
-                  <ThemedView style={styles.transactionRight}>
-                    <ThemedText style={styles.transactionAmount}>
-                      {transaction.amount} {transaction.symbol}
-                    </ThemedText>
-                    <ThemedText style={styles.transactionTime}>
-                      {formatDate(transaction.timestamp)}
-                    </ThemedText>
-                  </ThemedView>
-                </ThemedView>
-              ))}
-            </ThemedView>
-          ) : (
-            <ThemedText style={styles.noDataText}>
-              No transactions found
-            </ThemedText>
-          )}
-        </ThemedView>
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Recent Transactions</Text>
+        {transactions.length > 0 ? (
+          transactions.map((transaction) => (
+            <View key={transaction.$id} style={styles.transactionItem}>
+              <Text style={styles.transactionText}>
+                {transaction.type.toUpperCase()} - {transaction.symbol}
+              </Text>
+              <Text style={styles.transactionAmount}>
+                {transaction.type === 'send' ? '-' : '+'}{transaction.amount}
+              </Text>
+            </View>
+          ))
+        ) : (
+          <Text style={styles.emptyText}>No recent transactions</Text>
+        )}
+      </View>
 
-        {/* Activity Feed */}
-        <ThemedView style={styles.card}>
-          <ThemedView style={styles.cardHeader}>
-            <ThemedText style={styles.cardTitle}>📝 Recent Activity</ThemedText>
-          </ThemedView>
-          
-          {activities.length > 0 ? (
-            <ThemedView style={styles.activitiesList}>
-              {activities.map((activity) => (
-                <ThemedView key={activity.$id} style={styles.activityItem}>
-                  <ThemedText style={styles.activityIcon}>
-                    {getActivityIcon(activity.type)}
-                  </ThemedText>
-                  <ThemedView style={styles.activityContent}>
-                    <ThemedText style={styles.activityDescription}>
-                      {activity.description}
-                    </ThemedText>
-                    <ThemedText style={styles.activityTime}>
-                      {formatDate(activity.timestamp)} • {activity.platform}
-                    </ThemedText>
-                  </ThemedView>
-                </ThemedView>
-              ))}
-            </ThemedView>
-          ) : (
-            <ThemedText style={styles.noDataText}>
-              No recent activity
-            </ThemedText>
-          )}
-        </ThemedView>
-
-        {/* Wallet Connection Status */}
-        <ThemedView style={styles.card}>
-          <ThemedView style={styles.cardHeader}>
-            <ThemedText style={styles.cardTitle}>🔗 Wallet Status</ThemedText>
-          </ThemedView>
-          
-          {user?.walletAddress ? (
-            <ThemedView style={styles.walletConnected}>
-              <ThemedText style={styles.walletStatus}>✅ Wallet Connected</ThemedText>
-              <ThemedText style={styles.walletAddress}>
-                {user.walletAddress.slice(0, 6)}...{user.walletAddress.slice(-4)}
-              </ThemedText>
-            </ThemedView>
-          ) : (
-            <ThemedView style={styles.walletDisconnected}>
-              <ThemedText style={styles.walletStatus}>❌ No Wallet Connected</ThemedText>
-              <ThemedText style={styles.walletPrompt}>
-                Connect your wallet to start trading
-              </ThemedText>
-            </ThemedView>
-          )}
-        </ThemedView>
-
-      </ScrollView>
-    </ThemedView>
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Recent Activity</Text>
+        {activities.length > 0 ? (
+          activities.map((activity) => (
+            <View key={activity.$id} style={styles.activityItem}>
+              <Text style={styles.activityText}>{activity.description}</Text>
+              <Text style={styles.activityTime}>
+                {new Date(activity.timestamp).toLocaleDateString()}
+              </Text>
+            </View>
+          ))
+        ) : (
+          <Text style={styles.emptyText}>No recent activity</Text>
+        )}
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#f8f9fa',
+    padding: 16,
   },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#f8f9fa',
   },
   loadingText: {
+    marginTop: 16,
     fontSize: 16,
+    color: '#666',
   },
-  scrollView: {
+  errorContainer: {
     flex: 1,
-    padding: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 32,
+    backgroundColor: '#f8f9fa',
+  },
+  errorTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#dc2626',
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  errorMessage: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    marginBottom: 32,
+    lineHeight: 24,
+  },
+  signInButton: {
+    backgroundColor: '#3b82f6',
+    paddingHorizontal: 32,
+    paddingVertical: 12,
+    borderRadius: 8,
+    marginBottom: 16,
+  },
+  signInButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  retryButton: {
+    backgroundColor: '#6b7280',
+    paddingHorizontal: 24,
+    paddingVertical: 8,
+    borderRadius: 6,
+  },
+  retryButtonText: {
+    color: '#ffffff',
+    fontSize: 14,
   },
   header: {
     marginBottom: 24,
   },
-  welcomeText: {
-    fontSize: 24,
+  title: {
+    fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 8,
+    color: '#1a1a2e',
+    marginBottom: 4,
   },
-  statusIndicator: {
-    alignSelf: 'flex-start',
-  },
-  statusText: {
-    fontSize: 12,
-    fontWeight: '600',
-  },
-  statusConnected: {
-    color: '#10B981',
-  },
-  statusError: {
-    color: '#EF4444',
-  },
-  statusDisconnected: {
-    color: '#F59E0B',
+  subtitle: {
+    fontSize: 16,
+    color: '#666',
   },
   card: {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: '#ffffff',
     borderRadius: 12,
-    padding: 16,
+    padding: 20,
     marginBottom: 16,
-  },
-  cardHeader: {
-    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 4,
+    fontWeight: '600',
+    color: '#1a1a2e',
+    marginBottom: 12,
   },
-  cardSubtitle: {
-    fontSize: 12,
-    opacity: 0.7,
-  },
-  portfolioValue: {
+  valueText: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#10B981',
-    marginBottom: 8,
+    color: '#22c55e',
+    marginBottom: 4,
   },
-  portfolioAssets: {
-    fontSize: 14,
-    opacity: 0.7,
-    marginBottom: 16,
+  changeText: {
+    fontSize: 16,
+    color: '#22c55e',
   },
-  assetsList: {
-    gap: 8,
-  },
-  assetItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 4,
-  },
-  assetSymbol: {
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  assetValue: {
-    fontSize: 14,
-    color: '#10B981',
-  },
-  moreAssets: {
+  updateTime: {
     fontSize: 12,
-    opacity: 0.7,
-    textAlign: 'center',
+    color: '#666',
     marginTop: 8,
   },
-  transactionsList: {
-    gap: 12,
+  emptyText: {
+    fontSize: 14,
+    color: '#666',
+    fontStyle: 'italic',
   },
   transactionItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
   },
-  transactionLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  transactionStatus: {
-    fontSize: 16,
-    marginRight: 12,
-  },
-  transactionType: {
+  transactionText: {
     fontSize: 14,
-    fontWeight: '600',
-  },
-  transactionNetwork: {
-    fontSize: 12,
-    opacity: 0.7,
-  },
-  transactionRight: {
-    alignItems: 'flex-end',
+    color: '#374151',
   },
   transactionAmount: {
     fontSize: 14,
     fontWeight: '600',
-  },
-  transactionTime: {
-    fontSize: 12,
-    opacity: 0.7,
-  },
-  activitiesList: {
-    gap: 12,
+    color: '#1a1a2e',
   },
   activityItem: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
   },
-  activityIcon: {
-    fontSize: 16,
-    marginRight: 12,
-    marginTop: 2,
-  },
-  activityContent: {
-    flex: 1,
-  },
-  activityDescription: {
+  activityText: {
     fontSize: 14,
+    color: '#374151',
     marginBottom: 2,
   },
   activityTime: {
     fontSize: 12,
-    opacity: 0.7,
+    color: '#666',
   },
-  walletConnected: {
-    alignItems: 'center',
+  actionButton: {
+    backgroundColor: '#3b82f6',
     padding: 12,
-    backgroundColor: 'rgba(16, 185, 129, 0.1)',
     borderRadius: 8,
-  },
-  walletDisconnected: {
     alignItems: 'center',
-    padding: 12,
-    backgroundColor: 'rgba(239, 68, 68, 0.1)',
-    borderRadius: 8,
   },
-  walletStatus: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 4,
-  },
-  walletAddress: {
-    fontSize: 12,
-    fontFamily: 'monospace',
-    opacity: 0.8,
-  },
-  walletPrompt: {
-    fontSize: 12,
-    opacity: 0.8,
-  },
-  noDataText: {
-    textAlign: 'center',
+  actionButtonText: {
+    color: '#ffffff',
     fontSize: 14,
-    opacity: 0.7,
-    fontStyle: 'italic',
-    padding: 20,
+    fontWeight: '600',
   },
 });
