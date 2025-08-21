@@ -1,13 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
+import { AppwriteService } from '@/services/appwriteService';
 
 export default function Index() {
+  const [appwriteStatus, setAppwriteStatus] = useState<string>('Checking...');
+
+  useEffect(() => {
+    const checkAppwriteConnection = async () => {
+      if (AppwriteService.isReady()) {
+        try {
+          // Try to get current user (will be null if not signed in, but shouldn't throw)
+          await AppwriteService.getCurrentUser();
+          setAppwriteStatus('✅ Connected - Ready for authentication');
+        } catch (error) {
+          setAppwriteStatus(`❌ Connection Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        }
+      } else {
+        setAppwriteStatus('⚠️ Demo Mode - Environment not configured');
+      }
+    };
+
+    checkAppwriteConnection();
+  }, []);
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>JagCodeDevOps</Text>
         <Text style={styles.subtitle}>Crypto & Blockchain Development Platform</Text>
+      </View>
+
+      {/* Appwrite Status Card */}
+      <View style={styles.statusCard}>
+        <Text style={styles.statusTitle}>Backend Status</Text>
+        <Text style={styles.statusText}>{appwriteStatus}</Text>
+        {!AppwriteService.isReady() && (
+          <TouchableOpacity 
+            style={styles.setupButton}
+            onPress={() => {
+              // In a real app, this would open setup instructions
+              console.log('Setup instructions would go here');
+            }}
+          >
+            <Text style={styles.setupButtonText}>Setup Authentication</Text>
+          </TouchableOpacity>
+        )}
       </View>
 
       <View style={styles.section}>
@@ -93,6 +131,45 @@ const styles = StyleSheet.create({
     color: '#16213e',
     textAlign: 'center',
     opacity: 0.8,
+  },
+  statusCard: {
+    backgroundColor: '#ffffff',
+    margin: 16,
+    padding: 20,
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    borderLeftWidth: 4,
+    borderLeftColor: '#3b82f6',
+  },
+  statusTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1a1a2e',
+    marginBottom: 8,
+  },
+  statusText: {
+    fontSize: 14,
+    color: '#666',
+    lineHeight: 20,
+    marginBottom: 12,
+  },
+  setupButton: {
+    backgroundColor: '#3b82f6',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  setupButtonText: {
+    color: '#ffffff',
+    fontSize: 14,
+    fontWeight: '600',
   },
   section: {
     padding: 24,
