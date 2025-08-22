@@ -22,6 +22,7 @@ import storageRoutes from './routes/storageRoutes';
 
 // Import services
 import { AutomationEngine } from './services/automationEngine';
+import { setupBull } from './queue/bullQueue';
 
 // Load environment variables
 dotenv.config();
