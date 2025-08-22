@@ -7,8 +7,10 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node src/index.js",
-    "dev": "tsc --watch"
+    "start": "node lib/index.js",
+    "dev": "tsc --watch",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix"
   },
   "dependencies": {
     "appwrite": "^16.0.2",
@@ -32,6 +34,9 @@
     "@types/express": "^4.17.21",
     "@types/cors": "^2.8.17",
     "@types/bcryptjs": "^2.4.6",
-    "@types/jsonwebtoken": "^9.0.5"
+    "@types/jsonwebtoken": "^9.0.5",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0"
   }
 }

@@ -5,7 +5,7 @@
     {
       "name": "backend-api",
       "runtime": "node-18.0",
-      "entrypoint": "src/index.ts",
+      "entrypoint": "lib/index.js",
       "path": "functions",
       "timeout": 30,
       "events": ["functions.*"],

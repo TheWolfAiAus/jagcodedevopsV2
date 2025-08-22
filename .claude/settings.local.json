@@ -18,7 +18,8 @@
       "Bash(winget:*)",
       "Bash(./deploy-appwrite-only.sh:*)",
       "Bash(npx appwrite functions deploy:*)",
-      "Bash(npx appwrite:*)"
+      "Bash(npx appwrite:*)",
+      "Bash(./deploy-direct.bat)"
     ],
     "deny": [],
     "ask": [],

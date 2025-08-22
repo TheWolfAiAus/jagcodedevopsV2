@@ -155,7 +155,7 @@ export class CryptoExamples {
         const message = '{"symbol":"BTCUSD","side":"buy","amount":"0.1"}';
         const nonce = Date.now().toString();
         const path = '/api/v1/order';
-        const privateKey = 'your-api-secret';
+        const privateKey = process.env.API_SECRET_KEY || 'demo-key-for-testing';
         
         const signature = CryptoUtils.signAPICall(message, nonce, path, privateKey);
         console.log('API Signature:', signature);
@@ -182,7 +182,7 @@ export class CryptoExamples {
             '/api/v1/order', 
             message, 
             timestamp, 
-            privateKey
+            process.env.API_SECRET_KEY || 'demo-key-for-testing'
         );
         console.log('Timestamp Signature:', timestampSig);
     }

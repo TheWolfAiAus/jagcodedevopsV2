@@ -39,6 +39,19 @@ export const FUNCTION_IDS = {
 // Authentication service
 export const authService = {
   async createAccount(email: string, password: string, name: string) {
+    // Input validation
+    if (!email || !password || !name) {
+      throw new Error('Email, password, and name are required');
+    }
+    
+    if (password.length < 8) {
+      throw new Error('Password must be at least 8 characters long');
+    }
+    
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      throw new Error('Please enter a valid email address');
+    }
+    
     try {
       const response = await account.create('unique()', email, password, name);
       
@@ -49,7 +62,7 @@ export const authService = {
         response.$id,
         {
           email,
-          name,
+          name: name.trim(),
           profileImage: '',
           bio: '',
           portfolioValue: 0,
@@ -60,16 +73,23 @@ export const authService = {
       
       return response;
     } catch (error) {
-      console.error('Account creation error:', error);
       throw error;
     }
   },
 
   async signIn(email: string, password: string) {
+    // Input validation
+    if (!email || !password) {
+      throw new Error('Email and password are required');
+    }
+    
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      throw new Error('Please enter a valid email address');
+    }
+    
     try {
       return await account.createEmailPasswordSession(email, password);
     } catch (error) {
-      console.error('Sign in error:', error);
       throw error;
     }
   },
@@ -117,6 +137,19 @@ export const databaseService = {
   },
 
   async createPriceAlert(userId: string, symbol: string, targetPrice: number, condition: string) {
+    // Input validation
+    if (!userId || !symbol || !targetPrice || !condition) {
+      throw new Error('All fields are required for price alert');
+    }
+    
+    if (targetPrice <= 0) {
+      throw new Error('Target price must be greater than 0');
+    }
+    
+    if (!['above', 'below'].includes(condition.toLowerCase())) {
+      throw new Error('Condition must be "above" or "below"');
+    }
+    
     try {
       return await databases.createDocument(
         DATABASE_ID,
@@ -124,15 +157,14 @@ export const databaseService = {
         'unique()',
         {
           userId,
-          symbol,
+          symbol: symbol.toUpperCase().trim(),
           targetPrice,
-          condition,
+          condition: condition.toLowerCase(),
           isActive: true,
           createdAt: new Date().toISOString()
         }
       );
     } catch (error) {
-      console.error('Create price alert error:', error);
       throw error;
     }
   }

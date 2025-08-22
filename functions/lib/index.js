@@ -35,7 +35,8 @@ exports.default = async ({ req, res, log, error }) => {
         }
     }
     catch (err) {
-        error(`Function error: ${err.message}`);
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+        error(`Function error: ${errorMessage}`);
         return res.json({ error: 'Internal server error' }, 500);
     }
 };
@@ -44,6 +45,9 @@ async function handleCryptoPrices(req, res, { databases, log, error }) {
     try {
         // Fetch from CoinGecko API
         const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true');
+        if (!response.ok) {
+            throw new Error(`CoinGecko API error: ${response.status}`);
+        }
         const data = await response.json();
         // Store in Appwrite database
         await databases.createDocument('jagcode_main', 'crypto_data', 'unique()', {
@@ -55,7 +59,8 @@ async function handleCryptoPrices(req, res, { databases, log, error }) {
         return res.json(data);
     }
     catch (err) {
-        error(`Crypto prices error: ${err.message}`);
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+        error(`Crypto prices error: ${errorMessage}`);
         return res.json({ error: 'Failed to fetch crypto prices' }, 500);
     }
 }
@@ -63,18 +68,26 @@ async function handleCryptoPrices(req, res, { databases, log, error }) {
 async function handleNFTSearch(req, res, { databases, log, error }) {
     try {
         const { query: searchQuery } = req.query;
-        // Search OpenSea API
-        const response = await fetch(`https://api.opensea.io/api/v1/assets?search=${searchQuery}&limit=20`, {
+        if (!searchQuery) {
+            return res.json({ error: 'Search query is required' }, 400);
+        }
+        // Search OpenSea API with proper URL encoding
+        const encodedQuery = encodeURIComponent(searchQuery);
+        const response = await fetch(`https://api.opensea.io/api/v1/assets?search=${encodedQuery}&limit=20`, {
             headers: {
                 'X-API-KEY': process.env.OPENSEA_API_KEY || ''
             }
         });
+        if (!response.ok) {
+            throw new Error(`OpenSea API error: ${response.status}`);
+        }
         const data = await response.json();
         log(`NFT search for "${searchQuery}" returned ${data.assets?.length || 0} results`);
         return res.json(data);
     }
     catch (err) {
-        error(`NFT search error: ${err.message}`);
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+        error(`NFT search error: ${errorMessage}`);
         return res.json({ error: 'Failed to search NFTs' }, 500);
     }
 }
@@ -82,8 +95,12 @@ async function handleNFTSearch(req, res, { databases, log, error }) {
 async function handleWalletBalance(req, res, { databases, log, error }) {
     try {
         const { address } = req.query;
-        if (!address) {
-            return res.json({ error: 'Wallet address required' }, 400);
+        if (!address || typeof address !== 'string') {
+            return res.json({ error: 'Valid wallet address required' }, 400);
+        }
+        // Validate address format (basic validation)
+        if (address.length < 26 || address.length > 62) {
+            return res.json({ error: 'Invalid wallet address format' }, 400);
         }
         // Fetch from multiple APIs
         const [ethBalance, btcBalance] = await Promise.all([
@@ -100,7 +117,8 @@ async function handleWalletBalance(req, res, { databases, log, error }) {
         return res.json(walletData);
     }
     catch (err) {
-        error(`Wallet balance error: ${err.message}`);
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+        error(`Wallet balance error: ${errorMessage}`);
         return res.json({ error: 'Failed to fetch wallet balance' }, 500);
     }
 }
@@ -108,8 +126,12 @@ async function handleWalletBalance(req, res, { databases, log, error }) {
 async function handleUserProfile(req, res, { databases, users, log, error }) {
     try {
         const { userId } = req.query;
-        if (!userId) {
-            return res.json({ error: 'User ID required' }, 400);
+        if (!userId || typeof userId !== 'string') {
+            return res.json({ error: 'Valid User ID required' }, 400);
+        }
+        // Validate userId format (basic validation)
+        if (userId.length < 20 || userId.length > 36) {
+            return res.json({ error: 'Invalid User ID format' }, 400);
         }
         // Get user from Appwrite
         const user = await users.get(userId);
@@ -121,14 +143,22 @@ async function handleUserProfile(req, res, { databases, users, log, error }) {
         });
     }
     catch (err) {
-        error(`User profile error: ${err.message}`);
+        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+        error(`User profile error: ${errorMessage}`);
         return res.json({ error: 'Failed to fetch user profile' }, 500);
     }
 }
 // Helper functions
 async function fetchEthBalance(address) {
     try {
-        const response = await fetch(`https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=${process.env.ETHERSCAN_API_KEY}`);
+        const apiKey = process.env.ETHERSCAN_API_KEY;
+        if (!apiKey) {
+            throw new Error('Etherscan API key not configured');
+        }
+        const response = await fetch(`https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=${apiKey}`);
+        if (!response.ok) {
+            throw new Error(`Etherscan API error: ${response.status}`);
+        }
         const data = await response.json();
         return parseFloat(data.result || '0') / 1e18; // Convert from wei to ETH
     }
@@ -139,6 +169,9 @@ async function fetchEthBalance(address) {
 async function fetchBtcBalance(address) {
     try {
         const response = await fetch(`https://api.blockcypher.com/v1/btc/main/addrs/${address}/balance`);
+        if (!response.ok) {
+            throw new Error(`BlockCypher API error: ${response.status}`);
+        }
         const data = await response.json();
         return (data.balance || 0) / 1e8; // Convert from satoshi to BTC
     }
