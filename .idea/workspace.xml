@@ -5,29 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a25a1fd8-52a1-43bb-a2df-8852d9de7dc3" name="Changes" comment="commit">
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appwrite.json" beforeDir="false" afterPath="$PROJECT_DIR$/appwrite.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/BUILD_ID" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/BUILD_ID" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/build-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/build-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/client-production/4.pack" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/client-production/4.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/client-production/index.pack" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/client-production/index.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/client-production/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/client-production/index.pack.old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/next-minimal-server.js.nft.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/next-minimal-server.js.nft.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/next-server.js.nft.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/next-server.js.nft.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/prerender-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/prerender-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/server/pages-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/server/pages-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/server/pages/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/server/pages/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/server/pages/500.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/server/pages/500.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/server/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/server/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/static/FzsLkjlyFHaqlrITSydxj/_buildManifest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/static/FzsLkjlyFHaqlrITSydxj/_ssgManifest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/trace" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/trace" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/out/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/out/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/out/404/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/out/404/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/out/_next/static/FzsLkjlyFHaqlrITSydxj/_buildManifest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/out/_next/static/FzsLkjlyFHaqlrITSydxj/_ssgManifest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/out/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/out/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/client-production/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/client-production/0.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/server-production/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/server-production/0.pack" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +197,7 @@
       <updated>1755847659743</updated>
       <workItem from="1755847739410" duration="6722000" />
       <workItem from="1755861481957" duration="216000" />
-      <workItem from="1755862255143" duration="10062000" />
+      <workItem from="1755862255143" duration="10462000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -340,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755871786660</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="commit">
+      <option name="closed" value="true" />
+      <created>1755874012572</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1755874012572</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
