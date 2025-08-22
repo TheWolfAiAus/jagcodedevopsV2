@@ -5,52 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a25a1fd8-52a1-43bb-a2df-8852d9de7dc3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WARP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/explore.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/+not-found.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.rest-client/cookie.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.rest-client/environment.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.rest-client/history.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/tasks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WEBFLOW_PRODUCTION_CODE.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebase-debug.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/authRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/cryptoRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/miniAppRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/nftRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/userRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/wolfAIApiRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Collapsible.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ExternalLink.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HapticTab.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HelloWave.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ParallaxScrollView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ThemedText.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ThemedView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/IconSymbol.ios.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/IconSymbol.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/TabBarBackground.ios.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/TabBarBackground.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/Colors.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useColorScheme.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useColorScheme.web.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useThemeColor.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/DTOs/userRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/actionRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/actionRoutes.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/actionRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/actionRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/authRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/cryptoRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/miniAppRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/nftRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/types.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/userRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/webflowFormWebhook.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/wolfAIApiRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/wolfRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/wolfRoutes.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/wolfRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/wolfRoutes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/services/automationEngine.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/automationEngine.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/services/cryptoMiner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/cryptoMiner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/services/nftHunter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/nftHunter.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +201,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1755847659743</updated>
-      <workItem from="1755847739410" duration="2585000" />
+      <workItem from="1755847739410" duration="4475000" />
     </task>
     <servers />
   </component>

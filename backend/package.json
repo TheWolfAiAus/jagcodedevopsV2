@@ -36,7 +36,9 @@
     "node-fetch": "^3.3.2",
     "web3": "^4.3.0",
     "ethers": "^6.9.0",
-    "crypto-js": "^4.2.0"
+    "crypto-js": "^4.2.0",
+    "@speechmatics/real-time-client": "^2.3.0",
+    "@salesforce/lds-adapters-platform-data-seed": "^0.1.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

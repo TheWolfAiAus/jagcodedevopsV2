@@ -4,6 +4,7 @@ import { CryptoMiner } from './cryptoMiner';
 import { WalletManager } from './walletManager';
 import { SmartContractManager } from './smartContractManager';
 import { SystemMonitor } from './systemMonitor';
+import databaseService from './databaseService';
 
 interface OperationStatus {
     nft_hunting: boolean;
@@ -16,6 +17,7 @@ interface OperationStatus {
 export class AutomationEngine extends EventEmitter {
     private running = false;
     private operationStatus: OperationStatus;
+    private currentUserId: string | null = null;
 
     public nftHunter: NFTHunter;
     public cryptoMiner: CryptoMiner;
@@ -40,6 +42,28 @@ export class AutomationEngine extends EventEmitter {
         this.walletManager = new WalletManager();
         this.smartContractManager = new SmartContractManager();
         this.systemMonitor = new SystemMonitor();
+    }
+
+    setCurrentUser(userId: string): void {
+        this.currentUserId = userId;
+        // Set user ID for all services
+        this.nftHunter.setCurrentUser(userId);
+        this.cryptoMiner.setCurrentUser(userId);
+        // Add setCurrentUser methods to other services as needed
+    }
+
+    private async logActivity(type: string, description: string, metadata?: any): Promise<void> {
+        if (this.currentUserId) {
+            try {
+                await databaseService.logActivity(this.currentUserId, {
+                    type: type as any,
+                    description,
+                    metadata
+                });
+            } catch (error) {
+                console.error('Failed to log activity:', error);
+            }
+        }
     }
 
     async start(): Promise<void> {
@@ -67,6 +91,7 @@ export class AutomationEngine extends EventEmitter {
             console.log('✅ Smart Contract Manager started');
 
             console.log('🎯 JAG-OPS Automation Engine fully operational!');
+            await this.logActivity('system_alert', 'JAG-OPS Automation Engine started successfully');
             this.emit('started');
         } catch (error) {
             console.error('Error starting automation engine:', error);
@@ -119,6 +144,10 @@ export class AutomationEngine extends EventEmitter {
             }
 
             console.log('🚀 ALL SYSTEMS GO! JAG-OPS is now generating profits!');
+            await this.logActivity('mining_start', 'All profit-generating operations started', {
+                nft_hunting: this.operationStatus.nft_hunting,
+                crypto_mining: this.operationStatus.crypto_mining
+            });
             this.emit('allOperationsStarted');
         } catch (error) {
             console.error('❌ Error starting operations:', error);

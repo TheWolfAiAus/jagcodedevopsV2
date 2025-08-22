@@ -11,6 +11,14 @@ import { Server as SocketIOServer } from 'socket.io';
 import automationRoutes, { setAutomationEngine } from './routes/automationRoutes';
 import nftHunterRoutes, { setNftHunterService } from './routes/nftHunterRoutes';
 import cryptoUtilsRoutes from './routes/cryptoUtilsRoutes';
+import userManagementRoutes from './routes/userManagementRoutes';
+import speechRoutes from './routes/speechRoutes';
+import salesforceRoutes from './routes/salesforceRoutes';
+import walletRoutes from './routes/walletRoutes';
+import cryptoMinerRoutes from './routes/cryptoMinerRoutes';
+import cryptoTrackerRoutes from './routes/cryptoTrackerRoutes';
+import componentRoutes from './routes/componentRoutes';
+import storageRoutes from './routes/storageRoutes';
 
 // Import services
 import { AutomationEngine } from './services/automationEngine';
@@ -109,6 +117,14 @@ app.get('/api/health', async (req, res) => {
 app.use('/api/automation', automationRoutes);
 app.use('/api/nft', nftHunterRoutes);
 app.use('/api/crypto', cryptoUtilsRoutes);
+app.use('/api/users', userManagementRoutes);
+app.use('/api/speech', speechRoutes);
+app.use('/api/salesforce', salesforceRoutes);
+app.use('/api/wallet', walletRoutes);
+app.use('/api/mining', cryptoMinerRoutes);
+app.use('/api/tracker', cryptoTrackerRoutes);
+app.use('/api/components', componentRoutes);
+app.use('/api/storage', storageRoutes);
 
 // WebSocket connection handling
 io.on('connection', (socket) => {
