@@ -1,0 +1,25 @@
+{
+  "projectId": "68a36f6c002bfc1e6057",
+  "projectName": "JagCodeDevOps",
+  "functions": [
+    {
+      "$id": "backend-api",
+      "name": "Backend API",
+      "runtime": "node-18.0",
+      "execute": ["any"],
+      "events": ["functions.*"],
+      "schedule": "",
+      "timeout": 30,
+      "enabled": true,
+      "logging": true,
+      "entrypoint": "src/index.js",
+      "commands": "npm install && npm run build",
+      "ignore": ["node_modules", ".npm"],
+      "variables": {
+        "NODE_ENV": "production",
+        "APPWRITE_FUNCTION_ENDPOINT": "https://cloud.appwrite.io/v1",
+        "APPWRITE_FUNCTION_PROJECT_ID": "68a36f6c002bfc1e6057"
+      }
+    }
+  ]
+}
