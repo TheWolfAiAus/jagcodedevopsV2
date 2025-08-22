@@ -11,9 +11,14 @@
       "Bash(npm install)",
       "Bash(node:*)",
       "Bash(git add:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(npm install:*)",
+      "Bash(chmod:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "C:\\c\\Users\\brett\\WebstormProjects\\jagcodedevopsV2"
+    ]
   }
 }
