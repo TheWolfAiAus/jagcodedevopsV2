@@ -1,5 +1,5 @@
-import { RealtimeResponseEvent } from 'appwrite';
-import client, { appwriteConfig, AppwriteTransaction, AppwritePortfolio, AppwriteActivity } from '@/lib/appwrite';
+import {RealtimeResponseEvent} from 'appwrite';
+import client, {AppwriteActivity, appwriteConfig, AppwritePortfolio, AppwriteTransaction} from '@/lib/appwrite';
 
 export interface RealtimeCallbacks {
   onPortfolioUpdate?: (portfolio: AppwritePortfolio) => void;

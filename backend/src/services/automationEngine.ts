@@ -1,9 +1,9 @@
-import { EventEmitter } from 'events';
-import { NFTHunter } from './nftHunter';
-import { CryptoMiner } from './cryptoMiner';
-import { WalletManager } from './walletManager';
-import { SmartContractManager } from './smartContractManager';
-import { SystemMonitor } from './systemMonitor';
+import {EventEmitter} from 'events';
+import {NFTHunter} from './nftHunter';
+import {CryptoMiner} from './cryptoMiner';
+import {WalletManager} from './walletManager';
+import {SmartContractManager} from './smartContractManager';
+import {SystemMonitor} from './systemMonitor';
 import databaseService from './databaseService';
 
 interface OperationStatus {

@@ -1,5 +1,5 @@
-import { EventEmitter } from 'events';
-import { promises as fs } from 'fs';
+import {EventEmitter} from 'events';
+import {promises as fs} from 'fs';
 import path from 'path';
 import databaseService from './databaseService';
 

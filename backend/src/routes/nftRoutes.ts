@@ -1,6 +1,6 @@
-import { Client, Databases, Storage } from 'appwrite';
-import express, { Request, Response } from 'express';
-import { createError } from '../middleware/errorHandler';
+import {Client, Databases, Storage} from 'appwrite';
+import express, {Request, Response} from 'express';
+import {createError} from '../middleware/errorHandler';
 
 const router = express.Router();
 

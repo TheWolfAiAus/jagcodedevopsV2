@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import { WolfAI } from '../src/wolf/WolfAI';
+import {View} from 'react-native';
+import {WolfAI} from '../src/wolf/WolfAI';
 
 export default function WolfScreen() {
   return (

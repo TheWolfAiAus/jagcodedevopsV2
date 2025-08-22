@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback } from 'react';
-import { View, ScrollView, RefreshControl, Alert, StyleSheet } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { AppwriteService } from '@/services/appwriteService';
-import { getRealTimeService, RealtimeCallbacks } from '@/services/realTimeService';
-import { AppwriteUser, AppwritePortfolio, AppwriteTransaction, AppwriteActivity } from '@/lib/appwrite';
+import {useCallback, useEffect, useState} from 'react';
+import {Alert, RefreshControl, ScrollView, StyleSheet} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
+import {ThemedText} from '@/components/ThemedText';
+import {ThemedView} from '@/components/ThemedView';
+import {AppwriteService} from '@/services/appwriteService';
+import {getRealTimeService, RealtimeCallbacks} from '@/services/realTimeService';
+import {AppwriteActivity, AppwritePortfolio, AppwriteTransaction, AppwriteUser} from '@/lib/appwrite';
 
 export default function DashboardScreen() {
   const [user, setUser] = useState<AppwriteUser | null>(null);

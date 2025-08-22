@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import {Request, Response, Router} from 'express';
 import databaseService from '../services/databaseService';
 import CryptoUtils from '../services/cryptoUtils';
 

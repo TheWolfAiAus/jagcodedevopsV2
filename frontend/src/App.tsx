@@ -1,6 +1,6 @@
-import { AnimatePresence } from 'framer-motion'
-import { Suspense, lazy } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import {AnimatePresence} from 'framer-motion'
+import {lazy, Suspense} from 'react'
+import {Route, Routes} from 'react-router-dom'
 import Layout from './components/Layout'
 import LoadingSpinner from './components/ui/LoadingSpinner'
 

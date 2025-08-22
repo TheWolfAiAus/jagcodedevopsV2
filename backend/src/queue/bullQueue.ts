@@ -1,4 +1,4 @@
-﻿import Queue, { QueueOptions, Job } from 'bull';
+﻿import Queue, {Job, QueueOptions} from 'bull';
 
 let initialized = false;
 export let myQueue: Queue | undefined;

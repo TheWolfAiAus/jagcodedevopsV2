@@ -4,12 +4,12 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
-import { createServer } from 'http';
-import { Server as SocketIOServer } from 'socket.io';
+import {createServer} from 'http';
+import {Server as SocketIOServer} from 'socket.io';
 
 // Import routes
-import automationRoutes, { setAutomationEngine } from './routes/automationRoutes';
-import nftHunterRoutes, { setNftHunterService } from './routes/nftHunterRoutes';
+import automationRoutes, {setAutomationEngine} from './routes/automationRoutes';
+import nftHunterRoutes, {setNftHunterService} from './routes/nftHunterRoutes';
 import cryptoUtilsRoutes from './routes/cryptoUtilsRoutes';
 import userManagementRoutes from './routes/userManagementRoutes';
 import speechRoutes from './routes/speechRoutes';
@@ -21,8 +21,7 @@ import componentRoutes from './routes/componentRoutes';
 import storageRoutes from './routes/storageRoutes';
 
 // Import services
-import { AutomationEngine } from './services/automationEngine';
-import { setupBull } from './queue/bullQueue';
+import {AutomationEngine} from './services/automationEngine';
 
 // Load environment variables
 dotenv.config();

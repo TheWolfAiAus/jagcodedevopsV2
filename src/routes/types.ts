@@ -1,5 +1,5 @@
 // Shared route-related types
-import { NextFunction, Request, Response } from 'express';
+import {NextFunction, Request, Response} from 'express';
 
 export type Req = Request;
 export type Res = Response;

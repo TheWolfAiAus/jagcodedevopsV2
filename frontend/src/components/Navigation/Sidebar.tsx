@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
-import { BarChart3, Bitcoin, Home, LogOut, Palette, Settings, User, Wallet, X } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import {motion} from 'framer-motion'
+import {BarChart3, Bitcoin, Home, LogOut, Palette, Settings, User, Wallet, X} from 'lucide-react'
+import {Link, useLocation} from 'react-router-dom'
 
 interface SidebarProps {
   isOpen: boolean

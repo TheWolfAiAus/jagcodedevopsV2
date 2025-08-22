@@ -1,5 +1,5 @@
-import { Router, Request, Response } from 'express';
-import { AutomationEngine } from '../services/automationEngine';
+import {Request, Response, Router} from 'express';
+import {AutomationEngine} from '../services/automationEngine';
 
 const router = Router();
 

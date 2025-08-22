@@ -1,6 +1,5 @@
-import { Router, Request, Response } from 'express';
+import {Request, Response, Router} from 'express';
 import salesforceDataSeedService from '../services/salesforceDataSeedService';
-import databaseService from '../services/databaseService';
 
 const router = Router();
 

@@ -1,14 +1,14 @@
-import { ID, Query } from 'appwrite';
-import { 
-  account, 
-  databases, 
-  functions, 
-  appwriteConfig, 
-  AppwriteUser, 
-  AppwritePortfolio, 
-  AppwriteTransaction,
-  AppwriteActivity,
-  AppwriteSettings 
+import {ID, Query} from 'appwrite';
+import {
+    account,
+    AppwriteActivity,
+    appwriteConfig,
+    AppwritePortfolio,
+    AppwriteSettings,
+    AppwriteTransaction,
+    AppwriteUser,
+    databases,
+    functions
 } from '@/lib/appwrite';
 
 export class AppwriteService {

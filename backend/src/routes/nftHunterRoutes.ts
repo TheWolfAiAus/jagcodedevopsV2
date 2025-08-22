@@ -1,5 +1,5 @@
-import { Router, Request, Response } from 'express';
-import { NFTHunter } from '../services/nftHunter';
+import {Request, Response, Router} from 'express';
+import {NFTHunter} from '../services/nftHunter';
 
 const router = Router();
 

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import {motion} from 'framer-motion'
 import {
     ArrowRight,
     Bitcoin,
@@ -12,8 +12,8 @@ import {
     Users,
     Zap
 } from 'lucide-react'
-import { useInView } from 'react-intersection-observer'
-import { Link } from 'react-router-dom'
+import {useInView} from 'react-intersection-observer'
+import {Link} from 'react-router-dom'
 
 const Home = () => {
   const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: true })

@@ -1,5 +1,5 @@
-import { EventEmitter } from 'events';
-import { ethers } from 'ethers';
+import {EventEmitter} from 'events';
+import {ethers} from 'ethers';
 import databaseService from './databaseService';
 
 interface DeFiProtocol {

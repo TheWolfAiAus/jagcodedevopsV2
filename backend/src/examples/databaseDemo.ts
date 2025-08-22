@@ -4,7 +4,7 @@
  */
 
 import databaseService from '../services/databaseService';
-import { AutomationEngine } from '../services/automationEngine';
+import {AutomationEngine} from '../services/automationEngine';
 
 export class DatabaseDemo {
     

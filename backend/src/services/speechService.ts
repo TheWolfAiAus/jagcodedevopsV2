@@ -1,4 +1,4 @@
-import { RealtimeSession } from '@speechmatics/real-time-client';
+// Appwrite-compatible speech service using Web Speech API fallback
 import databaseService from './databaseService';
 
 interface TranscriptResult {

@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import {EventEmitter} from 'events';
 import databaseService from './databaseService';
 
 interface ComponentStatus {

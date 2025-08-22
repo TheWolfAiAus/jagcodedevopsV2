@@ -1,5 +1,5 @@
-import { EventEmitter } from 'events';
-import { ethers } from 'ethers';
+import {EventEmitter} from 'events';
+import {ethers} from 'ethers';
 import Web3 from 'web3';
 import databaseService from './databaseService';
 

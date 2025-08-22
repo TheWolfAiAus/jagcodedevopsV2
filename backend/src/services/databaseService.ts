@@ -1,5 +1,5 @@
-import { Client, Databases, ID, Query } from 'appwrite';
-import { User, UserRegistration } from '../models/User';
+import {Client, Databases, ID, Query} from 'appwrite';
+import {User, UserRegistration} from '../models/User';
 import CryptoUtils from './cryptoUtils';
 
 // Appwrite Collection IDs from your setup
