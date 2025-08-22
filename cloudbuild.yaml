@@ -1,0 +1,47 @@
+steps:
+  # Build Next.js frontend
+  - name: 'node:18'
+    entrypoint: npm
+    args: ['install']
+    dir: 'frontend-nextjs'
+  
+  - name: 'node:18'
+    entrypoint: npm
+    args: ['run', 'build']
+    dir: 'frontend-nextjs'
+  
+  # Deploy to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'jagcode-frontend'
+      - '--source'
+      - 'frontend-nextjs'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+
+  # Deploy Appwrite functions
+  - name: 'node:18'
+    entrypoint: npm
+    args: ['install', '-g', 'appwrite-cli']
+  
+  - name: 'node:18'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        cd functions
+        npm install
+        npm run build
+        appwrite functions createDeployment --functionId backend-api --entrypoint "src/index.js" --code . --activate true
+
+substitutions:
+  _SERVICE_NAME: 'jagcode-frontend'
+  _REGION: 'us-central1'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

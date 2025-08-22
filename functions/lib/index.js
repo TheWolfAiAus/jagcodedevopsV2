@@ -1,104 +1,148 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.api = void 0;
-const express_1 = __importDefault(require("express"));
-const functions = __importStar(require("firebase-functions"));
-const app = (0, express_1.default)();
-app.use(express_1.default.json());
-// Helper to safely require route modules from the repository's src/routes folder
-function tryLoadRoute(relativePath) {
+const node_appwrite_1 = require("node-appwrite");
+// Appwrite Function Entry Point
+exports.default = async ({ req, res, log, error }) => {
+    // Initialize Appwrite client with function context
+    const client = new node_appwrite_1.Client()
+        .setEndpoint(process.env.APPWRITE_FUNCTION_ENDPOINT || 'https://cloud.appwrite.io/v1')
+        .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID || '68a36f6c002bfc1e6057')
+        .setKey(process.env.APPWRITE_API_KEY || '');
+    const databases = new node_appwrite_1.Databases(client);
+    const users = new node_appwrite_1.Users(client);
+    const storage = new node_appwrite_1.Storage(client);
     try {
-        // Use require to load CommonJS-style modules
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const mod = require(`../../src/routes/${relativePath}`);
-        // Module may export router as default or module.exports
-        return mod && (mod.default || mod);
+        const { path, method, headers, query, body } = req;
+        log(`Received ${method} request to ${path}`);
+        // Route handler
+        switch (path) {
+            case '/health':
+                return res.json({
+                    status: 'healthy',
+                    timestamp: new Date().toISOString(),
+                    version: '1.0.0'
+                });
+            case '/api/crypto/prices':
+                return await handleCryptoPrices(req, res, { databases, log, error });
+            case '/api/nft/search':
+                return await handleNFTSearch(req, res, { databases, log, error });
+            case '/api/wallet/balance':
+                return await handleWalletBalance(req, res, { databases, log, error });
+            case '/api/user/profile':
+                return await handleUserProfile(req, res, { databases, users, log, error });
+            default:
+                return res.json({ error: 'Route not found' }, 404);
+        }
     }
-    catch (e) {
-        console.warn(`Failed to load route ${relativePath}:`, e.message || e);
-        return null;
+    catch (err) {
+        error(`Function error: ${err.message}`);
+        return res.json({ error: 'Internal server error' }, 500);
     }
-}
-// Try to load a routers index that exports all routers. Falls back to individual files.
-try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const routers = require('../../src/routes/routersIndex');
-    if (routers) {
-        if (routers.cryptoRoutes)
-            app.use('/api/crypto', routers.cryptoRoutes);
-        if (routers.nftRoutes)
-            app.use('/api/nft', routers.nftRoutes);
-        if (routers.wolfRoutes)
-            app.use('/api/wolf', routers.wolfRoutes);
-        if (routers.wolfAIApiRoutes)
-            app.use('/api/wolfai', routers.wolfAIApiRoutes);
-        if (routers.authRoutes)
-            app.use('/api/auth', routers.authRoutes);
-        if (routers.userRoutes)
-            app.use('/api/user', routers.userRoutes);
-        if (routers.actionRoutes)
-            app.use('/api/actions', routers.actionRoutes);
-        if (routers.webflowFormWebhook)
-            app.use('/', routers.webflowFormWebhook);
-        if (routers.webflowIntegrationRoutes)
-            app.use('/api/webflow', routers.webflowIntegrationRoutes);
-        if (routers.miniAppRoutes)
-            app.use('/api/mini', routers.miniAppRoutes);
+};
+// Crypto price handler
+async function handleCryptoPrices(req, res, { databases, log, error }) {
+    try {
+        // Fetch from CoinGecko API
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true');
+        const data = await response.json();
+        // Store in Appwrite database
+        await databases.createDocument('jagcode_main', 'crypto_data', 'unique()', {
+            bitcoin_price: data.bitcoin.usd,
+            ethereum_price: data.ethereum.usd,
+            solana_price: data.solana.usd,
+            last_updated: new Date().toISOString()
+        });
+        return res.json(data);
     }
-}
-catch (e) {
-    // Fallback: attempt to load individual route files by name
-    const routesToMount = [
-        { path: '/api/crypto', file: 'cryptoRoutes.js' },
-        { path: '/api/nft', file: 'nftRoutes.js' },
-        { path: '/api/wolf', file: 'wolfRoutes.js' },
-        { path: '/api/wolfai', file: 'wolfAIApiRoutes.js' },
-        { path: '/api/auth', file: 'authRoutes.js' },
-        { path: '/api/user', file: 'userRoutes.js' },
-        { path: '/', file: 'webflowFormWebhook.js' }
-    ];
-    for (const r of routesToMount) {
-        const router = tryLoadRoute(r.file);
-        if (router)
-            app.use(r.path, router);
+    catch (err) {
+        error(`Crypto prices error: ${err.message}`);
+        return res.json({ error: 'Failed to fetch crypto prices' }, 500);
     }
 }
-// Minimal healthcheck
-app.get('/_health', (_req, res) => res.json({ ok: true }));
-exports.api = functions.https.onRequest(app);
+// NFT search handler
+async function handleNFTSearch(req, res, { databases, log, error }) {
+    try {
+        const { query: searchQuery } = req.query;
+        // Search OpenSea API
+        const response = await fetch(`https://api.opensea.io/api/v1/assets?search=${searchQuery}&limit=20`, {
+            headers: {
+                'X-API-KEY': process.env.OPENSEA_API_KEY || ''
+            }
+        });
+        const data = await response.json();
+        log(`NFT search for "${searchQuery}" returned ${data.assets?.length || 0} results`);
+        return res.json(data);
+    }
+    catch (err) {
+        error(`NFT search error: ${err.message}`);
+        return res.json({ error: 'Failed to search NFTs' }, 500);
+    }
+}
+// Wallet balance handler
+async function handleWalletBalance(req, res, { databases, log, error }) {
+    try {
+        const { address } = req.query;
+        if (!address) {
+            return res.json({ error: 'Wallet address required' }, 400);
+        }
+        // Fetch from multiple APIs
+        const [ethBalance, btcBalance] = await Promise.all([
+            fetchEthBalance(address),
+            fetchBtcBalance(address)
+        ]);
+        const walletData = {
+            address,
+            eth_balance: ethBalance,
+            btc_balance: btcBalance,
+            total_usd: 0, // Calculate based on current prices
+            last_updated: new Date().toISOString()
+        };
+        return res.json(walletData);
+    }
+    catch (err) {
+        error(`Wallet balance error: ${err.message}`);
+        return res.json({ error: 'Failed to fetch wallet balance' }, 500);
+    }
+}
+// User profile handler
+async function handleUserProfile(req, res, { databases, users, log, error }) {
+    try {
+        const { userId } = req.query;
+        if (!userId) {
+            return res.json({ error: 'User ID required' }, 400);
+        }
+        // Get user from Appwrite
+        const user = await users.get(userId);
+        // Get user profile from database
+        const profile = await databases.getDocument('jagcode_main', 'users', userId);
+        return res.json({
+            ...user,
+            profile
+        });
+    }
+    catch (err) {
+        error(`User profile error: ${err.message}`);
+        return res.json({ error: 'Failed to fetch user profile' }, 500);
+    }
+}
+// Helper functions
+async function fetchEthBalance(address) {
+    try {
+        const response = await fetch(`https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=${process.env.ETHERSCAN_API_KEY}`);
+        const data = await response.json();
+        return parseFloat(data.result) / 1e18; // Convert from wei to ETH
+    }
+    catch {
+        return 0;
+    }
+}
+async function fetchBtcBalance(address) {
+    try {
+        const response = await fetch(`https://api.blockcypher.com/v1/btc/main/addrs/${address}/balance`);
+        const data = await response.json();
+        return data.balance / 1e8; // Convert from satoshi to BTC
+    }
+    catch {
+        return 0;
+    }
+}

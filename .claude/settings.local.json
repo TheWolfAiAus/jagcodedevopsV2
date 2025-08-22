@@ -13,7 +13,9 @@
       "Bash(git add:*)",
       "Bash(git push:*)",
       "Bash(npm install:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(./deploy-gcp-hybrid.sh:*)",
+      "Bash(winget:*)"
     ],
     "deny": [],
     "ask": [],
