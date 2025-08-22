@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a25a1fd8-52a1-43bb-a2df-8852d9de7dc3" name="Changes" comment="commit">
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/client-production/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/client-production/0.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/server-production/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-nextjs/.next/cache/webpack/server-production/0.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/starter-for-react-native/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/starter-for-react-native/app.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +197,7 @@
       <updated>1755847659743</updated>
       <workItem from="1755847739410" duration="6722000" />
       <workItem from="1755861481957" duration="216000" />
-      <workItem from="1755862255143" duration="10462000" />
+      <workItem from="1755862255143" duration="11909000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -327,7 +327,39 @@
       <option name="project" value="LOCAL" />
       <updated>1755874012572</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="commit">
+      <option name="closed" value="true" />
+      <created>1755874304273</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1755874304273</updated>
+    </task>
+    <task id="LOCAL-00018" summary="commit">
+      <option name="closed" value="true" />
+      <created>1755874364751</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1755874364751</updated>
+    </task>
+    <task id="LOCAL-00019" summary="commit">
+      <option name="closed" value="true" />
+      <created>1755874379214</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1755874379214</updated>
+    </task>
+    <task id="LOCAL-00020" summary="commit">
+      <option name="closed" value="true" />
+      <created>1755874494708</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1755874494708</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,6 +367,7 @@
     <option name="exactExcludedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/routes/index.d.ts" />
+        <option value="$PROJECT_DIR$/frontend-nextjs/src/lib/appwrite.js" />
       </list>
     </option>
   </component>
