@@ -15,7 +15,8 @@
       "Bash(npm install:*)",
       "Bash(chmod:*)",
       "Bash(./deploy-gcp-hybrid.sh:*)",
-      "Bash(winget:*)"
+      "Bash(winget:*)",
+      "Bash(./deploy-appwrite-only.sh:*)"
     ],
     "deny": [],
     "ask": [],
