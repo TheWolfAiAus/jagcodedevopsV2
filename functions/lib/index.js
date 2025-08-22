@@ -47,9 +47,9 @@ async function handleCryptoPrices(req, res, { databases, log, error }) {
         const data = await response.json();
         // Store in Appwrite database
         await databases.createDocument('jagcode_main', 'crypto_data', 'unique()', {
-            bitcoin_price: data.bitcoin.usd,
-            ethereum_price: data.ethereum.usd,
-            solana_price: data.solana.usd,
+            bitcoin_price: data.bitcoin?.usd || 0,
+            ethereum_price: data.ethereum?.usd || 0,
+            solana_price: data.solana?.usd || 0,
             last_updated: new Date().toISOString()
         });
         return res.json(data);
@@ -130,7 +130,7 @@ async function fetchEthBalance(address) {
     try {
         const response = await fetch(`https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=${process.env.ETHERSCAN_API_KEY}`);
         const data = await response.json();
-        return parseFloat(data.result) / 1e18; // Convert from wei to ETH
+        return parseFloat(data.result || '0') / 1e18; // Convert from wei to ETH
     }
     catch {
         return 0;
@@ -140,7 +140,7 @@ async function fetchBtcBalance(address) {
     try {
         const response = await fetch(`https://api.blockcypher.com/v1/btc/main/addrs/${address}/balance`);
         const data = await response.json();
-        return data.balance / 1e8; // Convert from satoshi to BTC
+        return (data.balance || 0) / 1e8; // Convert from satoshi to BTC
     }
     catch {
         return 0;

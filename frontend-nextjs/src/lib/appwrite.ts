@@ -1,4 +1,4 @@
-import { Client, Account, Databases, Storage, Functions } from 'appwrite';
+import { Client, Account, Databases, Storage, Functions, Query } from 'appwrite';
 
 // Appwrite configuration with real endpoints
 const client = new Client()
@@ -108,7 +108,7 @@ export const databaseService = {
       return await databases.listDocuments(
         DATABASE_ID,
         COLLECTIONS.USER_PORTFOLIOS,
-        [databases.queries.equal('userId', userId)]
+        [Query.equal('userId', userId)]
       );
     } catch (error) {
       console.error('Get user portfolio error:', error);

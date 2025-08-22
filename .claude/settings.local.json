@@ -16,7 +16,9 @@
       "Bash(chmod:*)",
       "Bash(./deploy-gcp-hybrid.sh:*)",
       "Bash(winget:*)",
-      "Bash(./deploy-appwrite-only.sh:*)"
+      "Bash(./deploy-appwrite-only.sh:*)",
+      "Bash(npx appwrite functions deploy:*)",
+      "Bash(npx appwrite:*)"
     ],
     "deny": [],
     "ask": [],

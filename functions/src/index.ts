@@ -60,9 +60,9 @@ async function handleCryptoPrices(req: any, res: any, { databases, log, error }:
       'crypto_data',
       'unique()',
       {
-        bitcoin_price: data.bitcoin.usd,
-        ethereum_price: data.ethereum.usd,
-        solana_price: data.solana.usd,
+        bitcoin_price: (data as any).bitcoin?.usd || 0,
+        ethereum_price: (data as any).ethereum?.usd || 0,
+        solana_price: (data as any).solana?.usd || 0,
         last_updated: new Date().toISOString()
       }
     );
@@ -88,7 +88,7 @@ async function handleNFTSearch(req: any, res: any, { databases, log, error }: an
     
     const data = await response.json();
     
-    log(`NFT search for "${searchQuery}" returned ${data.assets?.length || 0} results`);
+    log(`NFT search for "${searchQuery}" returned ${(data as any).assets?.length || 0} results`);
     
     return res.json(data);
   } catch (err: any) {
@@ -161,7 +161,7 @@ async function fetchEthBalance(address: string): Promise<number> {
   try {
     const response = await fetch(`https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=${process.env.ETHERSCAN_API_KEY}`);
     const data = await response.json();
-    return parseFloat(data.result) / 1e18; // Convert from wei to ETH
+    return parseFloat((data as any).result || '0') / 1e18; // Convert from wei to ETH
   } catch {
     return 0;
   }
@@ -171,7 +171,7 @@ async function fetchBtcBalance(address: string): Promise<number> {
   try {
     const response = await fetch(`https://api.blockcypher.com/v1/btc/main/addrs/${address}/balance`);
     const data = await response.json();
-    return data.balance / 1e8; // Convert from satoshi to BTC
+    return ((data as any).balance || 0) / 1e8; // Convert from satoshi to BTC
   } catch {
     return 0;
   }

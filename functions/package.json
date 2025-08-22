@@ -6,9 +6,9 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc -p .",
-    "serve": "firebase emulators:start --only functions",
-    "deploy": "firebase deploy --only functions"
+    "build": "tsc",
+    "start": "node src/index.js",
+    "dev": "tsc --watch"
   },
   "dependencies": {
     "appwrite": "^16.0.2",
