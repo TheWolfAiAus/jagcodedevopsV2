@@ -4,104 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a25a1fd8-52a1-43bb-a2df-8852d9de7dc3" name="Changes" comment="commit">
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/wolf.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/wolf.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/wolfbytes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/wolfbytes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/wolf.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/wolf.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/wolfbytes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/wolfbytes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/examples/databaseDemo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/examples/databaseDemo.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/middleware/authMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middleware/authMiddleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/middleware/errorHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middleware/errorHandler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/queue/bullQueue.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/queue/bullQueue.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/actionRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/actionRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/authRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/authRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/automationRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/automationRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/componentRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/componentRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/cryptoMinerRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/cryptoMinerRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/cryptoRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/cryptoRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/cryptoTrackerRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/cryptoTrackerRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/cryptoUtilsRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/cryptoUtilsRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/miniAppRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/miniAppRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/nftHunterRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/nftHunterRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/nftRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/nftRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/salesforceRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/salesforceRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/speechRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/speechRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/storageRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/storageRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/userManagementRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/userManagementRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/userRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/userRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/walletRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/walletRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/webflowFormWebhook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/webflowFormWebhook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/webflowIntegrationRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/webflowIntegrationRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/wolfAIApiRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/wolfAIApiRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routes/wolfRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes/wolfRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/automationEngine.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/automationEngine.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/componentManagerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/componentManagerService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/cryptoMinerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/cryptoMinerService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/cryptoTrackerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/cryptoTrackerService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/databaseService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/databaseService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/defiAnalyzerService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/defiAnalyzerService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/realTimeWalletService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/realTimeWalletService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/speechService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/speechService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/storageService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/storageService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crypto-tracker/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/crypto-tracker/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crypto-tracker/src/components/PriceAlerts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/crypto-tracker/src/components/PriceAlerts.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defi-analyzer/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/defi-analyzer/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Navigation/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Navigation/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Navigation/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Navigation/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Navigation/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Navigation/Sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ui/LoadingSpinner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ui/LoadingSpinner.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Crypto.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Crypto.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/NFTs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/NFTs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/NotFound.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/NotFound.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Portfolio.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Portfolio.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Register.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/services/appwrite.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/appwrite.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vite.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/functions/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Collapsible.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Collapsible.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ExternalLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ExternalLink.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HapticTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HapticTab.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HelloWave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HelloWave.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ParallaxScrollView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ParallaxScrollView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ThemedText.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ThemedText.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ThemedView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ThemedView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/IconSymbol.ios.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/IconSymbol.ios.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/IconSymbol.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/IconSymbol.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/TabBarBackground.ios.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/TabBarBackground.ios.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useColorScheme.web.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useColorScheme.web.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useThemeColor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useThemeColor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/appwrite.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/appwrite.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/actionRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/actionRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/authRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/authRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/cryptoRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/cryptoRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/miniAppRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/miniAppRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/nftRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/nftRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/userRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/userRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/webflowFormWebhook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/webflowFormWebhook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/webflowIntegrationRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/webflowIntegrationRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/wolfAIApiRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/wolfAIApiRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/wolfRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/wolfRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/appwriteService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/appwriteService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/realTimeService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/realTimeService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tokens/WolfbyteToken.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokens/WolfbyteToken.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wolf/WolfAI.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/wolf/WolfAI.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="a25a1fd8-52a1-43bb-a2df-8852d9de7dc3" name="Changes" comment="commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -291,7 +194,7 @@
       <updated>1755847659743</updated>
       <workItem from="1755847739410" duration="6722000" />
       <workItem from="1755861481957" duration="216000" />
-      <workItem from="1755862255143" duration="3866000" />
+      <workItem from="1755862255143" duration="4450000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -333,7 +236,23 @@
       <option name="project" value="LOCAL" />
       <updated>1755862334149</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="commit">
+      <option name="closed" value="true" />
+      <created>1755866455249</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1755866455249</updated>
+    </task>
+    <task id="LOCAL-00007" summary="commit">
+      <option name="closed" value="true" />
+      <created>1755866652396</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1755866652396</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
