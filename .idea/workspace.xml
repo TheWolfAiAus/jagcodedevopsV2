@@ -1,8 +1,276 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a25a1fd8-52a1-43bb-a2df-8852d9de7dc3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WARP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/explore.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/+not-found.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase-debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/authRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/cryptoRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/miniAppRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/nftRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/userRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/wolfAIApiRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Collapsible.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ExternalLink.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HapticTab.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HelloWave.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ParallaxScrollView.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ThemedText.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ThemedView.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/IconSymbol.ios.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/IconSymbol.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/TabBarBackground.ios.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/TabBarBackground.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Colors.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useColorScheme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useColorScheme.web.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useThemeColor.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/DTOs/userRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/actionRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/actionRoutes.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/actionRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/actionRoutes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/authRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/cryptoRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/miniAppRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/nftRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/types.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/userRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/webflowFormWebhook.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/wolfAIApiRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/wolfRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/wolfRoutes.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/wolfRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/wolfRoutes.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "TheWolfAiAus"
   }
-}</component>
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/TheWolfAiAus/jagcodedevopsV2.git",
+    "accountId": "9948440b-00f3-49c3-8211-56e6310a14fe"
+  }
+}]]></component>
+  <component name="McpProjectState">
+    <option name="mcpServerConfigStates">
+      <list>
+        <McpServerConfigState>
+          <option name="args" value="run -i --rm --init -e DOCKER_CONTAINER=true mcp/puppeteer" />
+          <option name="command" value="docker" />
+          <option name="name" value="puppeteer" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="mcp-server-fetch" />
+          <option name="command" value="uvx" />
+          <option name="name" value="fetch" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="-y @modelcontextprotocol/server-sequential-thinking" />
+          <option name="command" value="npx" />
+          <option name="name" value="sequential-thinking" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="--directory parent_of_servers_repo/servers/src/sqlite run mcp-server-sqlite --db-path ~/test.db" />
+          <option name="command" value="uv" />
+          <option name="name" value="sqlite" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="-y @modelcontextprotocol/server-llm-txt" />
+          <option name="command" value="npx" />
+          <option name="name" value="llm-txt" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="run -i --rm --mount type=bind,src=/Users/username/Desktop,dst=/projects/Desktop --mount type=bind,src=/path/to/other/allowed/dir,dst=/projects/other/allowed/dir,ro --mount type=bind,src=/path/to/file.txt,dst=/projects/path/to/file.txt mcp/filesystem /projects" />
+          <option name="command" value="docker" />
+          <option name="name" value="filesystem" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="-y @mcp-get-community/server-curl" />
+          <option name="command" value="npx" />
+          <option name="name" value="@mcp-get-community/server-curl" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="-y @kimtaeyoon83/mcp-server-youtube-transcript" />
+          <option name="command" value="npx" />
+          <option name="name" value="youtube-transcript" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="-y @modelcontextprotocol/server-everything" />
+          <option name="command" value="npx" />
+          <option name="name" value="everything" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="mcp-server-time" />
+          <option name="command" value="uvx" />
+          <option name="name" value="time" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="-y @modelcontextprotocol/server-postgres postgresql://localhost/mydb" />
+          <option name="command" value="npx" />
+          <option name="name" value="postgres" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="mcp-server-git --repository path/to/git/repo" />
+          <option name="command" value="uvx" />
+          <option name="name" value="git" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="--directory /absolute/path/to/mcp-solver run mcp-solver --lite" />
+          <option name="command" value="uv" />
+          <option name="name" value="MCP Solver" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="-y @modelcontextprotocol/server-gdrive" />
+          <option name="command" value="npx" />
+          <option name="name" value="gdrive" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="/path/to/exa-mcp-server/build/index.js" />
+          <option name="command" value="npx" />
+          <option name="name" value="exa" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="-y @modelcontextprotocol/server-redis redis://localhost:6379" />
+          <option name="command" value="npx" />
+          <option name="name" value="redis" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+        <McpServerConfigState>
+          <option name="args" value="-y mcp-server-stability-ai" />
+          <option name="command" value="npx" />
+          <option name="name" value="stability-ai" />
+          <option name="path" value="C:\Users\brett\WebstormProjects\jagcodedevopsV2\.junie\mcp\mcp.json" />
+        </McpServerConfigState>
+      </list>
+    </option>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="31dIeTCjve2aiVMoIrHKZuaU6GC" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.completion",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
+        <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+        <entry key="com.intellij.reactbuddy.storybook" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-WS-252.25557.32" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a25a1fd8-52a1-43bb-a2df-8852d9de7dc3" name="Changes" comment="" />
+      <created>1755847659743</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1755847659743</updated>
+      <workItem from="1755847739410" duration="2585000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/routes/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/routes/nftRoutes.js" />
+        <option value="$PROJECT_DIR$/src/routes/miniAppRoutes.js" />
+        <option value="$PROJECT_DIR$/src/routes/wolfAIApiRoutes.js" />
+        <option value="$PROJECT_DIR$/src/hooks/useColorScheme.js" />
+        <option value="$PROJECT_DIR$/src/constants/Colors.js" />
+        <option value="$PROJECT_DIR$/src/routes/webflowFormWebhook.js" />
+        <option value="$PROJECT_DIR$/src/routes/actionRoutes.js" />
+        <option value="$PROJECT_DIR$/src/routes/actionRoutes.js.map" />
+        <option value="$PROJECT_DIR$/src/hooks/useColorScheme.web.js" />
+        <option value="$PROJECT_DIR$/src/routes/types.js" />
+        <option value="$PROJECT_DIR$/src/routes/authRoutes.js" />
+        <option value="$PROJECT_DIR$/src/routes/wolfRoutes.js" />
+        <option value="$PROJECT_DIR$/src/routes/wolfRoutes.js.map" />
+        <option value="$PROJECT_DIR$/src/routes/userRoutes.js" />
+        <option value="$PROJECT_DIR$/src/routes/cryptoRoutes.js" />
+        <option value="$PROJECT_DIR$/src/hooks/useThemeColor.js" />
+        <option value="$PROJECT_DIR$/src/components/ui/IconSymbol.js" />
+        <option value="$PROJECT_DIR$/src/components/ui/IconSymbol.ios.js" />
+        <option value="$PROJECT_DIR$/src/components/HapticTab.js" />
+        <option value="$PROJECT_DIR$/src/components/ParallaxScrollView.js" />
+        <option value="$PROJECT_DIR$/src/components/HelloWave.js" />
+        <option value="$PROJECT_DIR$/app/(tabs)/explore.js" />
+        <option value="$PROJECT_DIR$/app/(tabs)/index.js" />
+        <option value="$PROJECT_DIR$/app/+not-found.js" />
+        <option value="$PROJECT_DIR$/src/components/ui/TabBarBackground.js" />
+        <option value="$PROJECT_DIR$/src/components/ExternalLink.js" />
+        <option value="$PROJECT_DIR$/src/components/ThemedView.js" />
+        <option value="$PROJECT_DIR$/src/components/ThemedText.js" />
+        <option value="$PROJECT_DIR$/src/components/ui/TabBarBackground.ios.js" />
+        <option value="$PROJECT_DIR$/src/components/Collapsible.js" />
+      </list>
+    </option>
+  </component>
 </project>
