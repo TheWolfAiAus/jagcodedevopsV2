@@ -20,7 +20,8 @@
       "Bash(npx appwrite functions deploy:*)",
       "Bash(npx appwrite:*)",
       "Bash(./deploy-direct.bat)",
-      "Bash(git clone:*)"
+      "Bash(git clone:*)",
+      "Bash(npx expo start:*)"
     ],
     "deny": [],
     "ask": [],

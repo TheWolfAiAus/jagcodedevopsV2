@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a25a1fd8-52a1-43bb-a2df-8852d9de7dc3" name="Changes" comment="commit">
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/starter-for-react-native/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/starter-for-react-native/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/starter-for-react-native/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/starter-for-react-native/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/starter-for-react-native/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/starter-for-react-native/app/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +197,7 @@
       <updated>1755847659743</updated>
       <workItem from="1755847739410" duration="6722000" />
       <workItem from="1755861481957" duration="216000" />
-      <workItem from="1755862255143" duration="11909000" />
+      <workItem from="1755862255143" duration="12292000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -359,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755874494708</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="commit">
+      <option name="closed" value="true" />
+      <created>1755876429614</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1755876429614</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
