@@ -1,4 +1,8 @@
-<CardContent>
+import React from 'react';
+
+export default function PriceAlerts() {
+  return (
+    <CardContent>
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div>
             <Label htmlFor="token-symbol">Token Symbol</Label>
@@ -91,3 +95,6 @@
             </TableBody>
         </Table>
     )}
+    </CardContent>
+  );
+}
