@@ -1,13 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import {
-    Bell,
-    LogOut,
-    Menu,
-    Search,
-    Settings,
-    User,
-    Wallet
-} from 'lucide-react'
+import { Bell, LogOut, Menu, Search, Settings, User, Wallet } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -17,8 +9,8 @@ interface NavbarProps {
 }
 
 const Navbar = ({ isScrolled, onMenuClick }: NavbarProps) => {
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
-  const location = useLocation()
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navigation = [
     { name: 'Home', href: '/', current: location.pathname === '/' },
@@ -26,14 +18,14 @@ const Navbar = ({ isScrolled, onMenuClick }: NavbarProps) => {
     { name: 'Crypto', href: '/crypto', current: location.pathname === '/crypto' },
     { name: 'NFTs', href: '/nfts', current: location.pathname === '/nfts' },
     { name: 'Portfolio', href: '/portfolio', current: location.pathname === '/portfolio' },
-  ]
+  ];
 
   const userMenuItems = [
     { name: 'Profile', icon: User, href: '/profile' },
     { name: 'Wallet', icon: Wallet, href: '/wallet' },
     { name: 'Settings', icon: Settings, href: '/settings' },
     { name: 'Sign Out', icon: LogOut, href: '/logout', danger: true },
-  ]
+  ];
 
   return (
     <nav className="relative">
@@ -164,6 +156,6 @@ const Navbar = ({ isScrolled, onMenuClick }: NavbarProps) => {
       </div>
     </nav>
   )
-}
+};
 
 export default Navbar

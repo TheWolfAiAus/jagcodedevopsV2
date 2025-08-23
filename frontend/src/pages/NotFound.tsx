@@ -34,7 +34,7 @@ const NotFound: React.FC = () => {
             Page Not Found
           </h2>
           <p className="text-xl text-gray-300 max-w-md mx-auto">
-            Oops! The page you're looking for doesn't exist. It might have been moved, deleted, or you entered the wrong URL.
+            Oops! The page you&rsquo;re looking for doesn&rsquo;t exist. It might have been moved, deleted, or you entered the wrong URL.
           </p>
         </motion.div>
 

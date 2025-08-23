@@ -39,6 +39,6 @@ const LoadingSpinner = () => {
       </motion.div>
     </div>
   )
-}
+};
 
 export default LoadingSpinner

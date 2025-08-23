@@ -8,7 +8,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
-  const location = useLocation()
+  const location = useLocation();
 
   const navigation = [
     { name: 'Home', href: '/', icon: Home },
@@ -16,13 +16,13 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
     { name: 'Crypto', href: '/crypto', icon: Bitcoin },
     { name: 'NFTs', href: '/nfts', icon: Palette },
     { name: 'Portfolio', href: '/portfolio', icon: Wallet },
-  ]
+  ];
 
   const userMenu = [
     { name: 'Profile', href: '/profile', icon: User },
     { name: 'Settings', href: '/settings', icon: Settings },
     { name: 'Sign Out', href: '/logout', icon: LogOut, danger: true },
-  ]
+  ];
 
   return (
     <>
@@ -125,6 +125,6 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
       </motion.div>
     </>
   )
-}
+};
 
 export default Sidebar

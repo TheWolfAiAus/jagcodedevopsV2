@@ -66,7 +66,7 @@ export const authService = {
     async getCurrentUser() {
         try {
             return await account.get();
-        } catch (error) {
+        } catch {
             return null;
         }
     },
