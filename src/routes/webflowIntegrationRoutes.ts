@@ -1,7 +1,7 @@
-import {Request, Response, Router} from 'express';
+import express, {Request, Response} from 'express';
 import {AppwriteService} from '../services/appwriteService';
 
-const router = Router();
+const router = express.Router();
 
 // Middleware to handle CORS for Webflow domains
 router.use((req, res, next) => {
