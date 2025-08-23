@@ -1,10 +1,6 @@
-// Barrel exports for UI components (preserve named exports)
-export * from './Collapsible';
-export * from './ExternalLink';
-export * from './HapticTab';
-export * from './HelloWave';
-export * from './ParallaxScrollView';
-export * from './ThemedText';
-export * from './ThemedView';
-export * from './ui';
-
+export { Header } from "@/components/Header";
+export { Footer } from "@/components/Footer";
+export { Mailchimp } from "@/components/Mailchimp";
+export { ProjectCard } from "@/components/ProjectCard";
+export { HeadingLink } from "@/components/HeadingLink";
+export { RouteGuard } from "@/components/RouteGuard";
