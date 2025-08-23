@@ -1,8 +1,8 @@
-import {Router} from 'express';
+import express from 'express';
 import {runResearch} from '../controllers/wolfController';
 import {authenticateToken} from '../middleware/authMiddleware';
 
-const router = Router();
+const router = express.Router();
 
 // Apply authentication middleware to all wolf routes
 router.use(authenticateToken);

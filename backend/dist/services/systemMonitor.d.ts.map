@@ -1,0 +1,1 @@
+{"version":3,"file":"systemMonitor.d.ts","sourceRoot":"","sources":["../../src/services/systemMonitor.ts"],"names":[],"mappings":"AAEA,qBAAa,aAAa;IACtB,OAAO,CAAC,OAAO,CAAS;IAElB,KAAK,IAAI,OAAO,CAAC,IAAI,CAAC;IAKtB,IAAI,IAAI,OAAO,CAAC,IAAI,CAAC;IAKrB,SAAS,IAAI,OAAO,CAAC,GAAG,CAAC;IAqBzB,qBAAqB,IAAI,OAAO,CAAC,GAAG,CAAC;IAoB3C,SAAS,IAAI,OAAO;CAGvB"}

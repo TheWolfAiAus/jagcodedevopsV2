@@ -30,7 +30,7 @@ exports.app = app;
 const server = (0, http_1.createServer)(app);
 const io = new socket_io_1.Server(server, {
     cors: {
-        origin: process.env.FRONTEND_URL || "http://localhost:3000",
+        origin: process.env['FRONTEND_URL'] || "http://localhost:3000",
         methods: ["GET", "POST"]
     }
 });
@@ -42,7 +42,7 @@ const limiter = (0, express_rate_limit_1.default)({
 });
 app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: process.env['FRONTEND_URL'] || "http://localhost:3000",
     credentials: true
 }));
 app.use((0, morgan_1.default)('combined'));
@@ -53,7 +53,7 @@ app.get('/_health', (_req, res) => {
     res.json({
         status: 'ok',
         timestamp: new Date().toISOString(),
-        version: process.env.npm_package_version || '1.0.0'
+        version: process.env['npm_package_version'] || '1.0.0'
     });
 });
 app.use('/api/crypto', cryptoRoutes_1.default);
@@ -83,10 +83,10 @@ app.use('*', (req, res) => {
         path: req.originalUrl
     });
 });
-const PORT = process.env.PORT || 5000;
+const PORT = process.env['PORT'] || 5000;
 server.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
-    console.log(`📱 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`📱 Environment: ${process.env['NODE_ENV'] || 'development'}`);
     console.log(`🔗 Health check: http://localhost:${PORT}/_health`);
 });
 //# sourceMappingURL=index.js.map
