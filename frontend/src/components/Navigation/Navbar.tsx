@@ -1,5 +1,13 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { Bell, LogOut, Menu, Search, Settings, User, Wallet } from 'lucide-react'
+import {
+    Bell,
+    LogOut,
+    Menu,
+    Search,
+    Settings,
+    User,
+    Wallet
+} from 'lucide-react'
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 

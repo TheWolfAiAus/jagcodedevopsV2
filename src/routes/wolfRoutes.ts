@@ -1,6 +1,7 @@
-import { Router } from 'express';
-import { runResearch } from '../controllers/wolfController';
-import { authenticateToken } from '../middleware/authMiddleware';
+<<<<<<< HEAD
+import {Router} from 'express';
+import {runResearch} from '../controllers/wolfController';
+import {authenticateToken} from '../middleware/authMiddleware';
 
 const router = Router();
 

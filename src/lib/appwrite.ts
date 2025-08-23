@@ -1,4 +1,4 @@
-import { Client, Account, Databases, Storage, Functions } from 'appwrite';
+import {Account, Client, Databases, Functions, Storage} from 'appwrite';
 
 // Appwrite configuration
 export const appwriteConfig = {

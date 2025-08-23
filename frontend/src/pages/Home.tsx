@@ -1,13 +1,25 @@
-import { motion } from 'framer-motion'
-import { ArrowRight, Bitcoin, ChevronRight, Globe, Palette, Play, Shield, Star, TrendingUp, Users, Zap } from 'lucide-react'
-import { useInView } from 'react-intersection-observer'
-import { Link } from 'react-router-dom'
+import {motion} from 'framer-motion'
+import {
+    ArrowRight,
+    Bitcoin,
+    ChevronRight,
+    Globe,
+    Palette,
+    Play,
+    Shield,
+    Star,
+    TrendingUp,
+    Users,
+    Zap
+} from 'lucide-react'
+import {useInView} from 'react-intersection-observer'
+import {Link} from 'react-router-dom'
 
 const Home = () => {
-  const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: true });
-  const [featuresRef, featuresInView] = useInView({ threshold: 0.1, triggerOnce: true });
-  const [statsRef, statsInView] = useInView({ threshold: 0.1, triggerOnce: true });
-  const [ctaRef, ctaInView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: true })
+  const [featuresRef, featuresInView] = useInView({ threshold: 0.1, triggerOnce: true })
+  const [statsRef, statsInView] = useInView({ threshold: 0.1, triggerOnce: true })
+  const [ctaRef, ctaInView] = useInView({ threshold: 0.1, triggerOnce: true })
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -18,7 +30,7 @@ const Home = () => {
         delayChildren: 0.2
       }
     }
-  };
+  }
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -30,7 +42,7 @@ const Home = () => {
         ease: "easeOut"
       }
     }
-  };
+  }
 
   const features = [
     {
@@ -69,14 +81,14 @@ const Home = () => {
       description: "Join our vibrant community of traders, artists, and enthusiasts",
       color: "from-pink-400 to-rose-500"
     }
-  ];
+  ]
 
   const stats = [
     { number: "10M+", label: "Active Users", icon: Users },
     { number: "$50B+", label: "Trading Volume", icon: TrendingUp },
     { number: "99.9%", label: "Uptime", icon: Shield },
     { number: "150+", label: "Countries", icon: Globe }
-  ];
+  ]
 
   return (
     <div className="relative overflow-hidden">
@@ -332,6 +344,6 @@ const Home = () => {
       </section>
     </div>
   )
-};
+}
 
 export default Home

@@ -1,8 +1,8 @@
-import { Account, Client, Databases } from 'appwrite';
+import {Account, Client, Databases} from 'appwrite';
 import bcrypt from 'bcryptjs';
-import express, { Request, Response } from 'express';
+import express, {Request, Response} from 'express';
 import jwt from 'jsonwebtoken';
-import { createError } from '../middleware/errorHandler';
+import {createError} from '../middleware/errorHandler';
 
 const router = express.Router();
 

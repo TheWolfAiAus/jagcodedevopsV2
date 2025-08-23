@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import {motion} from 'framer-motion';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({

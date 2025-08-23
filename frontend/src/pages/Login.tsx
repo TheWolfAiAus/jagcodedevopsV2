@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { authService } from '../services/appwrite';
+import {motion} from 'framer-motion';
+import React, {useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import {authService} from '../services/appwrite';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();

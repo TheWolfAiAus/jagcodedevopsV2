@@ -4,8 +4,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
-import { createServer } from 'http';
-import { Server } from 'socket.io';
+import {createServer} from 'http';
+import {Server} from 'socket.io';
 
 // Import routes
 import cryptoRoutes from './routes/cryptoRoutes';
@@ -20,8 +20,8 @@ import webflowIntegrationRoutes from './routes/webflowIntegrationRoutes';
 import miniAppRoutes from './routes/miniAppRoutes';
 
 // Import middleware
-import { errorHandler } from './middleware/errorHandler';
-import { authMiddleware } from './middleware/authMiddleware';
+import {errorHandler} from './middleware/errorHandler';
+import {authMiddleware} from './middleware/authMiddleware';
 
 // Load environment variables
 dotenv.config();
@@ -30,7 +30,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: process.env['FRONTEND_URL'] || "http://localhost:3000",
     methods: ["GET", "POST"]
   }
 });
@@ -45,7 +45,7 @@ const limiter = rateLimit({
 // Middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  origin: process.env['FRONTEND_URL'] || "http://localhost:3000",
   credentials: true
 }));
 app.use(morgan('combined'));
@@ -58,7 +58,7 @@ app.get('/_health', (_req, res) => {
   res.json({ 
     status: 'ok', 
     timestamp: new Date().toISOString(),
-    version: process.env.npm_package_version || '1.0.0'
+    version: process.env['npm_package_version'] || '1.0.0'
   });
 });
 
@@ -99,11 +99,11 @@ app.use('*', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env['PORT'] || 5000;
 
 server.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📱 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`📱 Environment: ${process.env['NODE_ENV'] || 'development'}`);
   console.log(`🔗 Health check: http://localhost:${PORT}/_health`);
 });
 

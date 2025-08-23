@@ -28,3 +28,12 @@ web3==6.0.0
 
 # Utilities
 retrying==1.3.4
+httpx==0.25.2
+aiohttp==3.9.1
+asyncio-timeout==4.0.3
+websockets==12.0
+python-multipart==0.0.6
+pydantic==2.5.2
+httptools==0.6.1
+python-json-logger==2.0.7
+tenacity==8.2.3

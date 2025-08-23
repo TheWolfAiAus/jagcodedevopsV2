@@ -1,4 +1,4 @@
-import { Client, Account, Databases, Storage, Teams } from 'appwrite';
+import {Account, Client, Databases, Storage, Teams} from 'appwrite';
 
 // Appwrite configuration
 const client = new Client()

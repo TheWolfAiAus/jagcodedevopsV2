@@ -1,6 +1,7 @@
-import { Router } from 'express';
-import { getActionStatus, listActions, toggleAction, triggerAction } from '../controllers/actionController';
-import { authenticateToken } from '../middleware/authMiddleware';
+<<<<<<< HEAD
+import {Router} from 'express';
+import {getActionStatus, listActions, toggleAction, triggerAction} from '../controllers/actionController';
+import {authenticateToken} from '../middleware/authMiddleware';
 
 const router = Router();
 

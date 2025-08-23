@@ -4,17 +4,9 @@
  * Revolutionary token economy for advanced AI functions
  */
 
-import React, { useState, useEffect } from 'react';
-import { 
-  View, 
-  Text, 
-  TouchableOpacity, 
-  StyleSheet,
-  Alert,
-  Animated,
-  ScrollView
-} from 'react-native';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import React, {useEffect, useState} from 'react';
+import {Alert, Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 
 interface WolfbyteTransaction {
   id: string;

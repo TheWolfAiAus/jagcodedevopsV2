@@ -1,5 +1,5 @@
-import { Router, Request, Response } from 'express';
-import { AppwriteService } from '../services/appwriteService';
+import {Request, Response, Router} from 'express';
+import {AppwriteService} from '../services/appwriteService';
 
 const router = Router();
 

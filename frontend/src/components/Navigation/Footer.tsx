@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion'
-import { Facebook, Github, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import {motion} from 'framer-motion'
+import {Facebook, Github, Instagram, Linkedin, Mail, MapPin, Phone, Twitter} from 'lucide-react'
+import {Link} from 'react-router-dom'
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
 
   const footerSections = [
     {
@@ -42,7 +42,7 @@ const Footer = () => {
         { name: 'Compliance', href: '/compliance' },
       ]
     }
-  ];
+  ]
 
   const socialLinks = [
     { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/jagcodedeveops' },
@@ -50,7 +50,7 @@ const Footer = () => {
     { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/jagcodedeveops' },
     { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/jagcodedeveops' },
     { name: 'GitHub', icon: Github, href: 'https://github.com/jagcodedeveops' },
-  ];
+  ]
 
   return (
     <footer className="bg-slate-900/50 border-t border-slate-700/50">
@@ -160,6 +160,6 @@ const Footer = () => {
       </div>
     </footer>
   )
-};
+}
 
 export default Footer

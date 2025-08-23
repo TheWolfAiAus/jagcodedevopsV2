@@ -5,21 +5,19 @@
  * ID: dfc5c14f-c8cb-4c36-bbab-ce5b96c72a49
  */
 
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  ScrollView, 
-  Alert,
-  StyleSheet,
-  Animated,
-  Image,
-  Switch,
-  StatusBar
+import React, {useEffect, useRef, useState} from 'react';
+import {
+    Animated,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Switch,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
 } from 'react-native';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 
 interface WolfMessage {
   id: string;
