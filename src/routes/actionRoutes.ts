@@ -1,8 +1,8 @@
-import {Router} from 'express';
+import express from 'express';
 import {getActionStatus, listActions, toggleAction, triggerAction} from '../controllers/actionController';
 import {authenticateToken} from '../middleware/authMiddleware';
 
-const router = Router();
+const router = express.Router();
 
 // Apply authentication middleware to all action routes
 router.use(authenticateToken);
