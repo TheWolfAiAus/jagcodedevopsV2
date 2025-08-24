@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
+    {
+      "src": "backend/package.json",
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/dist/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/dist/index.html"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "APPWRITE_ENDPOINT": "https://syd.cloud.appwrite.io/v1",
+    "APPWRITE_PROJECT_ID": "68a36f6c002bfc1e6057",
+    "APPWRITE_DATABASE_ID": "68a3b34a00375e270b14"
+  },
+  "functions": {
+    "backend/dist/index.js": {
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/backend/dist/index.js"
+    }
+  ]
+}

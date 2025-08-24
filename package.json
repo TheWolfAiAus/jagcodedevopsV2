@@ -1,10 +1,55 @@
 {
+  "name": "jagcodedeveops",
+  "version": "1.0.0",
+  "description": "JagCodeDevOps - Complete crypto trading and portfolio management platform",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend",
+    "functions"
+  ],
   "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=backend\" \"npm run dev --workspace=frontend\"",
+    "build": "npm run build --workspace=backend && npm run build --workspace=frontend",
+    "build:backend": "npm run build --workspace=backend",
+    "build:frontend": "npm run build --workspace=frontend", 
+    "build:functions": "npm run build --workspace=functions",
+    "start": "npm run start --workspace=backend",
+    "test": "npm run test --workspace=backend && npm run test --workspace=frontend",
+    "lint": "npm run lint --workspace=backend && npm run lint --workspace=frontend",
+    "clean": "npm run clean --workspace=backend && rm -rf frontend/dist",
+    "install:all": "npm install && npm install --workspace=backend && npm install --workspace=frontend",
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "docs:preview": "vitepress preview",
+    "deploy:vercel": "vercel --prod",
+    "deploy:appwrite": "appwrite deploy"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "vitepress": "^1.6.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "@types/node": "^20.10.4",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "crypto",
+    "trading",
+    "portfolio",
+    "blockchain",
+    "defi",
+    "nft",
+    "mining",
+    "analytics"
+  ],
+  "author": "JagCodeDevOps",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheWolfAiAus/jagcodedevopsV2.git"
   }
 }
