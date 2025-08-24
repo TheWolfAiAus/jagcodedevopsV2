@@ -3,9 +3,9 @@
   "builds": [
     {
       "src": "frontend/package.json",
-      "use": "@vercel/static-build",
+      "use": "@vercel/next",
       "config": {
-        "distDir": "dist"
+        "outputDirectory": ".next"
       }
     },
     {
@@ -23,14 +23,18 @@
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/dist/index.html"
+      "dest": "frontend/$1"
     }
   ],
   "env": {
     "NODE_ENV": "production",
     "APPWRITE_ENDPOINT": "https://syd.cloud.appwrite.io/v1",
     "APPWRITE_PROJECT_ID": "68a36f6c002bfc1e6057",
-    "APPWRITE_DATABASE_ID": "68a3b34a00375e270b14"
+    "APPWRITE_DATABASE_ID": "68a3b34a00375e270b14",
+    "NEXT_PUBLIC_APPWRITE_ENDPOINT": "https://syd.cloud.appwrite.io/v1",
+    "NEXT_PUBLIC_APPWRITE_PROJECT_ID": "68a36f6c002bfc1e6057",
+    "NEXT_PUBLIC_APP_NAME": "JagCodeDevOps",
+    "NEXT_PUBLIC_APP_VERSION": "1.0.0"
   },
   "functions": {
     "backend/dist/index.js": {
