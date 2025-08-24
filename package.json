@@ -12,7 +12,7 @@
     "dev": "concurrently \"npm run dev --workspace=backend\" \"npm run dev --workspace=frontend\"",
     "build": "npm run build --workspace=backend && npm run build --workspace=frontend",
     "build:backend": "npm run build --workspace=backend",
-    "build:frontend": "npm run build --workspace=frontend", 
+    "build:frontend": "npm run build --workspace=frontend",
     "build:functions": "npm run build --workspace=functions",
     "start": "npm run start --workspace=backend",
     "test": "npm run test --workspace=backend && npm run test --workspace=frontend",
@@ -29,11 +29,11 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "vitepress": "^1.6.3"
+    "vitepress": "^0.1.1"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2",
     "@types/node": "^20.10.4",
+    "concurrently": "^8.2.2",
     "typescript": "^5.3.3"
   },
   "keywords": [
