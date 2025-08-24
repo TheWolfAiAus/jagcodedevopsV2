@@ -1,8 +1,8 @@
-import {Account, Client, Databases, Storage, Teams} from 'appwrite';
+import {Account, Client, Databases, Storage, Teams, Query} from 'appwrite';
 
 // Appwrite configuration
 const client = new Client()
-    .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT || 'https://cloud.appwrite.io/v1')
+    .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT || 'https://syd.cloud.appwrite.io/v1')
     .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID || '68a36f6c002bfc1e6057');
 
 // Initialize Appwrite services
@@ -11,16 +11,16 @@ export const databases = new Databases(client);
 export const storage = new Storage(client);
 export const teams = new Teams(client);
 
-// Database IDs (you'll create these in Appwrite)
-export const DATABASE_ID = 'jagcode_main';
-export const USERS_COLLECTION_ID = 'users';
-export const CRYPTO_COLLECTION_ID = 'crypto_data';
-export const NFT_COLLECTION_ID = 'nft_collection';
-export const PORTFOLIO_COLLECTION_ID = 'user_portfolios';
+// Database IDs
+export const DATABASE_ID = '68a3b34a00375e270b14';
+export const USERS_COLLECTION_ID = '68a3b34a00375e270b15';
+export const CRYPTO_COLLECTION_ID = '68a3b3e2000dcc682c12';
+export const NFT_COLLECTION_ID = '68a3b41400346ff40705';
+export const PORTFOLIO_COLLECTION_ID = '68a3b43e001c44090ac6';
 
 // Storage bucket IDs
-export const PROFILE_IMAGES_BUCKET_ID = 'profile_images';
-export const NFT_IMAGES_BUCKET_ID = 'nft_images';
+export const PROFILE_IMAGES_BUCKET_ID = '68a3b463003bb9695087';
+export const NFT_IMAGES_BUCKET_ID = '68a3b463003bb9695088';
 
 // Authentication functions
 export const authService = {
@@ -153,9 +153,7 @@ export const databaseService = {
             return await databases.listDocuments(
                 DATABASE_ID,
                 PORTFOLIO_COLLECTION_ID,
-                [
-                    databases.queries.equal('userId', userId)
-                ]
+                [Query.equal('userId', userId)]
             );
         } catch (error) {
             throw error;

@@ -7,5 +7,5 @@ export interface AuthRequest extends Request {
     };
 }
 export declare const authMiddleware: (req: AuthRequest, res: Response, next: NextFunction) => void;
-export declare const roleMiddleware: (allowedRoles: string[]) => (req: AuthRequest, res: Response, next: NextFunction) => any;
+export declare const roleMiddleware: (allowedRoles: string[]) => (req: AuthRequest, res: Response, next: NextFunction) => void;
 //# sourceMappingURL=authMiddleware.d.ts.map

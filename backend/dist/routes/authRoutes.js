@@ -10,8 +10,9 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const errorHandler_1 = require("../middleware/errorHandler");
 const router = express_1.default.Router();
 const client = new appwrite_1.Client()
-    .setEndpoint(process.env.APPWRITE_ENDPOINT || 'https://cloud.appwrite.io/v1')
-    .setProject(process.env.APPWRITE_PROJECT_ID || '68a36f6c002bfc1e6057');
+    .setEndpoint(process.env.APPWRITE_ENDPOINT || 'https://syd.cloud.appwrite.io/v1')
+    .setProject(process.env.APPWRITE_PROJECT_ID || '68a36f6c002bfc1e6057')
+    .setKey(process.env.APPWRITE_API_KEY || process.env.APPWRITE_JAGCODE_API || '');
 const account = new appwrite_1.Account(client);
 const databases = new appwrite_1.Databases(client);
 router.post('/register', async (req, res) => {
@@ -29,7 +30,7 @@ router.post('/register', async (req, res) => {
         }
         const hashedPassword = await bcryptjs_1.default.hash(password, 12);
         const user = await account.create('unique()', email, password, name);
-        const userProfile = await databases.createDocument('users', 'unique()', {
+        const userProfile = await databases.createDocument(process.env.APPWRITE_DATABASE_ID || '68a3b34a00375e270b14', '68a3b34a00375e270b15', 'unique()', {
             userId: user.$id,
             email,
             name,
@@ -76,7 +77,7 @@ router.post('/login', async (req, res) => {
         }
         const session = await account.createEmailSession(email, password);
         const user = await account.get();
-        const userProfile = await databases.listDocuments('users', 'userId = ' + user.$id);
+        const userProfile = await databases.listDocuments(process.env.APPWRITE_DATABASE_ID || '68a3b34a00375e270b14', '68a3b34a00375e270b15', [appwrite_1.Query.equal('userId', user.$id)]);
         if (!userProfile.documents.length) {
             throw (0, errorHandler_1.createError)('User profile not found', 404);
         }

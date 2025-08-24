@@ -2,23 +2,24 @@ import {Account, Client, Databases, Functions, Storage} from 'appwrite';
 
 // Appwrite configuration
 export const appwriteConfig = {
-  url: process.env.EXPO_PUBLIC_APPWRITE_URL || 'https://cloud.appwrite.io/v1',
-  projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID || '',
-  databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID || '',
+  url: process.env.EXPO_PUBLIC_APPWRITE_URL || 'https://syd.cloud.appwrite.io/v1',
+  projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID || '68a36f6c002bfc1e6057',
+  databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID || '68a3b34a00375e270b14',
   // Collection IDs
-  userCollectionId: process.env.EXPO_PUBLIC_APPWRITE_USER_COLLECTION_ID || 'users',
-  portfolioCollectionId: process.env.EXPO_PUBLIC_APPWRITE_PORTFOLIO_COLLECTION_ID || 'portfolios',
-  transactionCollectionId: process.env.EXPO_PUBLIC_APPWRITE_TRANSACTION_COLLECTION_ID || 'transactions',
-  activityCollectionId: process.env.EXPO_PUBLIC_APPWRITE_ACTIVITY_COLLECTION_ID || 'activity',
-  settingsCollectionId: process.env.EXPO_PUBLIC_APPWRITE_SETTINGS_COLLECTION_ID || 'settings',
+  userCollectionId: process.env.EXPO_PUBLIC_APPWRITE_USER_COLLECTION_ID || '68a3b34a00375e270b15',
+  portfolioCollectionId: process.env.EXPO_PUBLIC_APPWRITE_PORTFOLIO_COLLECTION_ID || '68a3b3e2000dcc682c12',
+  transactionCollectionId: process.env.EXPO_PUBLIC_APPWRITE_TRANSACTION_COLLECTION_ID || '68a3b41400346ff40705',
+  activityCollectionId: process.env.EXPO_PUBLIC_APPWRITE_ACTIVITY_COLLECTION_ID || '68a3b43e001c44090ac6',
+  settingsCollectionId: process.env.EXPO_PUBLIC_APPWRITE_SETTINGS_COLLECTION_ID || '68a3b463003bb9695087',
   // Storage
-  storageId: process.env.EXPO_PUBLIC_APPWRITE_STORAGE_ID || 'main-storage',
+  storageId: process.env.EXPO_PUBLIC_APPWRITE_STORAGE_ID || '68a3b463003bb9695088',
   // Functions
-  backupFunctionId: process.env.EXPO_PUBLIC_APPWRITE_BACKUP_FUNCTION_ID || 'backup-data',
-  notifyFunctionId: process.env.EXPO_PUBLIC_APPWRITE_NOTIFY_FUNCTION_ID || 'send-notifications',
+  syncFunctionId: process.env.EXPO_PUBLIC_APPWRITE_SYNC_FUNCTION_ID || '68a3b463003bb9695089',
+  backupFunctionId: process.env.EXPO_PUBLIC_APPWRITE_BACKUP_FUNCTION_ID || '68a3b463003bb9695090',
+  notifyFunctionId: process.env.EXPO_PUBLIC_APPWRITE_NOTIFY_FUNCTION_ID || '68a3b463003bb9695091',
   // Real-time settings
-  enableRealtime: process.env.EXPO_PUBLIC_ENABLE_REALTIME === 'true',
-  realtimeHeartbeat: parseInt(process.env.EXPO_PUBLIC_REALTIME_HEARTBEAT || '30000'),
+  enableRealtime: process.env.EXPO_PUBLIC_ENABLE_REALTIME !== 'false',
+  realtimeHeartbeat: parseInt(process.env.EXPO_PUBLIC_REALTIME_HEARTBEAT || '10000'),
 };
 
 // Initialize Appwrite client

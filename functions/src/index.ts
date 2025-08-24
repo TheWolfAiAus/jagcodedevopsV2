@@ -38,7 +38,7 @@ interface BlockCypherResponse {
 export default async ({ req, res, log, error }: AppwriteContext) => {
   // Initialize Appwrite client with function context
   const client = new Client()
-    .setEndpoint(process.env.APPWRITE_FUNCTION_ENDPOINT || 'https://cloud.appwrite.io/v1')
+    .setEndpoint(process.env.APPWRITE_FUNCTION_ENDPOINT || 'https://syd.cloud.appwrite.io/v1')
     .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID || '68a36f6c002bfc1e6057')
     .setKey(process.env.APPWRITE_API_KEY || '');
 
@@ -100,8 +100,8 @@ async function handleCryptoPrices(
 
     // Store in Appwrite database
     await databases.createDocument(
-      'jagcode_main',
-      'crypto_data',
+      '68a3b34a00375e270b14',
+      '68a3b3e2000dcc682c12',
       'unique()',
       {
         bitcoin_price: data.bitcoin?.usd || 0,
@@ -219,8 +219,8 @@ async function handleUserProfile(
     
     // Get user profile from database
     const profile = await databases.getDocument(
-      'jagcode_main',
-      'users',
+      '68a3b34a00375e270b14',
+      '68a3b34a00375e270b15',
       userId
     );
 

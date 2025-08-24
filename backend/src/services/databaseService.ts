@@ -19,13 +19,13 @@ export class DatabaseService {
     constructor() {
         this.client = new Client();
         this.databases = new Databases(this.client);
-        this.databaseId = process.env.APPWRITE_DATABASE_ID || 'main';
+        this.databaseId = process.env.APPWRITE_DATABASE_ID || '68a3b34a00375e270b14';
 
         // Initialize Appwrite client
         this.client
             .setEndpoint(process.env.APPWRITE_ENDPOINT || 'https://syd.cloud.appwrite.io/v1')
-            .setProject(process.env.JAGCODE_DEVOPS || '68a36f6c002bfc1e6057')
-            .setKey(process.env.APPWRITE_JAGCODE_API || '');
+            .setProject(process.env.APPWRITE_PROJECT_ID || '68a36f6c002bfc1e6057')
+            .setKey(process.env.APPWRITE_API_KEY || process.env.APPWRITE_JAGCODE_API || '');
     }
 
     // User Management

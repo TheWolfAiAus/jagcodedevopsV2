@@ -1,4 +1,4 @@
-import {Account, Client, Databases} from 'appwrite';
+import {Account, Client, Databases, Query} from 'appwrite';
 import bcrypt from 'bcryptjs';
 import express, {Request, Response} from 'express';
 import jwt from 'jsonwebtoken';
@@ -8,8 +8,9 @@ const router = express.Router();
 
 // Initialize Appwrite client
 const client = new Client()
-    .setEndpoint(process.env.APPWRITE_ENDPOINT || 'https://cloud.appwrite.io/v1')
-    .setProject(process.env.APPWRITE_PROJECT_ID || '68a36f6c002bfc1e6057');
+    .setEndpoint(process.env.APPWRITE_ENDPOINT || 'https://syd.cloud.appwrite.io/v1')
+    .setProject(process.env.APPWRITE_PROJECT_ID || '68a36f6c002bfc1e6057')
+    .setKey(process.env.APPWRITE_API_KEY || process.env.APPWRITE_JAGCODE_API || '');
 
 const account = new Account(client);
 const databases = new Databases(client);
@@ -47,7 +48,8 @@ router.post('/register', async (req: Request, res: Response) => {
 
         // Create user profile in database
         const userProfile = await databases.createDocument(
-            'users',
+            process.env.APPWRITE_DATABASE_ID || '68a3b34a00375e270b14',
+            '68a3b34a00375e270b15',
             'unique()',
             {
                 userId: user.$id,
@@ -113,8 +115,9 @@ router.post('/login', async (req: Request, res: Response) => {
 
         // Get user profile from database
         const userProfile = await databases.listDocuments(
-            'users',
-            'userId = ' + user.$id
+            process.env.APPWRITE_DATABASE_ID || '68a3b34a00375e270b14',
+            '68a3b34a00375e270b15',
+            [Query.equal('userId', user.$id)]
         );
 
         if (!userProfile.documents.length) {
